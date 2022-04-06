@@ -1,13 +1,22 @@
+@import "../abstracts/mixins";
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+
+  font-size: 100%;
+}
+
 body {
-  font-family: 'Georgia', sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
 a {
-  color: green;
-  font-family: 'Georgia';
-}
-h1 {
-  color: red;
-}
-img {
-  border: 3px dotted red;
+  text-decoration: none;
 }
