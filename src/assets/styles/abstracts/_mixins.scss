@@ -1,0 +1,49 @@
+/* FONT_SIZE */
+@mixin font-size($font-size, $font-weight, $line-height: normal, $letter-spacing: normal) {
+  font-size: $font-size / 16 + em;
+  font-weight: $font-weight;
+  // font-size: $font-size * 0.1rem;
+  // example using rem values and 62.5% font-size so 1rem = 10px
+
+  @if $line-height==normal {
+    line-height: normal;
+  } @else {
+    line-height: $line-height;
+  }
+
+  @if $letter-spacing==normal {
+    letter-spacing: normal;
+  } @else {
+    letter-spacing: #{$letter-spacing}em;
+  }
+}
+
+/* MEDIA */
+$tablet: 480;
+$tablet: 768;
+$large: 1024;
+$desktop: 1280;
+
+@mixin mobile {
+  @media only screen and (min-width: $tablet * 1px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $tablet * 1px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (min-width: $large * 1px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $desktop * 1px) {
+    @content;
+  }
+}
