@@ -18,6 +18,56 @@ body {
   padding: 0;
 }
 
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+
+  color: $color-dark-l;
+
+  font-family: Georgia, sans-serif;
+}
+
+.h2 {
+  @include font-size(44, 400, 130%, );
+}
+
+.h3 {
+  @include font-size(35, 400, 130%, 0.06);
+}
+
+.h4 {
+  @include font-size(20, 400, 115%, 0.06);
+}
+
+.h5 {
+  @include font-size(15, 400, 110%, 0.06);
+}
+
+p {
+  color: $color-dark-xl;
+}
+
+.paragraph-l {
+  margin: 0;
+
+  @include font-size(15, 400, 160%,);
+}
+
+.paragraph-s {
+  margin: 0;
+
+  font-style: italic;
+
+  @include font-size(12, 400, 160%,);
+}
+
 a {
   color: $color-dark-3xl;
   text-decoration: none;
@@ -25,4 +75,18 @@ a {
 
 button {
   border: 0;
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.main {
+  margin-top: -130px;
+}
+
+.section {
+  @include padding-rem(80, 0, 91, 0);
 }
