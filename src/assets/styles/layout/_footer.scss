@@ -12,7 +12,7 @@
       width: calc(100% / 3);
       margin-right: 39px;
 
-      @include padding-rem(20, 0, 58, 0);
+      @include padding-rem(20, 0, 0, 0);
     }
 
     &__title {
@@ -28,8 +28,6 @@
       list-style: none;
 
       &-item {
-        display: flex;
-        align-items: center;
         margin-bottom: 40px;
       }
 
@@ -38,34 +36,37 @@
       }
 
       &-link {
+        display: flex;
+        align-items: center;
+
         color: $color-primary;
         font-family: Georgia, sans-serif;
-      }
 
-      &-item::before {
-        position: relative;
-        top: -3px;
+        &::before {
+          position: relative;
+          top: -3px;
 
-        width: 40px;
-        height: 32px;
-        margin-right: 20px;
+          width: 40px;
+          height: 32px;
+          margin-right: 20px;
 
-        content: "";
-      }
+          content: "";
+        }
 
-      &-item--mail::before {
-        background: url("/src/assets/icons/icon-mail.svg") no-repeat center center;
-      }
+        &--mail::before {
+          background: url("/src/assets/icons/icon-mail.svg") no-repeat center center;
+        }
 
-      &-item--phone::before {
-        background: url("/src/assets/icons/icon-phone.svg") no-repeat center center;
-      }
+        &--phone::before {
+          background: url("/src/assets/icons/icon-phone.svg") no-repeat center center;
+        }
 
-      &-item--map::before {
-        width: 24px;
-        height: 40px;
+        &--map::before {
+          width: 24px;
+          height: 40px;
 
-        background: url("/src/assets/icons/icon-pin.svg") no-repeat left center;
+          background: url("/src/assets/icons/icon-pin.svg") no-repeat left center;
+        }
       }
     }
 
