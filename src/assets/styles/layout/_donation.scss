@@ -1,0 +1,50 @@
+.section-donation {
+  background-color: $color-light-l;
+
+  &__wrapper {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  &__image {
+    margin-top: 10px;
+  }
+
+  &__text {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    margin-bottom: 20px;
+  }
+
+  &__card {
+    display: flex;
+    max-width: 350px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+
+    background-color: $color-primary;
+    border-radius: 9px;
+  }
+
+  &__ico {
+    margin-right: 15px;
+  }
+
+  &-number {
+    color: $color-dark-l;
+    font-family: Georgia, sans-serif;
+  }
+
+  &__description {
+    color: $color-dark-s;
+  }
+}
