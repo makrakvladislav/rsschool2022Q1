@@ -1,1 +1,35 @@
-/* card */
+.card {
+  background-color: $color-light-s;
+  border-radius: 9px;
+
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-light-xl;
+    box-shadow: 0 2px 35px 14px rgb(13 13 13 / 4%);
+    cursor: pointer;
+  }
+
+  &__header {
+    width: 100%;
+    height: 100%;
+    max-height: 270px;
+    margin-bottom: 28px;
+    object-fit: contain;
+  }
+
+  &__body {
+    padding: 0 10px 30px;
+
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 30px;
+
+    color: $color-dark-l;
+    font-family: Georgia, sans-serif;
+
+    @include font-size(20, 400, 115%, 0.06);
+  }
+}
