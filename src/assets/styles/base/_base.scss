@@ -11,6 +11,7 @@ html {
 
   font-size: 100%;
   font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -78,9 +79,8 @@ button {
 }
 
 .container {
-  width: 1280px;
+  width: 1200px;
   margin: 0 auto;
-  padding: 0 40px;
 }
 
 .main {
