@@ -33,6 +33,12 @@
 
     background-color: $color-primary;
     border-radius: 9px;
+
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $color-primary-light;
+    }
   }
 
   &__ico {
