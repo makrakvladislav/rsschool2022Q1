@@ -1,0 +1,19 @@
+.pets-list {
+  @include padding-rem(80, 0, 95, 0);
+
+  &__title {
+    margin-bottom: 60px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    row-gap: 32px;
+    margin-bottom: 63px;
+
+    .card {
+      width: calc(100% / 4 - 30px);
+    }
+  }
+}
