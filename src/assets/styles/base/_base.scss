@@ -87,6 +87,14 @@ button {
   margin-top: -130px;
 }
 
+.main-pets {
+  margin: 0;
+
+  text-align: center;
+
+  background-color: $color-light-l;
+}
+
 .section {
   @include padding-rem(80, 0, 91, 0);
 }
