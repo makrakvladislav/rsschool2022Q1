@@ -1,0 +1,27 @@
+.section-about {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+
+    column-gap: 120px;
+  }
+
+  &__title {
+    margin-bottom: 22px;
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  &__text {
+    width: 100%;
+    max-width: 430px;
+    margin-top: 16px;
+  }
+
+  .paragraph-l {
+    margin-bottom: 25px;
+  }
+}
