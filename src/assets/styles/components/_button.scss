@@ -25,6 +25,7 @@
     height: 50px;
     padding: 0;
 
+    background-color: transparent;
     border: 2px solid $color-primary;
     border-radius: 50%;
   }
@@ -33,5 +34,14 @@
     background-color: $color-primary-light;
     border-color: $color-primary-light;
     cursor: pointer;
+  }
+
+  &:disabled,
+  button[disabled] {
+    color: $color-dark-s;
+
+    border-color: $color-dark-s;
+
+    pointer-events: none;
   }
 }
