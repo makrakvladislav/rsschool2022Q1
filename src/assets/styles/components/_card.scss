@@ -8,6 +8,11 @@
     background-color: $color-light-xl;
     box-shadow: 0 2px 35px 14px rgb(13 13 13 / 4%);
     cursor: pointer;
+
+    .button {
+      background-color: $color-primary-light;
+      border-color: $color-primary-light;
+    }
   }
 
   &__header {
