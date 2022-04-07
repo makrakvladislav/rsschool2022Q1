@@ -11,5 +11,7 @@
 
   .pets-slider {
     margin-bottom: 60px;
+
+    @include padding-rem(0, 105, 0 , 105);
   }
 }
