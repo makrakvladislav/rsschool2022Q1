@@ -1,0 +1,19 @@
+.section-help {
+  text-align: center;
+
+  &__title {
+    margin-bottom: 60px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 120px;
+    justify-content: center;
+    row-gap: 55px;
+  }
+
+  &__ico {
+    margin-bottom: 25px;
+  }
+}
