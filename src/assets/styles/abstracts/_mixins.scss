@@ -19,6 +19,15 @@
   }
 }
 
+/* PX TO EM PADDINGS */
+@mixin padding-em($top, $right, $bottom, $left) {
+  padding: $top / 16 + em $right / 16 + em $bottom / 16 + em $left / 16 + em;
+}
+
+@mixin padding-rem($top, $right, $bottom, $left) {
+  padding: ($top / 16) + rem ($right / 16) + rem ($bottom / 16) + rem ($left / 16) + rem;
+}
+
 /* MEDIA */
 $phone: 480;
 $tablet: 768;
