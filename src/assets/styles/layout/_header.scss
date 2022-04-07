@@ -40,8 +40,13 @@
 
     &__link {
       @include font-size(15, 400, 160%);
-
       color: $color-dark-s;
+
+      transition: all 0.3s;
+
+      &:hover {
+        color: $color-light-xl;
+      }
     }
 
     &__item:last-child {
