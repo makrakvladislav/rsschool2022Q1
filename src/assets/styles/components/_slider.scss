@@ -1,15 +1,13 @@
 .slider {
   position: relative;
 
-  width: 1280px;
+  width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
 
   &-wrapper {
     display: flex;
     gap: 90px;
-
-    @include padding-rem(0, 105, 0 , 105);
   }
 
   &-slide {
@@ -19,7 +17,7 @@
   &-button-prev {
     position: absolute;
     top: 50%;
-    left: 3.2%;
+    left: 0;
 
     background: url("/src/assets/icons/icon-arrow.svg") transparent no-repeat center center;
     transform: translateY(-50%);
@@ -28,7 +26,7 @@
   &-button-next {
     position: absolute;
     top: 50%;
-    right: 3.2%;
+    right: 0;
 
     background: url("/src/assets/icons/icon-arrow.svg") transparent no-repeat center center;
     transform: translateY(-50%) rotate(180deg);
