@@ -1,0 +1,15 @@
+.section-pets {
+  text-align: center;
+
+  background-color: $color-light-l;
+
+  @include padding-rem(80, 0, 100, 0);
+
+  &__title {
+    margin-bottom: 60px;
+  }
+
+  .pets-slider {
+    margin-bottom: 60px;
+  }
+}
