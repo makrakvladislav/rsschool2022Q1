@@ -66,7 +66,7 @@ p {
 
   font-style: italic;
 
-  @include font-size(12, 400, 160%,);
+  @include font-size(12, 400, 150%,);
 }
 
 a {
@@ -96,5 +96,5 @@ button {
 }
 
 .section {
-  @include padding-rem(80, 0, 91, 0);
+  @include padding-rem(80, 0, 98, 0);
 }
