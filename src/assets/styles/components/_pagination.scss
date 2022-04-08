@@ -3,6 +3,10 @@
   gap: 20px;
   justify-content: center;
 
+  &__item--active {
+    background-color: $color-primary;
+  }
+
   &__item--first::before {
     content: "<<";
   }

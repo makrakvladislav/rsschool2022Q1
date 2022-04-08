@@ -38,7 +38,7 @@
     }
   }
 
-  &:hover {
+  &:hover:not(.pagination__item--active) {
     background-color: $color-primary-light;
     border-color: $color-primary-light;
     cursor: pointer;
@@ -47,6 +47,8 @@
   &:disabled,
   button[disabled] {
     color: $color-dark-s;
+
+    background-color: transparent;
 
     border-color: $color-dark-s;
 
