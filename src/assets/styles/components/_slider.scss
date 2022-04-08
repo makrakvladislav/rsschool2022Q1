@@ -19,7 +19,6 @@
     top: 50%;
     left: 0;
 
-    background: url("/src/assets/icons/icon-arrow.svg") transparent no-repeat center center;
     transform: translateY(-50%);
   }
 
@@ -28,7 +27,6 @@
     top: 50%;
     right: 0;
 
-    background: url("/src/assets/icons/icon-arrow.svg") transparent no-repeat center center;
     transform: translateY(-50%) rotate(180deg);
   }
 }
