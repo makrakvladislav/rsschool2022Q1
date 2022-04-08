@@ -1,5 +1,5 @@
 .pets-list {
-  @include padding-rem(80, 0, 95, 0);
+  @include padding-rem(80, 0, 99, 0);
 
   &__title {
     margin-bottom: 60px;
@@ -9,8 +9,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-    row-gap: 32px;
-    margin-bottom: 63px;
+    row-gap: 30px;
+    margin-bottom: 59px;
 
     .card {
       width: calc(100% / 4 - 30px);
