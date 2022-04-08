@@ -1,11 +1,12 @@
 .section-donation {
   background-color: $color-light-l;
 
+  @include padding-rem(83, 0, 98, 0);
+
   &__wrapper {
     display: flex;
     gap: 30px;
     justify-content: center;
-    margin-top: 10px;
   }
 
   &__image {
