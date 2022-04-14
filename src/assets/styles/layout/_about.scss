@@ -4,6 +4,12 @@
     justify-content: center;
 
     column-gap: 120px;
+
+    @include desktop {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 80px;
+    }
   }
 
   &__title {
@@ -13,12 +19,20 @@
   &__image {
     width: 100%;
     max-width: 300px;
+
+    @include desktop {
+      order: 2;
+    }
   }
 
   &__text {
     width: 100%;
     max-width: 430px;
     margin-top: 16px;
+
+    @include desktop {
+      margin-top: 0;
+    }
   }
 
   .paragraph-l {
