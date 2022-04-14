@@ -1,17 +1,29 @@
 .slider {
   position: relative;
 
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
 
   &-wrapper {
     display: flex;
     gap: 90px;
+
+    @include desktop {
+      gap: 40px;
+    }
   }
 
   &-slide {
     width: calc(100% / 3);
+
+    @include desktop {
+      width: calc(100% / 2);
+
+      &:nth-child(3) {
+        display: none;
+      }
+    }
   }
 
   &-button-prev {
@@ -20,6 +32,10 @@
     left: 0;
 
     transform: translateY(-50%);
+
+    @include desktop {
+      left: 30px;
+    }
   }
 
   &-button-next {
@@ -28,5 +44,9 @@
     right: 0;
 
     transform: translateY(-50%) rotate(180deg);
+
+    @include desktop {
+      right: 30px;
+    }
   }
 }
