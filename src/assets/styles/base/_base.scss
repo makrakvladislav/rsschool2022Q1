@@ -41,6 +41,10 @@ h5 {
 
 .h3 {
   @include font-size(35, 400, 130%, 0.06);
+
+  @include tablet {
+    @include font-size(25, 400, 130%, 0.06);
+  }
 }
 
 .h4 {
@@ -79,8 +83,14 @@ button {
 }
 
 .container {
-  width: 1200px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 40px;
+
+  @include desktop {
+    padding: 0 30px;
+  }
 }
 
 .main {
