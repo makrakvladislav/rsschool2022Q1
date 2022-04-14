@@ -30,9 +30,9 @@
 
 /* MEDIA */
 $phone: 480;
-$tablet: 768;
+$tablet: 767;
 $large: 1024;
-$desktop: 1280;
+$desktop: 1279;
 
 @mixin phone {
   @media only screen and (max-width: ($phone * 1px)) {
