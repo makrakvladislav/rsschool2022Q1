@@ -12,16 +12,34 @@
   &__text {
     flex: 40%;
     margin-top: 170px;
-    padding-right: 30px;
+
+    @include desktop {
+      display: flex;
+      flex-direction: column;
+      max-width: 460px;
+      margin-top: 10px;
+
+      .button {
+        margin: 0 auto;
+      }
+    }
   }
 
   &__description {
     margin-bottom: 43px;
 
+    @include desktop {
+      margin-bottom: 40px;
+    }
     color: $color-dark-s;
   }
 
   &__image {
+    @include desktop {
+      align-self: end;
+      max-width: 569px;
+    }
+
     img {
       position: relative;
       top: 5px;
@@ -33,5 +51,14 @@
   .container {
     display: flex;
     justify-content: space-between;
+
+    @include desktop {
+      flex-direction: column;
+      gap: 97px;
+      align-items: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0;
+    }
   }
 }
