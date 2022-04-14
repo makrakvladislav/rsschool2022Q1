@@ -11,9 +11,20 @@
     gap: 120px;
     justify-content: center;
     row-gap: 55px;
+
+    @include desktop {
+      gap: 59px;
+      row-gap: 55px;
+    }
   }
 
   &__ico {
     margin-bottom: 25px;
+  }
+
+  @include desktop {
+    &__item {
+      width: 170px;
+    }
   }
 }
