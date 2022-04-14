@@ -1,8 +1,16 @@
 .pets-list {
   @include padding-rem(80, 0, 99, 0);
 
+  @include desktop {
+    @include padding-rem(80, 0, 77, 0);
+  }
+
   &__title {
     margin-bottom: 60px;
+
+    @include desktop {
+      margin-bottom: 30px;
+    }
   }
 
   &__wrapper {
@@ -12,8 +20,19 @@
     row-gap: 30px;
     margin-bottom: 59px;
 
+    @include desktop {
+      max-width: 708px;
+      margin-bottom: 40px;
+
+      @include padding-rem(0, 64, 0, 64);
+    }
+
     .card {
       width: calc(100% / 4 - 30px);
+
+      @include desktop {
+        width: calc(50% - 20px);
+      }
     }
   }
 }
