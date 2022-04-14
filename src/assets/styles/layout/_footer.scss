@@ -3,22 +3,41 @@
 
   &-wrapper {
     display: flex;
+    gap: 40px;
 
     @include padding-rem(37, 0, 0, 0);
+
+    @include desktop {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-width: 700px;
+      margin: 0 auto;
+      row-gap: 30px;
+
+      @include padding-rem(28, 32, 0, 32);
+    }
   }
 
   &-contacts {
     &__item {
       width: calc(100% / 3);
-      margin-right: 39px;
 
       @include padding-rem(20, 0, 0, 0);
+
+      @include desktop {
+        width: calc(100% / 2 - 20px);
+        padding: 0;
+      }
     }
 
     &__title {
       margin-bottom: 41px;
 
       color: $color-light-xl;
+
+      @include desktop {
+        margin-bottom: 38px;
+      }
     }
 
     &__list {
@@ -51,6 +70,12 @@
           margin-right: 20px;
 
           content: "";
+
+          @include desktop {
+            top: 0;
+
+            margin-right: 17px;
+          }
         }
 
         &--mail::before {
@@ -71,17 +96,29 @@
     }
 
     &__item:nth-child(2) &__title {
-      margin-bottom: 34px;
+      margin-bottom: 30px;
+
+      @include desktop {
+        margin-bottom: 30px;
+      }
     }
 
     &__item:nth-child(2) &__list-item {
       margin-bottom: 27px;
+
+      @include desktop {
+        margin-bottom: 30px;
+      }
     }
   }
 
   &-img {
     display: flex;
     margin: 5px 0 0 25px;
+
+    @include desktop {
+      margin: 0;
+    }
 
     /*
     img {
