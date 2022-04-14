@@ -7,10 +7,21 @@
     display: flex;
     gap: 30px;
     justify-content: center;
+
+    @include desktop {
+      flex-direction: column;
+      gap: 60px;
+      align-items: center;
+    }
   }
 
   &__image {
     margin-top: 10px;
+
+    @include desktop {
+      order: 2;
+      margin: 0;
+    }
   }
 
   &__text {
