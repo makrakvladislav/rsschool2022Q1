@@ -13,5 +13,9 @@
     margin-bottom: 60px;
 
     @include padding-rem(0, 105, 0 , 105);
+
+    @include desktop {
+      @include padding-rem(0, 95, 0, 95);
+    }
   }
 }
