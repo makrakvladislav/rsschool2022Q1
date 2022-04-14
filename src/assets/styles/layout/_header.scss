@@ -1,6 +1,10 @@
 .header {
   padding-top: 60px;
 
+  @include desktop {
+    padding-top: 30px;
+  }
+
   .logo {
     font-family: Georgia, sans-serif;
     text-align: center;
