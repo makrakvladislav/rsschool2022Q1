@@ -37,6 +37,10 @@ h5 {
 
 .h2 {
   @include font-size(44, 400, 130%, );
+
+  @include tablet {
+    @include font-size(25, 400, 130%, 0.06);
+  }
 }
 
 .h3 {
