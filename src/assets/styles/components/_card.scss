@@ -44,3 +44,7 @@
     @include font-size(20, 400, 115%, 0.06);
   }
 }
+
+.card.m-hidden {
+  display: none;
+}
