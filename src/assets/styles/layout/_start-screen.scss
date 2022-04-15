@@ -7,6 +7,10 @@
     margin-bottom: 39px;
 
     color: $color-light-xl;
+
+    @include tablet {
+      margin-bottom: 43px;
+    }
   }
 
   &__text {
@@ -23,6 +27,13 @@
         margin: 0 auto;
       }
     }
+
+    @include tablet {
+      align-items: center;
+      margin-top: 5px;
+
+      text-align: center;
+    }
   }
 
   &__description {
@@ -38,6 +49,10 @@
     @include desktop {
       align-self: end;
       max-width: 569px;
+    }
+
+    @include tablet {
+      max-width: 260px;
     }
 
     img {
@@ -59,6 +74,11 @@
       max-width: 700px;
       margin: 0 auto;
       padding: 0;
+    }
+
+    @include tablet {
+      max-width: 320px;
+      padding: 0 10px;
     }
   }
 }
