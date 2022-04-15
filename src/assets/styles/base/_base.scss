@@ -40,6 +40,7 @@ h5 {
 
   @include tablet {
     @include font-size(25, 400, 130%, 0.06);
+    text-align: center;
   }
 }
 
@@ -48,6 +49,7 @@ h5 {
 
   @include tablet {
     @include font-size(25, 400, 130%, 0.06);
+    text-align: center;
   }
 }
 
@@ -67,6 +69,10 @@ p {
   margin: 0;
 
   @include font-size(15, 400, 160%,);
+
+  @include tablet {
+    text-align: justify;
+  }
 }
 
 .paragraph-s {
@@ -115,4 +121,8 @@ button {
 
 .section {
   @include padding-rem(80, 0, 98, 0);
+
+  @include tablet {
+    @include padding-rem(45, 0, 45, 0);
+  }
 }
