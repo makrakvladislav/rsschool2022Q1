@@ -5,8 +5,16 @@
 
   @include padding-rem(80, 0, 100, 0);
 
+  @include tablet {
+    @include padding-rem(40, 0, 40, 0);
+  }
+
   &__title {
     margin-bottom: 58px;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
   }
 
   .pets-slider {
@@ -15,7 +23,16 @@
     @include padding-rem(0, 105, 0 , 105);
 
     @include desktop {
+      max-width: 708px;
+
       @include padding-rem(0, 95, 0, 95);
+    }
+
+    @include tablet {
+      max-width: 300px;
+      margin-bottom: 42px;
+
+      @include padding-rem(0, 15, 0, 15);
     }
   }
 }
