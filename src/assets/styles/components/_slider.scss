@@ -12,6 +12,10 @@
     @include desktop {
       gap: 40px;
     }
+
+    @include tablet {
+      margin-bottom: 20px;
+    }
   }
 
   &-slide {
@@ -24,6 +28,19 @@
         display: none;
       }
     }
+
+    @include tablet {
+      width: 100%;
+
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+
+  &-buttons__wrapper {
+    display: flex;
+    justify-content: space-around;
   }
 
   &-button-prev {
@@ -36,6 +53,12 @@
     @include desktop {
       left: 30px;
     }
+
+    @include tablet {
+      position: initial;
+
+      transform: translateY(0%);
+    }
   }
 
   &-button-next {
@@ -47,6 +70,12 @@
 
     @include desktop {
       right: 30px;
+    }
+
+    @include tablet {
+      position: initial;
+
+      transform: translateY(0%) rotate(180deg);
     }
   }
 }
