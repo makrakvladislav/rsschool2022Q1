@@ -36,6 +36,10 @@
       padding: 0 0 4px;
 
       list-style: none;
+
+      @include tablet {
+        display: none;
+      }
     }
 
     &__item {
