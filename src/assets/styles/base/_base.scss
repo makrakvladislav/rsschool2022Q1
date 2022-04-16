@@ -55,6 +55,10 @@ h5 {
 
 .h4 {
   @include font-size(20, 400, 115%, 0.06);
+
+  @include tablet {
+    @include font-size(15, 400, 110%, 0.06);
+  }
 }
 
 .h5 {
