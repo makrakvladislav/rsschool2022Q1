@@ -45,12 +45,14 @@
   }
 }
 
-.card.m-hidden {
-  display: none;
+@include desktop {
+  .card.m-hidden {
+    display: none;
+  }
 }
 
-.card.t-hidden {
-  @include tablet {
+@include tablet {
+  .card.t-hidden {
     display: none;
   }
 }
