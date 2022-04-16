@@ -48,3 +48,9 @@
 .card.m-hidden {
   display: none;
 }
+
+.card.t-hidden {
+  @include tablet {
+    display: none;
+  }
+}
