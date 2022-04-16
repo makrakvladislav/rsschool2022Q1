@@ -3,6 +3,10 @@
 
   &__title {
     margin-bottom: 60px;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
   }
 
   &__list {
@@ -15,16 +19,37 @@
     @include desktop {
       gap: 59px;
       row-gap: 55px;
+
+      max-width: 708px;
+      margin: 0 auto;
+    }
+
+    @include tablet {
+      gap: 25px 20px;
+      justify-content: flex-start;
+      max-width: 300px;
+      margin: 0 auto;
     }
   }
 
   &__ico {
     margin-bottom: 25px;
+
+    @include tablet {
+      width: 50px;
+      margin-bottom: 20px;
+    }
   }
 
   @include desktop {
     &__item {
       width: 170px;
+    }
+  }
+
+  @include tablet {
+    &__item {
+      width: 140px;
     }
   }
 }

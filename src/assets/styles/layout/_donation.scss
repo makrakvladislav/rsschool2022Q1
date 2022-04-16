@@ -3,6 +3,10 @@
 
   @include padding-rem(83, 0, 98, 0);
 
+  @include tablet {
+    @include padding-rem(45, 0, 37, 0);
+  }
+
   &__wrapper {
     display: flex;
     gap: 30px;
@@ -13,6 +17,10 @@
       gap: 60px;
       align-items: center;
     }
+
+    @include tablet {
+      gap: 40px;
+    }
   }
 
   &__image {
@@ -22,26 +30,41 @@
       order: 2;
       margin: 0;
     }
+
+    img {
+      @include tablet {
+        max-width: 260px;
+      }
+    }
   }
 
   &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 100%;
     max-width: 380px;
-  }
 
-  &__title {
-    margin-bottom: 20px;
+    @include tablet {
+      gap: 23px;
+
+      align-items: center;
+      max-width: 280px;
+    }
   }
 
   &__subtitle {
-    margin-bottom: 20px;
+    @include tablet {
+      letter-spacing: 0;
+    }
   }
 
   &__card {
     display: flex;
+    align-items: center;
+    width: 100%;
     max-width: 350px;
-    margin-bottom: 20px;
-    padding: 10px 15px;
+    padding: 10px 13px;
 
     background-color: $color-primary;
     border-radius: 9px;
@@ -64,5 +87,6 @@
 
   &__description {
     color: $color-dark-s;
+    text-align: justify;
   }
 }

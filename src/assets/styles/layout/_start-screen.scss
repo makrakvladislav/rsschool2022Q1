@@ -42,6 +42,10 @@
     @include desktop {
       margin-bottom: 40px;
     }
+
+    @include tablet {
+      text-align: center;
+    }
     color: $color-dark-s;
   }
 

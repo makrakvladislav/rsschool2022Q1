@@ -5,11 +5,19 @@
     @include padding-rem(80, 0, 77, 0);
   }
 
+  @include tablet {
+    @include padding-rem(40, 0, 40, 0);
+  }
+
   &__title {
     margin-bottom: 60px;
 
     @include desktop {
       margin-bottom: 30px;
+    }
+
+    @include tablet {
+      margin-bottom: 45px;
     }
   }
 
@@ -22,9 +30,17 @@
 
     @include desktop {
       max-width: 708px;
+      margin: 0 auto;
       margin-bottom: 40px;
 
       @include padding-rem(0, 64, 0, 64);
+    }
+
+    @include tablet {
+      max-width: 300px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+      padding: 0 15px;
     }
 
     .card {
@@ -32,6 +48,10 @@
 
       @include desktop {
         width: calc(50% - 20px);
+      }
+
+      @include tablet {
+        width: 100%;
       }
     }
   }
