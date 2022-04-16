@@ -5,6 +5,10 @@
   margin: 0 auto;
   padding: 0 40px;
 
+  @include desktop {
+    max-width: 768px;
+  }
+
   &-wrapper {
     display: flex;
     gap: 90px;
