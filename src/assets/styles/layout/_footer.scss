@@ -5,49 +5,88 @@
     display: flex;
     gap: 40px;
 
-    @include padding-rem(37, 0, 0, 0);
+    @include padding-rem(45, 0, 0, 0);
 
     @include desktop {
       flex-wrap: wrap;
       justify-content: space-around;
       max-width: 700px;
       margin: 0 auto;
-      row-gap: 30px;
+      row-gap: 62px;
 
       @include padding-rem(28, 32, 0, 32);
+    }
+
+    @include tablet {
+      flex-direction: column;
+      align-items: center;
+      max-width: 300px;
+      row-gap: 40px;
+
+      @include padding-rem(30, 0, 0, 0);
     }
   }
 
   &-contacts {
     &__item {
+      gap: 33px;
       width: calc(100% / 3);
-
-      @include padding-rem(20, 0, 0, 0);
+      margin-top: 13px;
 
       @include desktop {
+        display: flex;
+        flex-direction: column;
         width: calc(100% / 2 - 20px);
-        padding: 0;
+        margin-top: 0;
+      }
+
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        gap: 37px;
+        align-items: center;
+        width: 100%;
       }
     }
 
     &__title {
-      margin-bottom: 41px;
+      max-width: 280px;
+      margin-bottom: 35px;
 
       color: $color-light-xl;
 
       @include desktop {
-        margin-bottom: 38px;
+        margin-bottom: 5px;
+      }
+
+      @include tablet {
+        margin-bottom: 3px;
       }
     }
 
     &__list {
+      display: flex;
+
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 110px;
       margin: 0;
       padding: 0;
 
       list-style: none;
 
-      &-item {
-        margin-bottom: 40px;
+      @include desktop {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 105px;
+      }
+
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
       }
 
       &-item:last-child {
@@ -61,10 +100,11 @@
         color: $color-primary;
         font-family: Georgia, sans-serif;
 
-        &::before {
-          position: relative;
-          top: -3px;
+        @include tablet {
+          @include font-size(20, 400, 115%, 0.06);
+        }
 
+        &::before {
           width: 40px;
           height: 32px;
           margin-right: 20px;
@@ -84,11 +124,15 @@
 
         &--phone::before {
           background: url("/src/assets/icons/icon-phone.svg") no-repeat center center;
+
+          @include tablet {
+            margin-right: 22px;
+          }
         }
 
         &--map::before {
-          width: 24px;
-          height: 40px;
+          width: 22px;
+          height: 32px;
 
           background: url("/src/assets/icons/icon-pin.svg") no-repeat left center;
         }
@@ -96,28 +140,28 @@
     }
 
     &__item:nth-child(2) &__title {
-      margin-bottom: 30px;
-
       @include desktop {
-        margin-bottom: 30px;
+        margin-bottom: 0;
       }
     }
 
-    &__item:nth-child(2) &__list-item {
-      margin-bottom: 27px;
-
-      @include desktop {
-        margin-bottom: 30px;
-      }
+    &__item:nth-child(2) &__list {
+      align-items: flex-start;
     }
   }
 
   &-img {
     display: flex;
-    margin: 5px 0 0 25px;
+    margin: 0 0 0 25px;
 
     @include desktop {
       margin: 0;
+    }
+
+    img {
+      @include tablet {
+        max-width: 260px;
+      }
     }
 
     /*
