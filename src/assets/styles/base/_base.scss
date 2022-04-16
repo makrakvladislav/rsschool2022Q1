@@ -130,3 +130,7 @@ button {
     @include padding-rem(45, 0, 40, 0);
   }
 }
+
+.menu-open {
+  overflow: hidden;
+}

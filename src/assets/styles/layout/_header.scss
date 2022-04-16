@@ -16,6 +16,12 @@
       color: $color-primary;
     }
 
+    @include tablet {
+      z-index: 101;
+
+      margin-right: 40px;
+    }
+
     &-subtitle {
       @include font-size(13, 400, 14px, 0.1);
       color: $color-light-xl;
@@ -29,6 +35,59 @@
     justify-content: space-between;
   }
 
+  &__menu {
+    @include tablet {
+      position: fixed;
+      top: 0;
+      right: -620px;
+      z-index: 100;
+
+      display: flex;
+      width: 100%;
+      max-width: 620px;
+      height: 100%;
+
+      overflow-x: hidden;
+
+      background: var(--color-black);
+
+      transition: 0.5s;
+    }
+  }
+
+  &__menu.open {
+    right: 0;
+
+    max-width: 320px;
+
+    background-color: $color-dark-3xl;
+    box-shadow: 0 0 0 9999px rgb(0 0 0 / 50%);
+  }
+
+  &__burger {
+    z-index: 100;
+
+    display: none;
+    margin-right: 43px;
+
+    transition: 0.5s;
+
+    @include tablet {
+      display: block;
+    }
+
+    .line {
+      display: block;
+      width: 30px;
+      height: 2px;
+      margin: 10px auto;
+
+      background-color: $color-primary;
+
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
   .nav {
     &__list {
       display: flex;
@@ -38,12 +97,20 @@
       list-style: none;
 
       @include tablet {
-        display: none;
+        flex-direction: column;
+        gap: 42px;
+        align-items: center;
+        margin: 250px 39px;
+        padding-bottom: 0;
       }
     }
 
     &__item {
       @include padding-em(0, 36, 0, 0);
+
+      @include tablet {
+        padding: 0;
+      }
     }
 
     &__link {
@@ -51,6 +118,10 @@
       color: $color-dark-s;
 
       transition: all 0.3s;
+
+      @include tablet {
+        @include font-size(32, 400, 160%, 0);
+      }
 
       &:hover {
         color: $color-light-xl;
@@ -67,6 +138,10 @@
       color: $color-light-s;
 
       border-bottom: 3px solid $color-primary;
+
+      @include tablet {
+        padding-bottom: 8px;
+      }
     }
   }
 
@@ -99,8 +174,26 @@
       }
 
       &__link.active {
-        color: $color-dark-l;
+        color: $color-dark-3xl;
       }
     }
+
+    .header__menu.open {
+      background-color: $color-light-xl;
+    }
+
+    .header__burger .line {
+      background-color: #000;
+    }
+  }
+}
+
+.menu-open {
+  .logo {
+    margin-left: auto;
+  }
+
+  .header__burger {
+    transform: rotateZ(90deg);
   }
 }
