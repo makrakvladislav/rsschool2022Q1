@@ -3,7 +3,7 @@ import './style.scss';
 
 const body = document.body;
 const hamburger = document.querySelector(".header__burger");
-const menuWrapper = document.querySelector(".header__menu");
+const menuWrapper = document.querySelector(".header-menu__wrapper");
 const nav = document.querySelector(".nav__list");
 
 function toggleMenu() {

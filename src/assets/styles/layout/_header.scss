@@ -9,6 +9,8 @@
     font-family: Georgia, sans-serif;
     text-align: center;
 
+    transition: all 0.3s;
+
     &-title {
       @include font-size(32, 400, 110%, 0.06);
       margin-bottom: 10px;
@@ -29,30 +31,20 @@
     }
   }
 
+  .burger-logo {
+    display: none;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    transition: all 0.3s;
+  }
+
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  &__menu {
-    @include tablet {
-      position: fixed;
-      top: 0;
-      right: -620px;
-      z-index: 100;
-
-      display: flex;
-      width: 100%;
-      max-width: 620px;
-      height: 100%;
-
-      overflow-x: hidden;
-
-      background: var(--color-black);
-
-      transition: 0.5s;
-    }
   }
 
   &__menu.open {
@@ -65,7 +57,8 @@
   }
 
   &__burger {
-    z-index: 100;
+    position: relative;
+    z-index: 105;
 
     display: none;
     margin-right: 43px;
@@ -100,7 +93,7 @@
         flex-direction: column;
         gap: 42px;
         align-items: center;
-        margin: 250px 39px;
+        margin: 190px 39px;
         padding-bottom: 0;
       }
     }
@@ -145,6 +138,35 @@
     }
   }
 
+  @include tablet {
+    &-menu__wrapper {
+      position: fixed;
+      top: 0;
+      right: -620px;
+      z-index: 100;
+
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 620px;
+      height: 100%;
+      overflow-x: hidden;
+
+      background: var(--color-black);
+
+      transition: 0.5s;
+    }
+  }
+
+  &-menu__wrapper.open {
+    right: 0;
+
+    max-width: 320px;
+
+    background-color: #292929;
+    box-shadow: 0 0 0 9999px rgb(0 0 0 / 50%);
+  }
+
   /* PETS PAGE */
   &-pets {
     position: sticky;
@@ -162,6 +184,10 @@
       &-subtitle {
         color: $color-dark-l;
       }
+    }
+
+    .header-menu__wrapper {
+      background-color: $color-light-xl;
     }
 
     .nav {
@@ -190,7 +216,25 @@
 
 .menu-open {
   .logo {
-    margin-left: auto;
+    margin: 0;
+
+    visibility: hidden;
+
+    opacity: 0;
+  }
+
+  .burger-logo {
+    position: relative;
+    top: 30px;
+    left: 10px;
+
+    display: block;
+
+    align-self: self-start;
+
+    visibility: visible;
+
+    opacity: 1;
   }
 
   .header__burger {
