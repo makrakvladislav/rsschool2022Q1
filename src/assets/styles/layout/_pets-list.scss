@@ -1,12 +1,12 @@
 .pets-list {
-  @include padding-rem(80, 0, 99, 0);
+  @include padding-rem(200, 0, 99, 0);
 
   @include desktop {
-    @include padding-rem(80, 0, 77, 0);
+    @include padding-rem(200, 0, 77, 0);
   }
 
   @include tablet {
-    @include padding-rem(40, 0, 40, 0);
+    @include padding-rem(160, 0, 40, 0);
   }
 
   &__title {
