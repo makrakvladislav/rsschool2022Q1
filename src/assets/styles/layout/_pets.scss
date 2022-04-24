@@ -19,8 +19,9 @@
 
   .pets-slider {
     margin-bottom: 60px;
+    overflow: hidden;
 
-    @include padding-rem(0, 105, 0 , 105);
+    //@include padding-rem(0, 105, 0 , 105);
 
     @include desktop {
       @include padding-rem(0, 95, 0, 95);

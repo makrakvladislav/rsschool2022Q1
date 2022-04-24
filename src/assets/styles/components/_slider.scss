@@ -10,8 +10,11 @@
   }
 
   &-wrapper {
+    position: relative;
+
     display: flex;
     gap: 90px;
+    justify-content: center;
 
     @include desktop {
       gap: 40px;
@@ -22,8 +25,17 @@
     }
   }
 
+  &-item {
+    display: flex;
+    gap: 90px;
+
+    @include desktop {
+      gap: 40px;
+    }
+  }
+
   &-slide {
-    width: calc(100% / 3);
+    width: 270px;
 
     @include desktop {
       width: calc(100% / 2);
@@ -82,4 +94,24 @@
       transform: translateY(0%) rotate(180deg);
     }
   }
+}
+
+@keyframes move-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 0.5s;
+}
+
+@keyframes move-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 0.5s;
 }
