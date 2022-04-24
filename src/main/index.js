@@ -125,17 +125,18 @@ getData(file)
 
 const generateCard = (arr, num, container) => {
   const sliderContainer = document.querySelector(container);
+  console.log(sliderContainer);
+  console.log(arr);
   let tempArr = arr.splice(0, num);
   tempArr.forEach(item => {
     sliderContainer.append(item.generateCard());
   });
   arr.push(...tempArr);
+  console.log(...tempArr);
   return cards;
 }
 
-
-/*SLIDER*/
-
+/* SLIDER */
 const btnLeft = document.querySelector(".slider-button-prev");
 const btnRight = document.querySelector(".slider-button-next");
 const sliderWrapper = document.querySelector(".slider-wrapper");
@@ -171,3 +172,6 @@ sliderWrapper.addEventListener("animationend", (animationEvent) => {
   btnRight.addEventListener("click", moveRight);
 
 });
+
+
+console.log("Main page, Score: 60");
