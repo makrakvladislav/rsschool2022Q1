@@ -19,6 +19,7 @@ export class Card {
     let card = document.createElement('div');
     card.classList.add('card');
     card.classList.add('slider-slide');
+  
     template += `<div class="card__header">
       <figure class="card__figure">
         <img src=${this.img} alt="Katrine" class="card__image">
@@ -78,6 +79,15 @@ export class Card {
     document.body.appendChild(modal);
     const modalClose = document.querySelector('.modal-close');
     const modalOverlay = document.querySelector('.overlay');
+    modalOverlay.addEventListener("mouseover", () => {
+      console.log('hover overlay');
+      modalClose.style.backgroundColor = '#FDDCC4';
+    });
+
+    modalOverlay.addEventListener("mouseout", () => {
+      console.log('hover overlay');
+      modalClose.style.backgroundColor = 'transparent';
+    });
 
     modalClose.onclick = (e) => {
       this.closeModal();
@@ -94,8 +104,6 @@ export class Card {
     document.querySelector('.modal').remove();
     document.body.classList.remove('modal-open');
   }
-
-
 }
 
 
