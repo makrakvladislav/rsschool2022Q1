@@ -1,8 +1,5 @@
 .modal-open {
   .modal {
-    overflow: hidden;
-    overflow-y: auto;
-
     animation: fadeInAnimation ease 0.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -10,13 +7,11 @@
     @include desktop {
       width: 100%;
       max-width: 630px;
-      max-height: 500px;
     }
 
     @include tablet {
       width: 100%;
       max-width: 240px;
-      max-height: 500px;
     }
   }
 }
@@ -62,17 +57,23 @@
     flex: 50%;
     flex-direction: column;
     gap: 40px;
+    overflow: hidden;
+    overflow-y: auto;
 
     //max-height: 350px;
     //overflow: hidden;
     //overflow-y: auto;
-
     @include padding-rem(50, 20, 30, 30);
 
     @include desktop {
       gap: 20px;
+      max-height: 500px;
 
       @include padding-rem(10, 10, 0, 10);
+    }
+
+    @include tablet {
+      max-height: 500px;
     }
   }
 
