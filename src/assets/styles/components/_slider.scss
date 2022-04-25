@@ -102,8 +102,11 @@
 }
 
 .transition-right {
+  animation: fadeInAnimation ease 0.5s;
   animation-name: move-right;
   animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 @keyframes move-left {
@@ -112,6 +115,9 @@
 }
 
 .transition-left {
+  animation: fadeInAnimation ease 0.5s;
   animation-name: move-left;
   animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }

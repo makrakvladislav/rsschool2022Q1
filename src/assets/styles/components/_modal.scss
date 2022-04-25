@@ -1,7 +1,22 @@
 .modal-open {
   .modal {
+    overflow: hidden;
+    overflow-y: auto;
+
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
     @include desktop {
-      width: 82%;
+      width: 100%;
+      max-width: 630px;
+      max-height: 500px;
+    }
+
+    @include tablet {
+      width: 100%;
+      max-width: 240px;
+      max-height: 500px;
     }
   }
 }
@@ -28,6 +43,10 @@
 
   &__image {
     flex-basis: 64%;
+
+    @include tablet {
+      display: none;
+    }
 
     img {
       width: 100%;
@@ -65,6 +84,10 @@
     @include desktop {
       font-size: 13px;
     }
+
+    @include tablet {
+      text-align: justify;
+    }
   }
 
   &__description-list {
@@ -77,6 +100,8 @@
 
     li {
       margin-bottom: 13px;
+
+      word-break: break-word;
 
       @include desktop {
         margin-bottom: 7px;
@@ -96,10 +121,20 @@
     margin-bottom: 10px;
 
     color: #000;
+
+    @include tablet {
+      @include font-size(35, 400, 130%, 0.06);
+    }
   }
 
   &__sub-title {
     color: #000;
+
+    @include tablet {
+      text-align: center;
+
+      @include font-size(20, 400, 115%, 0.06);
+    }
   }
 
   &-open {
@@ -117,6 +152,11 @@
     position: absolute;
     top: -52px;
     right: -42px;
+
+    @include tablet {
+      top: -55px;
+      right: -32px;
+    }
   }
 }
 
