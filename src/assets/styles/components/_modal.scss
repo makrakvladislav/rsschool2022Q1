@@ -1,7 +1,125 @@
+.modal-open {
+  .modal {
+    @include desktop {
+      width: 82%;
+    }
+  }
+}
+
 .modal {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
 
+  max-width: 900px;
+  min-height: 500px;
+
+  background-color: $color-light-s;
+  border-radius: 9px;
   transform: translate(-50%, -50%);
+
+  @include desktop {
+    min-height: auto;
+  }
+
+  &-inner {
+    display: flex;
+  }
+
+  &__image {
+    flex-basis: 64%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      border-radius: 9px;
+    }
+  }
+
+  &__description-wrapper {
+    display: flex;
+    flex: 50%;
+    flex-direction: column;
+    gap: 40px;
+
+    //max-height: 350px;
+    //overflow: hidden;
+    //overflow-y: auto;
+
+    @include padding-rem(50, 20, 30, 30);
+
+    @include desktop {
+      gap: 20px;
+
+      @include padding-rem(10, 10, 0, 10);
+    }
+  }
+
+  &__description-text {
+    margin: 0;
+
+    font-family: Georgia, sans-serif;
+
+    @include desktop {
+      font-size: 13px;
+    }
+  }
+
+  &__description-list {
+    margin: 0;
+    padding: 0 0 0 15px;
+
+    font-family: Georgia, sans-serif;
+
+    @include font-size(15, 400, 110%, 0.06);
+
+    li {
+      margin-bottom: 13px;
+
+      @include desktop {
+        margin-bottom: 7px;
+      }
+
+      b {
+        font-weight: 700;
+      }
+
+      &::marker {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__title {
+    margin-bottom: 10px;
+
+    color: #000;
+  }
+
+  &__sub-title {
+    color: #000;
+  }
+
+  &-open {
+    overflow: hidden;
+  }
+
+  &-open .overlay {
+    position: fixed;
+
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &-close {
+    position: absolute;
+    top: -52px;
+    right: -42px;
+  }
+}
+
+.modal-open .overlay:hover {
+  cursor: pointer;
 }
