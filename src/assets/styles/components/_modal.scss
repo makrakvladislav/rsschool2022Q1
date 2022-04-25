@@ -20,6 +20,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  z-index: 101;
 
   max-width: 900px;
   min-height: 500px;
@@ -144,6 +145,7 @@
 
   &-open .overlay {
     position: fixed;
+    z-index: 100;
 
     visibility: visible;
     opacity: 1;
