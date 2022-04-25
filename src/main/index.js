@@ -125,15 +125,11 @@ getData(file)
 
 const generateCard = (arr, num, container) => {
   const sliderContainer = document.querySelector(container);
-  console.log(sliderContainer);
-  console.log(arr);
   let tempArr = arr.splice(0, num);
   tempArr.forEach(item => {
-    console.log(item);
     sliderContainer.append(item.generateCard());
   });
   arr.push(...tempArr);
-  console.log(...tempArr);
   return cards;
 }
 
@@ -173,6 +169,3 @@ sliderWrapper.addEventListener("animationend", (animationEvent) => {
   btnRight.addEventListener("click", moveRight);
 
 });
-
-
-console.log("Main page, Score: 60");
