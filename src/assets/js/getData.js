@@ -89,6 +89,11 @@ export class Card {
       modalClose.style.backgroundColor = 'transparent';
     });
 
+    modalClose.addEventListener("mouseover", () => {
+      console.log('hover overlay');
+      modalClose.style.backgroundColor = '#FDDCC4';
+    });
+
     modalClose.onclick = (e) => {
       this.closeModal();
     };
