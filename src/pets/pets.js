@@ -167,16 +167,93 @@ const data = [
 
     let currentPageNumber = 1;
     const btnNext = document.querySelector('.pagination__item--next');
+    const btnPrev = document.querySelector('.pagination__item--prev');
+    const btnFirst = document.querySelector('.pagination__item--first');
+    const btnLast = document.querySelector('.pagination__item--last');
+    const pageCounter =  document.querySelector('.pagination__item--active');
+    const lastPage = document.querySelectorAll('.pagination__page').length;
+    const firstPage = 1;
 
-    btnNext.addEventListener('click', (e) => {
+    console.log(lastPage);
+
+    btnFirst.addEventListener('click', () => {
       let currentPage = document.getElementsByClassName('show');
-      console.log(currentPage)
-      console.log(currentPage[0].dataset.pageNumber);
+      currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
+      let page = document.querySelector(`[data-page-number="${firstPage}"]`);
+
+      currentPage[0].classList.remove('show');
+      page.classList.add('show');
+      pageCounter.innerHTML = firstPage;
+
+      btnLast.disabled = false;
+      btnNext.disabled = false;
+      btnPrev.disabled = true;
+      btnFirst.disabled = true;
+    });
+
+    btnLast.addEventListener('click', () => {
+      let currentPage = document.getElementsByClassName('show');
+      currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
+      let page = document.querySelector(`[data-page-number="${lastPage}"]`);
+
+      currentPage[0].classList.remove('show');
+      page.classList.add('show');
+      pageCounter.innerHTML = lastPage;
+
+      btnLast.disabled = true;
+      btnNext.disabled = true;
+      btnPrev.disabled = false;
+      btnFirst.disabled = false;
+    });
+
+
+    btnNext.addEventListener('click', () => {
+      let currentPage = document.getElementsByClassName('show');
       currentPageNumber = Number(currentPage[0].dataset.pageNumber) + 1;
-      //let page = document.querySelector(`[data-page-number=${currentPageNumber}]`);
-      //console.log(page)
-      //page.classList.add('show');
-      //console.log(currentPageNumber);
+      let page = document.querySelector(`[data-page-number="${currentPageNumber}"]`);
+
+      console.log(page)
+      console.log(currentPage);
+      currentPage[0].classList.remove('show');
+      page.classList.add('show');
+      console.log(currentPageNumber);
+      pageCounter.innerHTML = currentPageNumber;
+
+      if (currentPageNumber === 6) {
+        btnNext.disabled = true;
+        btnLast.disabled = true;
+      } else {
+        btnNext.disabled = false;
+        btnLast.disabled = false;
+      }
+      btnPrev.disabled = false;
+      btnFirst.disabled = false;
+    });
+
+    btnPrev.addEventListener('click', () => {
+      let currentPage = document.getElementsByClassName('show');
+      currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
+      let page = document.querySelector(`[data-page-number="${currentPageNumber}"]`);
+
+      console.log(page)
+      console.log(currentPage);
+      currentPage[0].classList.remove('show');
+      page.classList.add('show');
+      console.log(currentPageNumber);
+      pageCounter.innerHTML = currentPageNumber;
+      if (currentPageNumber === 1) {
+        btnPrev.disabled = true;
+        btnFirst.disabled = true;
+        btnNext.disabled = false;
+        btnLast.disabled = false;
+      } else {
+        btnPrev.disabled = false;
+        btnFirst.disabled = false;
+        btnNext.disabled = true;
+        btnLast.disabled = true;
+      }
+      btnNext.disabled = false;
+      btnLast.disabled = false;
     });
 
 
