@@ -22,10 +22,6 @@
   }
 
   &__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    row-gap: 30px;
     margin-bottom: 59px;
 
     @include desktop {
@@ -41,6 +37,31 @@
       margin: 0 auto;
       margin-bottom: 40px;
       padding: 0 15px;
+    }
+
+    .slider-item {
+      position: relative;
+    }
+
+    .pagination__page {
+      display: none;
+      flex-wrap: wrap;
+      gap: 40px;
+
+      visibility: hidden;
+      opacity: 0;
+      row-gap: 30px;
+
+      animation: fadeInAnimation ease 1s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+
+      &.show {
+        display: flex;
+
+        visibility: visible;
+        opacity: 1;
+      }
     }
 
     .card {
