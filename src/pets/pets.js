@@ -146,24 +146,34 @@ const data = [
     }
 
     
-
-    for (let page = 1; page <= 6; page++) {
-      const paginationPage = document.createElement('div');
-      paginationPage.classList.add('pagination__page');
-      let cards = getRandom();
-      paginationPage.dataset.pageNumber = page;
-      sliderContainer.append(paginationPage);
-
-      document.getElementsByClassName('pagination__page')[0].classList.add('show');
-
-      for (let card = 1; card <= 8; card++) {
-        //console.log(page)
-        let cardArr = cards.splice(0, 1);
-        cardArr.forEach(item => {
-          paginationPage.appendChild(item.generateCard());
-        })
+    function generateCardSize(pages, cardsCount) {
+      for (let page = 1; page <= pages; page++) {
+        const paginationPage = document.createElement('div');
+        paginationPage.classList.add('pagination__page');
+        let cards = getRandom();
+        paginationPage.dataset.pageNumber = page;
+        sliderContainer.append(paginationPage);
+  
+        document.getElementsByClassName('pagination__page')[0].classList.add('show');
+  
+        for (let card = 1; card <= cardsCount; card++) {
+          //console.log(page)
+          let cardArr = cards.splice(0, 1);
+          cardArr.forEach(item => {
+            paginationPage.appendChild(item.generateCard());
+          })
+        }
       }
     }
+
+    if (document.documentElement.clientWidth < 768) {
+      generateCardSize(16, 3);
+    } else if (document.documentElement.clientWidth < 1280) {
+      generateCardSize(8, 6);
+    } else if (document.documentElement.clientWidth >= 1280) {
+      generateCardSize(6, 8);
+    }
+   
 
     let currentPageNumber = 1;
     const btnNext = document.querySelector('.pagination__item--next');
