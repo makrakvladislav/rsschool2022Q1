@@ -57,8 +57,9 @@
   }
 
   &__burger {
-    position: relative;
-    z-index: 105;
+    position: fixed;
+    right: 0;
+    z-index: 101;
 
     display: none;
     margin-right: 43px;
@@ -258,7 +259,7 @@
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
 
   width: 100%;
