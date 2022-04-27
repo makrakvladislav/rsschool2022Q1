@@ -83,6 +83,9 @@
   }
 
   .nav {
+    display: flex;
+    flex: 1;
+
     &__list {
       display: flex;
       margin: 0;
@@ -91,10 +94,12 @@
       list-style: none;
 
       @include tablet {
+        display: flex;
+        flex: 1;
         flex-direction: column;
         gap: 42px;
         align-items: center;
-        margin: 190px 39px;
+        justify-content: center;
         padding-bottom: 0;
       }
     }
@@ -163,6 +168,7 @@
     right: 0;
 
     max-width: 320px;
+    padding: 30px 10px;
 
     background-color: #292929;
   }
@@ -227,11 +233,8 @@
   }
 
   .burger-logo {
-    position: relative;
-    top: 30px;
-    left: 10px;
-
-    display: block;
+    display: flex;
+    flex-direction: column;
 
     align-self: self-start;
 

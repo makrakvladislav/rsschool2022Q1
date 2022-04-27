@@ -145,24 +145,23 @@ const data = [
       return cards;
     }
 
-    
     function generateCardSize(pages, cardsCount) {
+      const cards = getRandom();
+
       for (let page = 1; page <= pages; page++) {
         const paginationPage = document.createElement('div');
         paginationPage.classList.add('pagination__page');
-        let cards = getRandom();
         paginationPage.dataset.pageNumber = page;
         sliderContainer.append(paginationPage);
-  
         document.getElementsByClassName('pagination__page')[0].classList.add('show');
-  
+       
         for (let card = 1; card <= cardsCount; card++) {
-          //console.log(page)
           let cardArr = cards.splice(0, 1);
+          console.log(...cardArr);
           cardArr.forEach(item => {
             paginationPage.appendChild(item.generateCard());
           })
-        }
+        }    
       }
     }
 
@@ -229,7 +228,7 @@ const data = [
       console.log(currentPageNumber);
       pageCounter.innerHTML = currentPageNumber;
 
-      if (currentPageNumber === 6) {
+      if (currentPageNumber === lastPage) {
         btnNext.disabled = true;
         btnLast.disabled = true;
       } else {
@@ -251,14 +250,13 @@ const data = [
       page.classList.add('show');
       console.log(currentPageNumber);
       pageCounter.innerHTML = currentPageNumber;
+      console.log(lastPage)
       if (currentPageNumber === 1) {
         btnPrev.disabled = true;
         btnFirst.disabled = true;
         btnNext.disabled = false;
         btnLast.disabled = false;
       } else {
-        btnPrev.disabled = false;
-        btnFirst.disabled = false;
         btnNext.disabled = true;
         btnLast.disabled = true;
       }
