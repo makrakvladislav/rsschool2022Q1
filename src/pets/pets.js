@@ -3,8 +3,6 @@ import "./style.scss";
 
 import { burger } from '../assets/js/burger'
 import { Card } from '../assets/js/getData'
-//import { getCard } from '../assets/js/getCard'
-//import { slider } from '../assets/js/slider'
 import file from '../assets/js/pets.json';
 
 const data = [
@@ -114,7 +112,6 @@ const data = [
     return data;
   };
   
-  
   getData(file)
   .then(data => data.forEach(item => {
     cards.push(new Card(item));
@@ -125,7 +122,6 @@ const data = [
 
   const generateCard = (arr, num, container) => {
     const sliderContainer = document.querySelector(container);
-    
     function getRandom() {
       const result = [];
       let tempArr = [];
@@ -137,134 +133,147 @@ const data = [
       }
     
       const cards = []
-      
       for (let i = 0; i < 6; i++) {
         cards.push(...result)
       }
-  
       return cards;
     }
-
-    function generateCardSize(pages, cardsCount) {
-      const cards = getRandom();
-
-      for (let page = 1; page <= pages; page++) {
-        const paginationPage = document.createElement('div');
-        paginationPage.classList.add('pagination__page');
-        paginationPage.dataset.pageNumber = page;
-        sliderContainer.append(paginationPage);
-        document.getElementsByClassName('pagination__page')[0].classList.add('show');
-       
-        for (let card = 1; card <= cardsCount; card++) {
-          let cardArr = cards.splice(0, 1);
-          console.log(...cardArr);
-          cardArr.forEach(item => {
-            paginationPage.appendChild(item.generateCard());
-          })
-        }    
-      }
-    }
-
+    
     if (document.documentElement.clientWidth < 768) {
       generateCardSize(16, 3);
+      function generateCardSize(pages, cardsCount) {
+        let cards = getRandom();
+        for (let page = 1; page <= pages; page++) {
+          const paginationPage = document.createElement('div');
+          paginationPage.classList.add('pagination__page');
+          paginationPage.dataset.pageNumber = page;
+          sliderContainer.append(paginationPage);
+          document.getElementsByClassName('pagination__page')[0].classList.add('show');
+          for (let card = 1; card <= cardsCount; card++) {
+            let cardArr = cards.splice(0, 1);
+            cardArr.forEach(item => {
+              paginationPage.appendChild(item.generateCard());
+            })
+          }    
+        }
+      }
     } else if (document.documentElement.clientWidth < 1280) {
       generateCardSize(8, 6);
+      function generateCardSize(pages, cardsCount) {
+        let cards = getRandom();
+        for (let page = 1; page <= pages; page++) {
+          const paginationPage = document.createElement('div');
+          paginationPage.classList.add('pagination__page');
+          paginationPage.dataset.pageNumber = page;
+          sliderContainer.append(paginationPage);
+          document.getElementsByClassName('pagination__page')[0].classList.add('show');
+          for (let card = 1; card <= cardsCount; card++) {
+            let cardArr = cards.splice(0, 1);
+            cardArr.forEach(item => {
+              paginationPage.appendChild(item.generateCard());
+            })
+          }    
+        }
+      }
     } else if (document.documentElement.clientWidth >= 1280) {
       generateCardSize(6, 8);
+      function generateCardSize(pages, cardsCount) {
+        for (let page = 1; page <= pages; page++) {
+          const paginationPage = document.createElement('div');
+          paginationPage.classList.add('pagination__page');
+          paginationPage.dataset.pageNumber = page;
+          sliderContainer.append(paginationPage);
+          document.getElementsByClassName('pagination__page')[0].classList.add('show');
+          let cards = getRandom();
+          for (let card = 1; card <= cardsCount; card++) {
+            let cardArr = cards.splice(0, 1);
+            cardArr.forEach(item => {
+              paginationPage.appendChild(item.generateCard());
+            })
+          }    
+        }
+      }
     }
    
 
-    let currentPageNumber = 1;
-    const btnNext = document.querySelector('.pagination__item--next');
-    const btnPrev = document.querySelector('.pagination__item--prev');
-    const btnFirst = document.querySelector('.pagination__item--first');
-    const btnLast = document.querySelector('.pagination__item--last');
-    const pageCounter =  document.querySelector('.pagination__item--active');
-    const lastPage = document.querySelectorAll('.pagination__page').length;
-    const firstPage = 1;
+  let currentPageNumber = 1;
+  const btnNext = document.querySelector('.pagination__item--next');
+  const btnPrev = document.querySelector('.pagination__item--prev');
+  const btnFirst = document.querySelector('.pagination__item--first');
+  const btnLast = document.querySelector('.pagination__item--last');
+  const pageCounter =  document.querySelector('.pagination__item--active');
+  const lastPage = document.querySelectorAll('.pagination__page').length;
+  const firstPage = 1;
 
-    console.log(lastPage);
+  btnFirst.addEventListener('click', () => {
+    let currentPage = document.getElementsByClassName('show');
+    currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
+    let page = document.querySelector(`[data-page-number="${firstPage}"]`);
 
-    btnFirst.addEventListener('click', () => {
-      let currentPage = document.getElementsByClassName('show');
-      currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
-      let page = document.querySelector(`[data-page-number="${firstPage}"]`);
+    currentPage[0].classList.remove('show');
+    page.classList.add('show');
+    pageCounter.innerHTML = firstPage;
 
-      currentPage[0].classList.remove('show');
-      page.classList.add('show');
-      pageCounter.innerHTML = firstPage;
+    btnLast.disabled = false;
+    btnNext.disabled = false;
+    btnPrev.disabled = true;
+    btnFirst.disabled = true;
+  });
 
-      btnLast.disabled = false;
+  btnLast.addEventListener('click', () => {
+    let currentPage = document.getElementsByClassName('show');
+    currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
+    let page = document.querySelector(`[data-page-number="${lastPage}"]`);
+
+    currentPage[0].classList.remove('show');
+    page.classList.add('show');
+    pageCounter.innerHTML = lastPage;
+
+    btnLast.disabled = true;
+    btnNext.disabled = true;
+    btnPrev.disabled = false;
+    btnFirst.disabled = false;
+  });
+
+
+  btnNext.addEventListener('click', () => {
+    let currentPage = document.getElementsByClassName('show');
+    currentPageNumber = Number(currentPage[0].dataset.pageNumber) + 1;
+    let page = document.querySelector(`[data-page-number="${currentPageNumber}"]`);
+
+    currentPage[0].classList.remove('show');
+    page.classList.add('show');
+    pageCounter.innerHTML = currentPageNumber;
+
+    if (currentPageNumber === lastPage) {
+      btnNext.disabled = true;
+      btnLast.disabled = true;
+    } else {
       btnNext.disabled = false;
+      btnLast.disabled = false;
+    }
+    btnPrev.disabled = false;
+    btnFirst.disabled = false;
+  });
+
+  btnPrev.addEventListener('click', () => {
+    let currentPage = document.getElementsByClassName('show');
+    currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
+    let page = document.querySelector(`[data-page-number="${currentPageNumber}"]`);
+
+    currentPage[0].classList.remove('show');
+    page.classList.add('show');
+    pageCounter.innerHTML = currentPageNumber;
+    if (currentPageNumber === 1) {
       btnPrev.disabled = true;
       btnFirst.disabled = true;
-    });
-
-    btnLast.addEventListener('click', () => {
-      let currentPage = document.getElementsByClassName('show');
-      currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
-      let page = document.querySelector(`[data-page-number="${lastPage}"]`);
-
-      currentPage[0].classList.remove('show');
-      page.classList.add('show');
-      pageCounter.innerHTML = lastPage;
-
-      btnLast.disabled = true;
-      btnNext.disabled = true;
-      btnPrev.disabled = false;
-      btnFirst.disabled = false;
-    });
-
-
-    btnNext.addEventListener('click', () => {
-      let currentPage = document.getElementsByClassName('show');
-      currentPageNumber = Number(currentPage[0].dataset.pageNumber) + 1;
-      let page = document.querySelector(`[data-page-number="${currentPageNumber}"]`);
-
-      console.log(page)
-      console.log(currentPage);
-      currentPage[0].classList.remove('show');
-      page.classList.add('show');
-      console.log(currentPageNumber);
-      pageCounter.innerHTML = currentPageNumber;
-
-      if (currentPageNumber === lastPage) {
-        btnNext.disabled = true;
-        btnLast.disabled = true;
-      } else {
-        btnNext.disabled = false;
-        btnLast.disabled = false;
-      }
-      btnPrev.disabled = false;
-      btnFirst.disabled = false;
-    });
-
-    btnPrev.addEventListener('click', () => {
-      let currentPage = document.getElementsByClassName('show');
-      currentPageNumber = Number(currentPage[0].dataset.pageNumber) - 1;
-      let page = document.querySelector(`[data-page-number="${currentPageNumber}"]`);
-
-      console.log(page)
-      console.log(currentPage);
-      currentPage[0].classList.remove('show');
-      page.classList.add('show');
-      console.log(currentPageNumber);
-      pageCounter.innerHTML = currentPageNumber;
-      console.log(lastPage)
-      if (currentPageNumber === 1) {
-        btnPrev.disabled = true;
-        btnFirst.disabled = true;
-        btnNext.disabled = false;
-        btnLast.disabled = false;
-      } else {
-        btnNext.disabled = true;
-        btnLast.disabled = true;
-      }
       btnNext.disabled = false;
       btnLast.disabled = false;
-    });
-
-
-    console.log(btnNext);
-
+    } else {
+      btnNext.disabled = true;
+      btnLast.disabled = true;
+    }
+    btnNext.disabled = false;
+    btnLast.disabled = false;
+  });
 }
