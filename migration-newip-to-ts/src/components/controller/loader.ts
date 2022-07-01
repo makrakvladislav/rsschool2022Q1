@@ -2,15 +2,15 @@ import { IOptions } from 'types/index';
 
 class Loader {
     baseLink: string;
-    options: Array<string>;
+    options: IOptions;
 
-    constructor(baseLink: string, options: Array<string>) {
+    constructor(baseLink: string, options: IOptions) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string; options: IOptions },
+        { endpoint, options = {} }: { endpoint: string; options?: IOptions },
         callback: <T>(data: T) => void = () => {
             console.error('No callback for GET response');
         }
