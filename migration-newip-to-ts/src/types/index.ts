@@ -3,7 +3,7 @@ interface IOptions {
     sources?: string;
 }
 
-interface IEverything {
+interface IEverything extends Array<IArticle> {
     status: string;
     totalResults: number;
     articles: Array<IArticle>;
