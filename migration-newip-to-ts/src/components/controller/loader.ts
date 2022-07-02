@@ -1,4 +1,4 @@
-import { IOptions } from 'types/index';
+import { IOptions } from '../../types/index';
 
 class Loader {
     baseLink: string;

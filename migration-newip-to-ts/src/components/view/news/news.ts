@@ -1,5 +1,5 @@
 import './news.css';
-import { IEverything } from 'types/index';
+import { IEverything } from '../../../types/index';
 
 class News {
     draw(data: IEverything) {
