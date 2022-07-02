@@ -20,4 +20,19 @@ interface IArticle {
     urlToImage: string;
 }
 
-export { IOptions, IEverything, IArticle };
+type ISourcesData = Array<ISources>;
+interface ISources {
+    id: string;
+    name: string;
+    url: string;
+    category: string;
+    language: string;
+    country: string;
+}
+
+enum APIEndpoints {
+    sources = 'sources',
+    everything = 'everything',
+}
+
+export { IOptions, IEverything, IArticle, ISourcesData, APIEndpoints };
