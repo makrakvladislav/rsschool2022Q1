@@ -1,7 +1,8 @@
 import AppLoader from './appLoader';
 import { APIEndpoints } from '../../types/index';
+import { IEverything, ISourcesData, Callback } from '../../types/index';
 class AppController extends AppLoader {
-    getSources(callback: <T>(data: T) => void) {
+    getSources(callback: Callback<ISourcesData>) {
         super.getResp(
             {
                 endpoint: APIEndpoints.sources,
@@ -10,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: MouseEvent, callback: <T>(data: T) => void) {
+    getNews(e: MouseEvent, callback: Callback<IEverything>) {
         let target = e.target as HTMLDivElement;
         const newsContainer = e.currentTarget as HTMLDivElement;
 
