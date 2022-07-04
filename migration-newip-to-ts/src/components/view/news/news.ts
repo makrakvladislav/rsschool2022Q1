@@ -1,6 +1,6 @@
 import './news.css';
 import { IArticle, IEverything } from '../../../types/index';
-
+import '../../../img/news_placeholder.jpg';
 class News {
     draw(data: IEverything): void {
         const news: IArticle[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
