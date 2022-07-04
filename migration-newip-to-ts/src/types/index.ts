@@ -41,4 +41,4 @@ enum APIEndpoints {
 
 type Callback<T> = (data: T) => void;
 
-export { IOptions, IEverything, IArticle, ISourcesData, APIEndpoints, Callback };
+export { IOptions, IEverything, IArticle, ISources, ISourcesData, APIEndpoints, Callback };
