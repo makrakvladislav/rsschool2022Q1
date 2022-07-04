@@ -1,11 +1,11 @@
 import './news.css';
-import { IEverything } from '../../../types/index';
+import { IArticle, IEverything } from '../../../types/index';
 
 class News {
-    draw(data: IEverything) {
-        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    draw(data: IEverything): void {
+        const news: IArticle[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
-        const fragment = document.createDocumentFragment();
+        const fragment: DocumentFragment = document.createDocumentFragment();
         const newsItemTemp = <HTMLTemplateElement>document.querySelector('#newsItemTemp');
 
         news.forEach((item, idx) => {
