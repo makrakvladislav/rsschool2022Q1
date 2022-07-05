@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.source__item.active {
+    background-color: #4e4e4e;
+}
+
 .source__item:hover,
 .source__item:focus {
     border-color: #4e4e4e;
