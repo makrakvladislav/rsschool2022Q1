@@ -7,36 +7,50 @@
         <title>NewsPortal</title>
     </head>
     <body>
-        <header>
+      <div class="wrapper">
+          <header class="header">
             <div class="container">
               <h1>News Portal</h1>
               <div class="header__right">
                 <div class="header__language-switcher">
-                  <button class="btn btn--language" data-language="en">EN</button>
-                  <button class="btn btn--language" data-language="de">DE</button>
+                  <button class="btn btn-language--en" data-language="en"></button>
+                  <button class="btn btn-language--de" data-language="de"></button>
                 </div>
                 <div class="header__search">
                   <form action class="search__form">
-                    <input type="text" placeholder="Input search request and press ENTER..." class="search__input">
+                    <input type="text" placeholder="Search" class="search__input">
                   </form>
                 </div>
               </div>
             </div>
-        </header>
-        <main class="container">
-            <aside class="sidebar">
-              <h3>Sources</h3>
-              <div class="sources buttons"></div>
-            </aside>
-            
-            <div class="news"></div>
-        </main>
-        <footer>
-            <p class="copyright">
-                Copyright <a href="https://newsapi.org">NewsAPI</a>
-            </p>
-        </footer>
+          </header>
 
+          <main class="main container">
+              <aside class="sidebar">
+                <h3 class="sidebar__title">Sources</h3>
+                <div class="sources buttons"></div>
+              </aside>
+              <div class="news"></div>
+          </main>
+
+          <footer class="footer">
+            <div class="container">
+              <div class="footer-wrapper">
+                <div class="footer__item">
+                  <a class="github-link" href="https://github.com/makrakvladislav" target="_blank">
+                    <span>©</span><span>2022</span><span>github</span>
+                  </a>
+                </div>
+                <div class="footer__item">
+                  <a href="https://rs.school/js/" target="_blank">
+                    <img class="footer__logo" src="./img/rs_school_js.svg" width="150" alt="RS">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+      </div>
+       
         <template id="sourceItemTemp">
             <div class="source__item">
                 <span class="source__item-name"></span>
@@ -62,7 +76,6 @@
                 </div>
             </div>
         </template>
-
-        
+   
     </body>
 </html>
