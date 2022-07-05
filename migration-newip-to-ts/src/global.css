@@ -143,3 +143,40 @@ body {
     color: #4e4e4e;
     text-decoration: none;
 }
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    .header {
+        margin-bottom: 3rem;
+    }
+    .header-wrapper {
+        flex-direction: column;
+    }
+    .header h1 {
+        font-size: 32px;
+        text-align: center;
+    }
+    .header__right {
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+    .main {
+        flex-direction: column;
+        margin-bottom: 3rem;
+    }
+    .sidebar {
+        max-width: 100%;
+        position: static;
+        margin-bottom: 3rem;
+        padding: 2rem 1rem;
+    }
+    .sidebar__title {
+        margin: 0 0 2rem;
+    }
+    .source__item {
+        padding: 0.5rem;
+    }
+    .source__item-name {
+        font-size: 15px;
+    }
+}
