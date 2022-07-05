@@ -164,6 +164,9 @@ body {
         flex-direction: column;
         margin-bottom: 3rem;
     }
+    .news {
+        padding: 0;
+    }
     .sidebar {
         max-width: 100%;
         position: static;
