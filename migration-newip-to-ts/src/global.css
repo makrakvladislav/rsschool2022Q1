@@ -1,12 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
     margin: 0;
     color: #fff;
-    background: #17181c;
+    background-color: #5b6467;
+    background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);
     font-family: sans-serif;
 }
 
 header {
     padding: 10px 30px;
+    margin-bottom: 5rem;
+    background: rgba(255, 255, 255, 0.29);
+    backdrop-filter: blur(7.4px);
 }
 
 header h1 {
@@ -33,9 +41,36 @@ header .container {
 }
 
 .sidebar {
-    max-width: 400px;
+    max-width: 350px;
     width: 100%;
-    padding: 0 2rem;
+    max-height: 550px;
+    padding: 0 2rem 3rem;
+    background: rgba(255, 255, 255, 0.29);
+    border-radius: 4px;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+    backdrop-filter: blur(7.4px);
+}
+
+.sidebar__title {
+    font-size: 32px;
+    margin: 2rem 0;
+}
+
+/*Sidebar scroll*/
+.sidebar ::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar ::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+.sidebar ::-webkit-scrollbar-thumb {
+  background: rgb(83, 83, 83);
+}
+
+.sidebar ::-webkit-scrollbar-thumb:hover {
+  background: rgb(53, 53, 53);
 }
 
 footer {
