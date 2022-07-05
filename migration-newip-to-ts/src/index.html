@@ -8,10 +8,27 @@
     </head>
     <body>
         <header>
-            <h1>News Portal</h1>
+            <div class="container">
+              <h1>News Portal</h1>
+              <div class="header__right">
+                <div class="header__language-switcher">
+                  <button class="btn btn--language" data-language="en">EN</button>
+                  <button class="btn btn--language" data-language="de">DE</button>
+                </div>
+                <div class="header__search">
+                  <form action class="search__form">
+                    <input type="text" placeholder="Input search request and press ENTER..." class="search__input">
+                  </form>
+                </div>
+              </div>
+            </div>
         </header>
-        <main>
-            <div class="sources buttons"></div>
+        <main class="container">
+            <aside class="sidebar">
+              <h3>Sources</h3>
+              <div class="sources buttons"></div>
+            </aside>
+            
             <div class="news"></div>
         </main>
         <footer>
@@ -46,6 +63,6 @@
             </div>
         </template>
 
-        <script src="./index.js"></script>
+        
     </body>
 </html>

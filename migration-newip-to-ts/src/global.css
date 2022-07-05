@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
@@ -11,6 +12,30 @@ header {
 header h1 {
     font-size: 40px;
     font-weight: 800;
+}
+
+header .container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__right {
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    display: flex;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.sidebar {
+    max-width: 400px;
+    width: 100%;
+    padding: 0 2rem;
 }
 
 footer {
