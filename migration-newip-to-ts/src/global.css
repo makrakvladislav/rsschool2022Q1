@@ -133,3 +133,10 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.footer .github-link {
+    display: flex;
+    gap: 0.3rem;
+    color: #4e4e4e;
+    text-decoration: none;
+}
