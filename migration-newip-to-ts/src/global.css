@@ -10,6 +10,12 @@ body {
     font-family: sans-serif;
 }
 
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 header {
     padding: 10px 30px;
     margin-bottom: 5rem;
@@ -113,23 +119,18 @@ header .container {
   background: rgb(53, 53, 53);
 }
 
-footer {
-    height: 100px;
+.main {
+  margin-bottom: 5rem;
+}
+
+.footer {
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0.29);
+    backdrop-filter: blur(7.4px);
+}
+
+.footer-wrapper {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-}
-footer .copyright {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-}
-footer .copyright a {
-    color: #444;
-}
-footer .copyright a:hover {
-    color: #555;
-}
-footer .copyright:before {
-    content: '©';
 }
