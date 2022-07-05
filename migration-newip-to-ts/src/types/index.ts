@@ -1,6 +1,8 @@
 interface IOptions {
     apiKey?: string;
     sources?: string;
+    language?: string;
+    q?: string;
 }
 
 interface IEverything extends Array<IArticle> {

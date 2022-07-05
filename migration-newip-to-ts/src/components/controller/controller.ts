@@ -11,6 +11,20 @@ class AppController extends AppLoader {
         );
     }
 
+    switchSourcesLang(e: MouseEvent, callback: Callback<ISourcesData>) {
+        const target = <HTMLDivElement>e.target;
+        const language: string = target.getAttribute('data-language') as string;
+        super.getResp(
+            {
+                endpoint: APIEndpoints.sources,
+                options: {
+                    language: language,
+                },
+            },
+            callback
+        );
+    }
+
     getNews(e: MouseEvent, callback: Callback<IEverything>): void {
         let target = <HTMLDivElement>e.target;
         const newsContainer = <HTMLDivElement>e.currentTarget;
@@ -18,8 +32,18 @@ class AppController extends AppLoader {
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId: string = target.getAttribute('data-source-id') as string;
+                target.classList.add('active');
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
+                    const buttonsList = newsContainer.querySelectorAll('.source__item');
+                    console.log(buttonsList);
+                    buttonsList.forEach((btn) => {
+                        btn.addEventListener('click', (e) => {
+                            const target = e.currentTarget as Element;
+                            buttonsList.forEach((f) => f.classList.remove('active'));
+                            target.classList.toggle('active');
+                        });
+                    });
                     super.getResp(
                         {
                             endpoint: APIEndpoints.everything,
@@ -33,6 +57,24 @@ class AppController extends AppLoader {
                 return;
             }
             target = <HTMLDivElement>target.parentNode;
+            console.log(target);
+        }
+    }
+
+    getNewsSearch(e: SubmitEvent, callback: Callback<IEverything>): void {
+        const target = <HTMLDivElement>e.target;
+        const targetInput = <HTMLInputElement>target.querySelector('.search__input');
+        console.log(targetInput.value);
+        if (targetInput.value.length > 0) {
+            super.getResp(
+                {
+                    endpoint: APIEndpoints.everything,
+                    options: {
+                        q: targetInput.value,
+                    },
+                },
+                callback
+            );
         }
     }
 }

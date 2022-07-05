@@ -5,7 +5,6 @@ class Sources {
     draw(data: ISourcesData): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp = <HTMLTemplateElement>document.querySelector('#sourceItemTemp');
-
         data.forEach((item) => {
             const sourceClone = <HTMLDivElement>sourceItemTemp.content.cloneNode(true);
 
@@ -14,7 +13,7 @@ class Sources {
 
             fragment.append(sourceClone);
         });
-
+        (<HTMLDivElement>document.querySelector('.sources')).innerHTML = '';
         (<HTMLDivElement>document.querySelector('.sources')).append(fragment);
     }
 }
