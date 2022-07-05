@@ -36,7 +36,6 @@ class AppController extends AppLoader {
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
                     const buttonsList = newsContainer.querySelectorAll('.source__item');
-                    console.log(buttonsList);
                     buttonsList.forEach((btn) => {
                         btn.addEventListener('click', (e) => {
                             const target = e.currentTarget as Element;
@@ -57,14 +56,12 @@ class AppController extends AppLoader {
                 return;
             }
             target = <HTMLDivElement>target.parentNode;
-            console.log(target);
         }
     }
 
     getNewsSearch(e: SubmitEvent, callback: Callback<IEverything>): void {
         const target = <HTMLDivElement>e.target;
         const targetInput = <HTMLInputElement>target.querySelector('.search__input');
-        console.log(targetInput.value);
         if (targetInput.value.length > 0) {
             super.getResp(
                 {
