@@ -20,7 +20,7 @@
       "no-debugger": "off",
       "no-console": 0,
       "class-methods-use-this": "off",
-      "prettier/prettier": "error",
+      "prettier/prettier": ["error", {"singleQuote": false, "printWidth": 110}],
       "@typescript-eslint/no-explicit-any": 2
   },
 
