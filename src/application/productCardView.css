@@ -1,16 +1,24 @@
 .collection {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem 1rem;
+  flex: 1 1 0;
 }
 
 .product__card {
-  flex-basis: calc(33% - 1rem);
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc(100% / 3 - 1rem);
   padding: 1rem;
+  gap: 1rem;
+  position: relative;
+  transition: all 0.3s;
+  border-radius: 3px;
 }
 
-.product__title {
-
+.product__card:hover {
+  box-shadow: 0px 0px 0px 0px white, 0px 0px 15px 10px rgb(0 0 0 / 10%);
+  cursor: pointer;
 }
 
 .product__img {
@@ -19,16 +27,93 @@
   width: 100%;
   height: 300px;
   margin: 0 auto;
+  object-fit: contain;
 }
 
-.product__description {}
+.product__title {
+  font-size: 18px;
+  color: #000;
+}
 
-.product__buy-wrapper {}
+.product__properties-wrapper {
+  margin-bottom: 1rem;
+}
 
-.product__properties-wrapper {}
+.product__properties {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
 
-.bttn-buy {}
+.product__properties .list__item {
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  border-radius: 2px;
+  background: #c8c8c81f;
+  font-size: 14px;
+}
 
-.product__properties {}
+.product__description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100%);
+  max-height: 325px;
+  height: 100%;
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: all 0.3s;
+  font-size: 14px;
+}
 
-.list__item {}
+.product__card:hover .product__description {
+  opacity: 1;
+}
+
+.product__buy-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bttn-buy {
+  background: none;
+  border: none;
+  color: #0bb648;
+  transition: all 0.3s;
+}
+
+.bttn-buy:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.product__price {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.product__card.not-available .product__img {
+  filter: grayscale(100%);
+}
+
+.product__card.not-available .product__price {
+  color: #ff0000;
+}
+.product__card.not-available .bttn-buy {
+  color: #999;
+}
+
+.product__card.not-available .bttn-buy {
+  cursor: not-allowed;
+}
