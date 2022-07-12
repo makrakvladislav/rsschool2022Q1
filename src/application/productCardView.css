@@ -1,0 +1,34 @@
+.collection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.product__card {
+  flex-basis: calc(33% - 1rem);
+  padding: 1rem;
+}
+
+.product__title {
+
+}
+
+.product__img {
+  display: block;
+  max-width: 200px;
+  width: 100%;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.product__description {}
+
+.product__buy-wrapper {}
+
+.product__properties-wrapper {}
+
+.bttn-buy {}
+
+.product__properties {}
+
+.list__item {}
