@@ -2,20 +2,21 @@ import Control from "../common/control";
 import { IProductData } from "./productsDataModel";
 import style from "./productCardView.css";
 
-export class productCardView extends Control {
+export class productCardView {
+  parentNode: HTMLElement;
   constructor(parentNode: HTMLElement, productsData: Array<IProductData>) {
-    super(parentNode, "div", style["collection"]);
-    const data = [...productsData];
-    const sortedArr = data.sort((a, b) => a.title.localeCompare(b.title));
-    const sortedArr1 = data.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-    console.log("sorted array:", sortedArr);
-    console.log("sorted arr by price:", sortedArr1);
-
+    this.parentNode = parentNode;
+    //super(parentNode, "div", style["collection"]);
+    //const data = [...productsData];
+    //const sortedArr = data.sort((a, b) => a.title.localeCompare(b.title));
+    //const sortedArr1 = data.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+    //console.log("sorted array:", sortedArr);
+    //console.log("sorted arr by price:", sortedArr1);
+    //console.log(productsData);
     productsData.map((item, i) => {
-      console.log(JSON.stringify(item.title));
-      return new createCard(this.node, item, i);
+      return new createCard(this.parentNode, item, i);
     });
-    console.log(parentNode);
+    //console.log(parentNode);
     //this.createCard();
   }
 
@@ -94,7 +95,6 @@ export class createCard extends Control {
     new Control(this.node, "div", style["product__description"], productsData.short_description);
     const productBuyWrapper = new Control(this.node, "div", style["product__buy-wrapper"]);
     //const bttnBuy = new Control(productBuyWrapper.node, "button", style["bttn-buy"], "В корзину");
-
     if (productsData.available === false) {
       this.node.classList.add("not-available");
       new Control(productBuyWrapper.node, "button", style["bttn-buy"], "Распродано");
