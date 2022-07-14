@@ -100,9 +100,9 @@ export class Application extends Control {
         this.model.sortPriceDown(productData, this.collection);
       }
       */
+      this.renderFilters(this.collection, this.sidebar, productData);
       new productsDataModel(productData, this.collection, orderSort || "default");
     });
-    this.renderFilters();
   }
 
   renderProductCard(data: Array<IProductData>) {
@@ -110,8 +110,12 @@ export class Application extends Control {
     console.log("render");
   }
 
-  renderFilters() {
-    new filterView(this.sidebar.node);
+  renderFilters(
+    collectionNode: Control<HTMLElement>,
+    sidebarNode: Control<HTMLElement>,
+    data: Array<IProductData>
+  ) {
+    new filterView(collectionNode, this.sidebar.node, data);
   }
 
   renderSort(collectionNode: Control<HTMLElement>, data: Array<IProductData>, state: string) {
