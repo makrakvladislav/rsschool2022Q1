@@ -61,7 +61,6 @@ export class Application extends Control {
     this.collectionWrapper = new Control(this.main.node, "div", style["collection-wrapper"]);
     //SORTING
     this.sorting = new Control(this.collectionWrapper.node, "div", style["sort-wrapper"]);
-    const sortingTitle = new Control(this.sorting.node, "label", style["sort-title"], "Сортировка:");
     //COLLECTION
     this.collection = new Control(this.collectionWrapper.node, "div", style["collection"]);
     //FOOTER
@@ -89,6 +88,7 @@ export class Application extends Control {
     footerItemLogo.node.append(footerLogoLink);
 
     const orderSort = localStorage.getItem("orderSort");
+    const filterStateArr = JSON.parse(localStorage.getItem("checkboxes") || "{}");
     this.model = new productsDataModel([], this.collection, "");
 
     this.model.build().then((result) => {
@@ -100,6 +100,7 @@ export class Application extends Control {
         this.model.sortPriceDown(productData, this.collection);
       }
       */
+
       this.renderFilters(this.collection, this.sidebar, productData);
       new productsDataModel(productData, this.collection, orderSort || "default");
     });
@@ -115,7 +116,7 @@ export class Application extends Control {
     sidebarNode: Control<HTMLElement>,
     data: Array<IProductData>
   ) {
-    new filterView(collectionNode, this.sidebar.node, data);
+    new filterView(collectionNode, this.sidebar.node, data, this.sorting.node);
   }
 
   renderSort(collectionNode: Control<HTMLElement>, data: Array<IProductData>, state: string) {
