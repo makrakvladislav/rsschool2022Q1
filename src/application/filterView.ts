@@ -4,6 +4,7 @@ import { productCardView } from "./productCardView";
 import * as noUiSlider from "nouislider";
 import { filterState } from "./filterState";
 import { sortView } from "./sortView";
+import { Search } from "./search";
 
 import "nouislider/dist/nouislider.css";
 import style from "./filterView.css";
@@ -70,18 +71,21 @@ export class filterView {
   priceRangeLS: IPriceRange;
   diagonalRangeLS: IDiagonalRange;
   sortNode!: HTMLElement | undefined;
+  headerNode: Control<HTMLElement>;
 
   constructor(
     collectionNode: Control<HTMLElement>,
     parentNode: HTMLElement,
     productsData: Array<IProductData>,
-    sortNode: HTMLElement
+    sortNode: HTMLElement,
+    headerNode: Control<HTMLElement>
   ) {
     this.filterKeysLS = JSON.parse(localStorage.getItem("checkboxes") || "{}");
     this.priceRangeLS = JSON.parse(localStorage.getItem("priceRange") || "{}");
     this.diagonalRangeLS = JSON.parse(localStorage.getItem("diagonalRange") || "{}");
     this.parentNode = parentNode;
     this.sortNode = sortNode;
+    this.headerNode = headerNode;
     this.getFilterProps(productsData);
     this.renderFilter(productsData, collectionNode);
     this.renderResetBtn(productsData, collectionNode);
@@ -743,6 +747,7 @@ export class filterView {
     localStorage.removeItem("checkboxes");
     localStorage.removeItem("priceRange");
     localStorage.removeItem("diagonalRange");
+    localStorage.removeItem("searchQuery");
 
     console.log("Reset click");
 
@@ -753,7 +758,10 @@ export class filterView {
     console.log(this.filter, this.filterDefault);
 
     new productCardView(collectionNode.node, data);
-    new filterView(collectionNode, this.parentNode, data, this.sortNode!);
+    new filterView(collectionNode, this.parentNode, data, this.sortNode!, this.headerNode!);
+
+    this.headerNode.node.textContent = "";
+    new Search(data, this.headerNode, collectionNode);
     //this.renderResetBtn(data, collectionNode);
     //new filterState(data, collectionNode, this.filter, undefined, this.priceRange, this.diagonalRange);
   }
@@ -767,11 +775,13 @@ export class filterView {
     console.log(this.filter, this.filterDefault);
 
     new productCardView(collectionNode.node, data);
-    new filterView(collectionNode, this.parentNode, data, this.sortNode!);
+    new filterView(collectionNode, this.parentNode, data, this.sortNode!, this.headerNode!);
     //const sortNode: HTMLElement = document.querySelector(".sort-wrapper")!;
     console.log(this.parentNode);
     this.sortNode!.textContent = "";
     new sortView(collectionNode, this.sortNode!, data, "default");
+    this.headerNode.node.textContent = "";
+    new Search(data, this.headerNode, collectionNode);
     //this.resetFilters(collectionNode, data);
   }
 }

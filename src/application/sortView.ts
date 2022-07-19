@@ -44,8 +44,17 @@ export class sortView {
         const filterKeysLS = JSON.parse(localStorage.getItem("checkboxes") || "{}");
         const priceRangeLS = JSON.parse(localStorage.getItem("priceRange") || "{}");
         const diagonalRangeLS = JSON.parse(localStorage.getItem("diagonalRange") || "{}");
+        const searchQueryLS = localStorage.getItem("searchQuery");
         const orderSort = localStorage.setItem("orderSort", sortType);
-        new filterState(data, collectionNode, filterKeysLS, undefined, priceRangeLS, diagonalRangeLS);
+        new filterState(
+          data,
+          collectionNode,
+          filterKeysLS,
+          undefined,
+          priceRangeLS,
+          diagonalRangeLS,
+          searchQueryLS!
+        );
         //new productsDataModel(data, collectionNode, sortType);
         //this.priceDown(data, collectionNode);
       }

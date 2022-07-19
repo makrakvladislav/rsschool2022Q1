@@ -40,12 +40,12 @@ export class filterState {
     filterState?: IFilter,
     filter__valueLabel?: Element,
     priceRange?: IPriceRange,
-    diagonalRange?: IDiagonalRange
+    diagonalRange?: IDiagonalRange,
+    searchQuery?: string
   ) {
     //if (filterType === "color") this.filterColor(data, collectionNode, filterKey);
     this.filteredData = JSON.parse(JSON.stringify(data));
     //console.log(this.filteredData);
-
     console.log(filterState);
 
     this.filterInit(
@@ -54,7 +54,8 @@ export class filterState {
       filterState,
       filter__valueLabel,
       priceRange,
-      diagonalRange
+      diagonalRange,
+      searchQuery
     );
   }
 
@@ -64,7 +65,8 @@ export class filterState {
     filterState?: IFilter,
     filter__valueLabel?: Element,
     priceRange?: IPriceRange,
-    diagonalRange?: IDiagonalRange
+    diagonalRange?: IDiagonalRange,
+    searchQuery?: string
   ) {
     /*
     if (filterState["price"].length > 0) {
@@ -72,6 +74,11 @@ export class filterState {
       this.filterPrice(this.filteredData, filterState, priceRange, collectionNode);
     }
     */
+    const searchQueryLS = localStorage.getItem("searchQuery");
+
+    if (searchQueryLS !== null) {
+      this.filterTitle(this.filteredData, filterState!, priceRange, collectionNode, searchQueryLS!);
+    }
 
     this.filterPrice(this.filteredData, filterState!, priceRange, collectionNode);
     this.filterDiagonal(this.filteredData, filterState!, collectionNode, diagonalRange);
@@ -105,6 +112,19 @@ export class filterState {
     */
     //filteredData = this.filterColor(filteredData, collectionNode, filterKey);
     //filteredData = this.filterColor(filteredData, collectionNode, filterKey);
+  }
+
+  private filterTitle(
+    data: Array<IProductData>,
+    filterState: IFilter,
+    priceRange: IPriceRange | undefined,
+    collectionNode: Control<HTMLElement>,
+    searchQuery?: string
+  ) {
+    console.log(searchQuery);
+    return (this.filteredData = this.filteredData.filter(
+      (el) => el.title.toLowerCase().indexOf(searchQuery!.toLowerCase()) !== -1
+    ));
   }
 
   private filterPrice(
@@ -219,7 +239,6 @@ export class filterState {
   }
 
   private sortPriceDown(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    console.log("SOORT");
     let sortedData = [...data];
     sortedData = sortedData.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
     collectionNode.node.textContent = "";

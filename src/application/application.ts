@@ -3,11 +3,14 @@ import { productsDataModel, IProductData } from "./productsDataModel";
 import { productCardView } from "./productCardView";
 import { filterView } from "./filterView";
 import { sortView } from "./sortView";
+import { Search } from "./search";
 
 import style from "./application.css";
 
 export class Application extends Control {
   header: Control<HTMLElement>;
+  headerContainer: Control<HTMLElement>;
+  headerSearch: Control<HTMLElement>;
   main: Control<HTMLElement>;
   sorting: Control<HTMLElement>;
   collectionWrapper: Control<HTMLElement>;
@@ -21,36 +24,15 @@ export class Application extends Control {
     super(parentNode, "div", style["app"]);
     // HEADER
     this.header = new Control(this.node, "header", style["header"]);
-    const headerContainer = new Control(this.header.node, "div", style["container"]);
+    this.headerContainer = new Control(this.header.node, "div", style["container"]);
     const logo = new Image(150);
     logo.src = "./public/img/logo.png";
     // LOGO
     const headerLogo = new Control(this.node, "div", style["header__logo"]);
     headerLogo.node.append(logo);
-    headerContainer.node.appendChild(headerLogo.node);
+    this.headerContainer.node.appendChild(headerLogo.node);
     // SEARCH
-    const headerSearch = new Control(this.node, "div", style["header__search"]);
-    headerContainer.node.appendChild(headerSearch.node);
-    const searchForm = document.createElement("form");
-    const searchInput = document.createElement("input");
-    const searchBtn = document.createElement("button");
-    searchForm.classList.add("search__form");
-    searchInput.classList.add("search__input");
-    searchInput.placeholder = "Поиск...";
-    searchBtn.classList.add("search__bttn");
-    headerSearch.node.appendChild(searchForm);
-    searchForm.appendChild(searchInput);
-    searchForm.appendChild(searchBtn);
-    // CART
-    const headerCart = new Control(this.node, "div", style["header__cart"]);
-    const cart = document.createElement("div");
-    const cartCounter = document.createElement("span");
-    cartCounter.classList.add("cart__counter");
-    cartCounter.append("0");
-    cart.appendChild(cartCounter);
-    cart.classList.add("cart");
-    headerCart.node.appendChild(cart);
-    headerContainer.node.appendChild(headerCart.node);
+    this.headerSearch = new Control(this.headerContainer.node, "div", style["header__search"]);
     // MAIN
     const container = document.createElement("div");
     container.classList.add("container");
@@ -95,6 +77,18 @@ export class Application extends Control {
       const productData: Array<IProductData> = result.data;
       //this.renderProductCard(productData);
       this.renderSort(this.collection, productData, orderSort || "default");
+      new Search(productData, this.headerSearch, this.collection);
+      // CART
+      const headerCart = new Control(this.node, "div", style["header__cart"]);
+      const cart = document.createElement("div");
+      const cartCounter = document.createElement("span");
+      cartCounter.classList.add("cart__counter");
+      cartCounter.append("0");
+      cart.appendChild(cartCounter);
+      cart.classList.add("cart");
+
+      headerCart.node.appendChild(cart);
+      this.headerContainer.node.appendChild(headerCart.node);
       /*
       if (orderSort === "priceDown") {
         this.model.sortPriceDown(productData, this.collection);
@@ -116,7 +110,7 @@ export class Application extends Control {
     sidebarNode: Control<HTMLElement>,
     data: Array<IProductData>
   ) {
-    new filterView(collectionNode, this.sidebar.node, data, this.sorting.node);
+    new filterView(collectionNode, this.sidebar.node, data, this.sorting.node, this.headerSearch);
   }
 
   renderSort(collectionNode: Control<HTMLElement>, data: Array<IProductData>, state: string) {
