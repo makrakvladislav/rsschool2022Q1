@@ -3,8 +3,13 @@
     "title":"Samsung N960 Galaxy Note 9",
     "price":"599.0",
     "short_description":"Cмотрите любимые фильмы и фотографии на Super AMOLED экране с разрешением Quad HD+. Скрытый сканер радужной оболочки глаза и сенсоры расположены вровень с корпусом и не нарушают визуальной целостности дизайна.",
-    "available":true,
+    "available":"true",
     "img":"1",
+    "brand": "Samsung",
+    "color": "Черный",
+    "memory":"128GB",
+    "diagonal":"6.4",
+    "cameras":"2",
     "properties": [
       {
         "brand":"Samsung"
@@ -27,8 +32,13 @@
     "title":"Apple iPhone XS Max",
     "price":"2999.0",
     "short_description":"Дисплей Super Retina. Еще более быстрый Face ID. Самый мощный и умный процессор iPhone. И потрясающая двойная камера. В iPhone XS воплощено все, что вы любите в iPhone. На новом уровне.",
-    "available":false,
+    "available":"false",
     "img":"2",
+    "brand": "Apple",
+    "color": "Белый",
+    "memory":"64GB",
+    "diagonal":"6.5",
+    "cameras":"2",
     "properties": [
       {
         "brand":"Apple"
@@ -51,8 +61,13 @@
     "title":"Xiaomi Redmi Note 10S",
     "price":"740.0",
     "short_description":"Серия Redmi Note 10S в очередной раз бросает вызов и снова превосходит все ожидания! Смартфоны Redmi Note уже побывали в самых экстремальных уголках нашей планеты, и даже за её пределами - в космосе.",
-    "available":true,
+    "available":"true",
     "img":"3",
+    "brand": "Xiaomi",
+    "color": "Белый",
+    "memory":"128GB",
+    "diagonal":"6.4",
+    "cameras":"4",
     "properties": [
       {
         "brand":"Xiaomi"
@@ -75,8 +90,13 @@
     "title":"Samsung Galaxy Z Fold3",
     "price":"4949.0",
     "short_description":"В сложенном виде Galaxy Z Fold3 — это современный смартфон с 6,2-дюймовым экраном. 1 В раскрытом виде — практически планшет. Перед вами впечатляющий экран, на котором можно просматривать контент, работать и играть, как никогда раньше.",
-    "available":false,
+    "available":"false",
     "img":"4",
+    "brand": "Samsung",
+    "color": "Зеленый",
+    "memory":"256GB",
+    "diagonal":"7.6",
+    "cameras":"3",
     "properties": [
       {
         "brand":"Samsung"
@@ -99,8 +119,13 @@
     "title":"Xiaomi Mi Mix 4",
     "price":"4024.0",
     "short_description":"Mix 4 содержит одну любопытнейшую инновацию - это первый смартфон Xiaomi с подэкранной камерой.",
-    "available":true,
+    "available":"true",
     "img":"5",
+    "brand": "Xiaomi",
+    "color": "Черный",
+    "memory":"512GB",
+    "diagonal":"6.67",
+    "cameras":"3",
     "properties": [
       {
         "brand":"Xiaomi"
@@ -123,8 +148,13 @@
     "title":"Xiaomi 11T",
     "price":"4024.0",
     "short_description":"Xiaomi 11T оснащается плоским 6,67-дюймовым AMOLED дисплеем разрешением 2400 х 1080. Сенсорный экран считывает касания на частоте 480 Гц, а картинка обновляется на частоте 120 Гц, за счет чего точность ввода и отзывчивость интерфейса на высоком уровне.",
-    "available":true,
+    "available":"true",
     "img":"6",
+    "brand": "Xiaomi",
+    "color": "Черный",
+    "memory":"256GB",
+    "diagonal":"6.67",
+    "cameras":"3",
     "properties": [
       {
         "brand":"Xiaomi"
@@ -140,6 +170,35 @@
       },
       {
         "cameras":"3"
+      }
+    ]
+  },
+  "6": {
+    "title":"Apple iPhone 13",
+    "price":"2500.0",
+    "short_description":"Apple iPhone 13Apple iPhone 13Apple iPhone 13Apple iPhone 13Apple iPhone 13",
+    "available":"true",
+    "img":"7",
+    "brand": "Apple",
+    "color": "Розовый",
+    "memory":"128GB",
+    "diagonal":"6.1",
+    "cameras":"2",
+    "properties": [
+      {
+        "brand":"Apple"
+      }, 
+      {
+        "color":"Розовый"
+      },
+      {
+        "memory":"128GB"
+      },
+      {
+        "diagonal":"6.1"
+      },
+      {
+        "cameras":"2"
       }
     ]
   }
