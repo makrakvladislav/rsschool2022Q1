@@ -1,5 +1,6 @@
 import Control from "../common/control";
 import { productsDataModel, IProductData } from "./productsDataModel";
+import { filterState } from "./filterState";
 
 import style from "./sortView.css";
 
@@ -29,18 +30,23 @@ export class sortView {
     state: string
   ) {
     this.parentNode = parentNode;
+    //this.parentNode.textContent = "";
     this.renderSort(productsData, collectionNode, state);
   }
 
   renderSort(data: Array<IProductData>, collectionNode: Control<HTMLElement>, state: string) {
+    const sortingTitle = new Control(this.parentNode, "label", style["sort-title"], "Сортировка:");
     const sort = new Control(this.parentNode, "select", style["sort__select"]);
-
     sort.node.onchange = (event: Event) => {
       const { target } = event;
       if (target) {
         const sortType = (target as HTMLButtonElement).value;
+        const filterKeysLS = JSON.parse(localStorage.getItem("checkboxes") || "{}");
+        const priceRangeLS = JSON.parse(localStorage.getItem("priceRange") || "{}");
+        const diagonalRangeLS = JSON.parse(localStorage.getItem("diagonalRange") || "{}");
         const orderSort = localStorage.setItem("orderSort", sortType);
-        new productsDataModel(data, collectionNode, sortType);
+        new filterState(data, collectionNode, filterKeysLS, undefined, priceRangeLS, diagonalRangeLS);
+        //new productsDataModel(data, collectionNode, sortType);
         //this.priceDown(data, collectionNode);
       }
     };
@@ -58,43 +64,4 @@ export class sortView {
       (sort.node as HTMLOptionElement).value = state;
     });
   }
-  /*
-  sortArr(sortType: string, data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    if (sortType === "default") {
-      collectionNode.node.textContent = "";
-      new productCardView(collectionNode.node, data);
-      console.log(data);
-    }
-    if (sortType === "nameAZ") {
-      let sortedData = [...data];
-      sortedData = sortedData.sort((a, b) => a.title.localeCompare(b.title));
-      this.sorting.nameAZ.push(sortedData);
-      console.log(this.sorting.nameAZ);
-      collectionNode.node.textContent = "";
-      new productCardView(collectionNode.node, sortedData);
-      console.log(sortedData, data);
-    }
-    if (sortType === "nameZA") {
-      let sortedData = [...data];
-      sortedData = sortedData.sort((a, b) => b.title.localeCompare(a.title));
-      collectionNode.node.textContent = "";
-      new productCardView(collectionNode.node, sortedData);
-      console.log(sortedData, data);
-    }
-    if (sortType === "priceUp") {
-      let sortedData = [...data];
-      sortedData = sortedData.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-      collectionNode.node.textContent = "";
-      new productCardView(collectionNode.node, sortedData);
-      console.log(sortedData, data);
-    }
-    if (sortType === "priceDown") {
-      let sortedData = [...data];
-      sortedData = sortedData.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-      collectionNode.node.textContent = "";
-      new productCardView(collectionNode.node, sortedData);
-      console.log(sortedData, data);
-    }
-  }
-  */
 }
