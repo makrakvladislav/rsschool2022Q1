@@ -46,6 +46,7 @@ const config = {
                 {
                   loader: 'css-loader',
                   options: {
+                    url: false,
                     modules: {
                       localIdentName: "[local]",
                     },
@@ -62,6 +63,7 @@ const config = {
               test: /\.json$/i,
               type: 'asset/resource',
             },
+            
 
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
