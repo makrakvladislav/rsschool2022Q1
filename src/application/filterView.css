@@ -33,6 +33,10 @@
   gap: 0.5rem;
 }
 
+.filter__value {
+
+}
+
 .filter-value-checkbox {
   position: absolute;
   z-index: -1;
@@ -171,4 +175,38 @@
 .noUi-target {
   background: #eee;
   border: none;
+}
+
+.filter__reset-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.filter__btn {
+  padding: 0.75rem;
+  border: 0;
+  border-radius: 3px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.filter__btn.reset-filters {
+  background-color: #3095dd;
+  color: #fff;
+}
+
+.filter__btn.reset-settings {
+  background: #000;
+  color: #fff;
+}
+
+.filter__btn.reset-settings:hover {
+  background-color: #353535;
+  color: #fff;
+}
+
+.filter__btn:hover {
+  cursor: pointer;
+  background-color: #000;
 }
