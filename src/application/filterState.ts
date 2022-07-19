@@ -1,7 +1,6 @@
 import Control from "../common/control";
 import { productCardView } from "./productCardView";
 import { IProductData } from "./productsDataModel";
-import { sortState } from "./sortState";
 
 interface IFilter {
   price: string[] | undefined;
