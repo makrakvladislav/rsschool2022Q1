@@ -65,7 +65,7 @@
   background: #f7f8fa;
   color: #0bb648;
   border-left: 1px solid #eee;
-  background-image: url("../assets/img/search.svg");
+  background-image: url("./public/img/search.svg");
   background-size: 45%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -79,7 +79,7 @@
 .cart {
   padding: 21px;
   position: relative;
-  background-image: url("../assets/img/cart.svg");
+  background-image: url("./public/img/cart.svg");
   background-size: 45%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -120,9 +120,12 @@
   gap: 2rem 1rem;
   flex: 1 1 0;
   position: relative;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 
 .collection-wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
