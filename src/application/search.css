@@ -1,0 +1,32 @@
+.header__search {
+  max-width: 40%;
+  width: 100%;
+}
+
+.search-clear {
+  padding: 0;
+  position: absolute;
+  top: 10px;
+  right: 48px;
+  background: none;
+  border: none;
+  line-height: 0;
+  color: #000;
+  display: none;
+}
+
+.search-clear:hover {
+  cursor: pointer;
+}
+
+.search-clear svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  transition: stroke .1s;
+}
+
+.search__form.clear .search-clear {
+  display: block;
+}
