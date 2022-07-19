@@ -95,7 +95,7 @@ export class createCard extends Control {
     new Control(this.node, "div", style["product__description"], productsData.short_description);
     const productBuyWrapper = new Control(this.node, "div", style["product__buy-wrapper"]);
     //const bttnBuy = new Control(productBuyWrapper.node, "button", style["bttn-buy"], "В корзину");
-    if (productsData.available === false) {
+    if (productsData.available === "false") {
       this.node.classList.add("not-available");
       new Control(productBuyWrapper.node, "button", style["bttn-buy"], "Распродано");
     } else {
