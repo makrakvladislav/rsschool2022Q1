@@ -1,6 +1,7 @@
 import productsDataUrl from "../assets/json/data.json";
 import Control from "../common/control";
 import { productCardView } from "./productCardView";
+import { filterState } from "./filterState";
 
 interface IProductProp {
   brand: string;
@@ -8,13 +9,19 @@ interface IProductProp {
   memory: string;
   diagonal: string;
   cameras: string;
+  available: string;
 }
 
 export interface IProductData {
   title: string;
   price: string;
+  brand: string;
+  color: string;
+  memory: string;
+  diagonal: string;
+  cameras: string;
   short_description: string;
-  available: boolean;
+  available: string;
   img: string;
   properties: Array<IProductProp>;
 }
@@ -23,14 +30,7 @@ type IProductsDto = Record<string, IProductData>;
 
 export class productsDataModel {
   data!: Array<IProductData>;
-  constructor(data: Array<IProductData>, collectionNode: Control<HTMLElement>, sortType: string) {
-    console.log(sortType);
-    if (sortType === "default") this.sortDefault(data, collectionNode);
-    if (sortType === "nameAZ") this.sortNameAZ(data, collectionNode);
-    if (sortType === "priceDown") this.sortPriceDown(data, collectionNode);
-    if (sortType === "nameZA") this.sortNameZA(data, collectionNode);
-    if (sortType === "priceUp") this.sortPriceUp(data, collectionNode);
-  }
+  constructor(data: Array<IProductData>, collectionNode: Control<HTMLElement>, sortType: string) {}
 
   public async build() {
     this.data = await this.loadProducts(productsDataUrl);
@@ -48,6 +48,11 @@ export class productsDataModel {
             short_description: item.short_description,
             available: item.available,
             img: item.img,
+            brand: item.brand,
+            color: item.color,
+            memory: item.memory,
+            diagonal: item.diagonal,
+            cameras: item.cameras,
             properties: item.properties,
           };
 
@@ -56,43 +61,5 @@ export class productsDataModel {
         return modelData;
       })
     );
-  }
-
-  private sortDefault(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    collectionNode.node.textContent = "";
-    new productCardView(collectionNode.node, data);
-    console.log("defatult");
-  }
-
-  private sortNameAZ(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    let sortedData = [...data];
-    sortedData = sortedData.sort((a, b) => a.title.localeCompare(b.title));
-    collectionNode.node.textContent = "";
-    new productCardView(collectionNode.node, sortedData);
-    console.log("sortNameAZ");
-  }
-
-  private sortNameZA(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    let sortedData = [...data];
-    sortedData = sortedData.sort((a, b) => b.title.localeCompare(a.title));
-    collectionNode.node.textContent = "";
-    new productCardView(collectionNode.node, sortedData);
-    console.log("sortNameZA");
-  }
-
-  private sortPriceUp(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    let sortedData = [...data];
-    sortedData = sortedData.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-    collectionNode.node.textContent = "";
-    new productCardView(collectionNode.node, sortedData);
-    console.log("sortPriceUp");
-  }
-
-  sortPriceDown(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
-    let sortedData = [...data];
-    sortedData = sortedData.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-    collectionNode.node.textContent = "";
-    new productCardView(collectionNode.node, sortedData);
-    console.log("sortPriceDown", sortedData);
   }
 }
