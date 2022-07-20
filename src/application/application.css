@@ -90,6 +90,12 @@
   border: 2px solid #eee;
 }
 
+@media (max-width: 1024px) {
+  .sidebar {
+    padding: 2rem 1rem;
+  }
+}
+
 .collection {
   display: flex;
   flex-wrap: wrap;
