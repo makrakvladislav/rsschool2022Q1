@@ -91,6 +91,7 @@
   border: none;
   color: #0bb648;
   transition: all 0.3s;
+  padding: 0.5rem 1rem;
 }
 
 .bttn-buy:hover {
@@ -116,4 +117,14 @@
 
 .product__card.not-available .bttn-buy {
   cursor: not-allowed;
+}
+
+.product__card.in-cart {
+  outline: 2px solid #0bb648;
+}
+
+.product__card.in-cart .bttn-buy {
+  background: #0bb648;
+  color: #fff;
+  border-radius: 3px;
 }

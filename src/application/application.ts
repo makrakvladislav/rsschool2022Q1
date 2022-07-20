@@ -4,6 +4,7 @@ import { productCardView } from "./productCardView";
 import { filterView } from "./filterView";
 import { sortView } from "./sortView";
 import { Search } from "./search";
+import { Cart } from "./cart";
 
 import style from "./application.css";
 
@@ -72,23 +73,20 @@ export class Application extends Control {
     const orderSort = localStorage.getItem("orderSort");
     const filterStateArr = JSON.parse(localStorage.getItem("checkboxes") || "{}");
     this.model = new productsDataModel([], this.collection, "");
-
+    // CART
+    const headerCart = new Control(this.node, "div", style["header__cart"]);
+    const headerContainer = this.headerContainer.node.appendChild(headerCart.node);
     this.model.build().then((result) => {
       const productData: Array<IProductData> = result.data;
       //this.renderProductCard(productData);
       this.renderSort(this.collection, productData, orderSort || "default");
       new Search(productData, this.headerSearch, this.collection);
-      // CART
-      const headerCart = new Control(this.node, "div", style["header__cart"]);
-      const cart = document.createElement("div");
-      const cartCounter = document.createElement("span");
-      cartCounter.classList.add("cart__counter");
-      cartCounter.append("0");
-      cart.appendChild(cartCounter);
-      cart.classList.add("cart");
 
-      headerCart.node.appendChild(cart);
-      this.headerContainer.node.appendChild(headerCart.node);
+      new Cart(headerContainer);
+      const cart = new Cart();
+      cart.showCart();
+      //headerCart.node.appendChild(cart);
+
       /*
       if (orderSort === "priceDown") {
         this.model.sortPriceDown(productData, this.collection);

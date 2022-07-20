@@ -71,31 +71,7 @@
   background-position: center center;
 }
 
-.header__cart {
-  background: #f7f8fa;
-  border-radius: 50px;
-}
-
-.cart {
-  padding: 21px;
-  position: relative;
-  background-image: url("./public/img/cart.svg");
-  background-size: 45%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.cart__counter {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  padding: 5px 7px;
-  background-color: #0bb648;
-  border-radius: 50%;
-  color: #000;
-  font-size: 12px;
-  line-height: 1;
-}
+.header__cart {}
 
 .main {
   display: flex;

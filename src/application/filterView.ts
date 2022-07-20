@@ -5,6 +5,7 @@ import * as noUiSlider from "nouislider";
 import { filterState } from "./filterState";
 import { sortView } from "./sortView";
 import { Search } from "./search";
+import { Cart } from "./cart";
 
 import "nouislider/dist/nouislider.css";
 import style from "./filterView.css";
@@ -782,6 +783,8 @@ export class filterView {
     new sortView(collectionNode, this.sortNode!, data, "default");
     this.headerNode.node.textContent = "";
     new Search(data, this.headerNode, collectionNode);
+    const cart = new Cart();
+    cart.showCart();
     //this.resetFilters(collectionNode, data);
   }
 }

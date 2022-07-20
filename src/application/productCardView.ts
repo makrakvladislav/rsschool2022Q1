@@ -1,7 +1,8 @@
 import Control from "../common/control";
 import { IProductData } from "./productsDataModel";
+import { Cart } from "./cart";
 import style from "./productCardView.css";
-
+const cart = new Cart();
 export class productCardView {
   parentNode: HTMLElement;
   constructor(parentNode: HTMLElement, productsData: Array<IProductData>) {
@@ -66,6 +67,9 @@ export class productCardView {
 }
 
 export class createCard extends Control {
+  parentNode?: HTMLElement | undefined;
+  productsData?: Array<IProductData>;
+
   constructor(parentNode: HTMLElement, productsData: IProductData, id: number) {
     super(parentNode, "div", style["product__card"]);
     const pictureUrl = `./public/img/${productsData.img}.jpeg`;
@@ -94,16 +98,49 @@ export class createCard extends Control {
     const properties = new Control(propertiesContainer.node, "ul", style["product__properties"]);
     new Control(this.node, "div", style["product__description"], productsData.short_description);
     const productBuyWrapper = new Control(this.node, "div", style["product__buy-wrapper"]);
+    const cartItems = JSON.parse(localStorage.getItem("cartItem") || "{}");
+    console.log(cartItems);
+
     //const bttnBuy = new Control(productBuyWrapper.node, "button", style["bttn-buy"], "В корзину");
+    const bttnBuy: Control<HTMLElement> = new Control(
+      productBuyWrapper.node,
+      "button",
+      style["bttn-buy"],
+      "В корзину"
+    );
     if (productsData.available === "false") {
       this.node.classList.add("not-available");
-      new Control(productBuyWrapper.node, "button", style["bttn-buy"], "Распродано");
+      bttnBuy.node.innerText = "Распродано";
+      bttnBuy.node.setAttribute("disabled", "");
     } else {
-      const bttnBuy = new Control(productBuyWrapper.node, "button", style["bttn-buy"], "В корзину");
-      bttnBuy.node.onclick = () => {
-        console.log(productsData.title, id);
-      };
+      bttnBuy.node.innerText = "В корзину";
     }
+
+    if (cartItems.length > 0) {
+      const index = cartItems.indexOf(productsData.title);
+
+      if (index > -1) {
+        bttnBuy.node.innerText = "В корзине";
+        this.node.classList.add("in-cart");
+      } else {
+        bttnBuy.node.innerText = "В корзинy";
+        this.node.classList.remove("in-cart");
+      }
+    }
+    //cart.showCart();
+    bttnBuy.node.onclick = () => {
+      cart.addItem(productsData.title, bttnBuy);
+    };
+    //this.node.classList.remove("in-cart");
+    //bttnBuy.node.innerText = "В корзинy";
+
+    /*
+    bttnBuy.node.onclick = () => {
+      cart.addItem(productsData.title);
+      if (cartItems.indexOf(productsData.title) > -1) {
+      
+    };
+    */
 
     new Control(productBuyWrapper.node, "span", style["product__price"], productsData.price + "&nbsp;₽");
 

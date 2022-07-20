@@ -1,0 +1,28 @@
+.header__cart {
+  background: #f7f8fa;
+  border-radius: 50px;
+}
+
+.cart {
+  padding: 21px;
+  position: relative;
+  background-image: url("./public/img/cart.svg");
+  background-size: 45%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.cart__counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #0bb648;
+  border-radius: 50%;
+  color: #000;
+  font-size: 12px;
+}
