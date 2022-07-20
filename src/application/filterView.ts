@@ -100,12 +100,9 @@ export class filterView {
     if (Object.keys(this.priceRangeLS).length > 0) {
       this.priceRange = this.priceRangeLS;
       new filterState(productsData, collectionNode, this.filterKeysLS, undefined, this.priceRangeLS);
-
-      console.log(this.priceRange, this.priceRangeLS);
     }
 
     if (Object.keys(this.diagonalRangeLS).length > 0) {
-      console.log(this.filter);
       this.diagonalRange = this.diagonalRangeLS;
       new filterState(
         productsData,
@@ -115,7 +112,6 @@ export class filterView {
         undefined,
         this.diagonalRangeLS
       );
-      console.log(this.diagonalRange, this.diagonalRangeLS);
     }
 
     new filterState(
@@ -191,7 +187,6 @@ export class filterView {
         */
       });
     });
-    //console.log(this.filter);
   }
 
   renderFilter(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
@@ -219,7 +214,6 @@ export class filterView {
 
         if (Object.keys(this.priceRangeLS).length > 0) {
           Object.values(this.priceRangeLS).forEach((item) => {
-            console.log(...item);
             item.forEach((it: Array<number>) => {
               startMinPrice = +it[0];
               startMaxPrice = +it[1];
@@ -265,7 +259,6 @@ export class filterView {
 
         if (Object.keys(this.diagonalRangeLS).length > 0) {
           Object.values(this.diagonalRangeLS).forEach((item) => {
-            console.log(...item);
             item.forEach((it: Array<number>) => {
               startMinDiagonal = +it[0];
               startMaxDiagonal = +it[1];
@@ -325,7 +318,6 @@ export class filterView {
           const attr: string | null = filter__valueLabel.node.getAttribute("for");
           if (Object.keys(this.filterKeysLS).length > 0) {
             this.filterKeysLS.brand.forEach((item) => {
-              console.log(item);
               if (item === attr) {
                 if (filter__valueCheckbox.node !== null) {
                   filter__valueCheckbox.node.setAttribute("checked", "checked");
@@ -333,19 +325,12 @@ export class filterView {
               }
             });
           }
-          //console.log(filter__valueLabel.node.getAttribute("for") === (this.filterKeysLS.brand as this.filterKeysLS));
           filter__valueCheckbox.node.onclick = (e) => {
-            //console.log(`filter clicked: ${item}`);
             const checkbox = e.target as HTMLInputElement;
             const filterId = Number(filter__valueLabel.node.getAttribute("prop-id"));
             const brandValue = filterType + item;
             if (checkbox.checked) {
               filterStateArr[filterId] = checkbox.checked;
-              //console.log(filter__valueLabel);
-              //new filterState(data, collectionNode, filterType, item, filter__valueLabel.node);
-              //this.filter.brand.push(item);
-              //this.state.brand[item] = true;
-              //this.filteredCollected(this.state);
               this.filter.brand.push(item);
               //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
@@ -374,9 +359,6 @@ export class filterView {
               );
               //this.filterData(data, this.filter, collectionNode);
             }
-            //console.log(filterType);
-            //console.log(filterStateArr);
-            //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
           };
           filterCounter++;
         });
@@ -418,7 +400,6 @@ export class filterView {
           const attr: string | null = filter__valueLabel.node.getAttribute("for");
           if (Object.keys(this.filterKeysLS).length > 0) {
             this.filterKeysLS.color.forEach((item) => {
-              console.log(item);
               if (item === attr) {
                 if (filter__valueCheckbox.node !== null) {
                   filter__valueCheckbox.node.setAttribute("checked", "checked");
@@ -427,7 +408,6 @@ export class filterView {
             });
           }
           filter__valueCheckbox.node.onclick = (e) => {
-            //console.log(`filter clicked: ${item}`);
             const checkbox = e.target as HTMLInputElement;
             //const filterId = Number(filter__valueLabel.node.getAttribute("prop-id"));
             if (checkbox.checked) {
@@ -435,7 +415,6 @@ export class filterView {
               //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
               //new filterState(data, collectionNode, filterType, item, filter__valueLabel.node);
               this.filter.color.push(item);
-              console.log(this.filter);
               //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
@@ -462,8 +441,6 @@ export class filterView {
                 this.diagonalRange
               );
             }
-            //console.log(filterStateArr);
-            //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
           };
           filterCounter++;
         });
@@ -493,7 +470,6 @@ export class filterView {
           const attr: string | null = filter__valueLabel.node.getAttribute("for");
           if (Object.keys(this.filterKeysLS).length > 0) {
             this.filterKeysLS.memory.forEach((item) => {
-              console.log(item);
               if (item === attr) {
                 if (filter__valueCheckbox.node !== null) {
                   filter__valueCheckbox.node.setAttribute("checked", "checked");
@@ -502,21 +478,13 @@ export class filterView {
             });
           }
           filter__valueCheckbox.node.onclick = (e) => {
-            //console.log(`filter clicked: ${item}`);
             const checkbox = e.target as HTMLInputElement;
             const filterId = Number(filter__valueLabel.node.getAttribute("prop-id"));
             const brandValue = filterType + item;
             if (checkbox.checked) {
               filterStateArr[filterId] = checkbox.checked;
               localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
-              //console.log(filter__valueLabel);
-              //new filterState(data, collectionNode, filterType, item, filter__valueLabel.node);
-              //this.filter.brand.push(item);
-              //this.state.brand[item] = true;
-              //this.filteredCollected(this.state);
               this.filter.memory.push(item);
-              console.log(this.filter);
-              //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -543,9 +511,6 @@ export class filterView {
                 this.diagonalRange
               );
             }
-            //console.log(filterType);
-            //console.log(filterStateArr);
-            //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
           };
           filterCounter++;
         });
@@ -575,7 +540,6 @@ export class filterView {
           const attr: string | null = filter__valueLabel.node.getAttribute("for");
           if (Object.keys(this.filterKeysLS).length > 0) {
             this.filterKeysLS.cameras.forEach((item) => {
-              console.log(item);
               if (item === attr) {
                 if (filter__valueCheckbox.node !== null) {
                   filter__valueCheckbox.node.setAttribute("checked", "checked");
@@ -584,20 +548,13 @@ export class filterView {
             });
           }
           filter__valueCheckbox.node.onclick = (e) => {
-            //console.log(`filter clicked: ${item}`);
             const checkbox = e.target as HTMLInputElement;
             const filterId = Number(filter__valueLabel.node.getAttribute("prop-id"));
             const brandValue = filterType + item;
             if (checkbox.checked) {
               filterStateArr[filterId] = checkbox.checked;
               localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
-              //console.log(filter__valueLabel);
-              //new filterState(data, collectionNode, filterType, item, filter__valueLabel.node);
-              //this.filter.brand.push(item);
-              //this.state.brand[item] = true;
-              //this.filteredCollected(this.state);
               this.filter.cameras.push(item);
-              console.log(this.filter);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -625,9 +582,6 @@ export class filterView {
                 this.diagonalRange
               );
             }
-            //console.log(filterType);
-            //console.log(filterStateArr);
-            //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
           };
           filterCounter++;
         });
@@ -660,7 +614,6 @@ export class filterView {
             const attr: string | null = filter__valueLabel.node.getAttribute("for");
             if (Object.keys(this.filterKeysLS).length > 0) {
               this.filterKeysLS.available.forEach((item) => {
-                console.log(item);
                 if (item === attr) {
                   if (filter__valueCheckbox.node !== null) {
                     filter__valueCheckbox.node.setAttribute("checked", "checked");
@@ -669,21 +622,13 @@ export class filterView {
               });
             }
             filter__valueCheckbox.node.onclick = (e) => {
-              //console.log(`filter clicked: ${item}`);
               const checkbox = e.target as HTMLInputElement;
               const filterId = Number(filter__valueLabel.node.getAttribute("prop-id"));
               const brandValue = filterType + item;
               if (checkbox.checked) {
                 filterStateArr[filterId] = checkbox.checked;
                 localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
-                //console.log(filter__valueLabel);
-                //new filterState(data, collectionNode, filterType, item, filter__valueLabel.node);
-                //this.filter.brand.push(item);
-                //this.state.brand[item] = true;
-                //this.filteredCollected(this.state);
                 this.filter.available.push(item);
-                console.log(this.filter);
-                //this.filterData(data, this.filter, collectionNode);
                 localStorage.setItem("checkboxes", JSON.stringify(this.filter));
                 new filterState(
                   data,
@@ -710,9 +655,6 @@ export class filterView {
                   this.diagonalRange
                 );
               }
-              //console.log(filterType);
-              //console.log(filterStateArr);
-              //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
             };
             filterCounter++;
           }
@@ -752,21 +694,15 @@ export class filterView {
     localStorage.removeItem("diagonalRange");
     localStorage.removeItem("searchQuery");
 
-    console.log("Reset click");
-
     collectionNode.node.textContent = "";
     this.parentNode.textContent = "";
     this.filter = this.filterDefault;
-
-    console.log(this.filter, this.filterDefault);
 
     new productCardView(collectionNode.node, data);
     new filterView(collectionNode, this.parentNode, data, this.sortNode!, this.headerNode!);
 
     this.headerNode.node.textContent = "";
     new Search(data, this.headerNode, collectionNode);
-    //this.renderResetBtn(data, collectionNode);
-    //new filterState(data, collectionNode, this.filter, undefined, this.priceRange, this.diagonalRange);
   }
 
   resetSettings(collectionNode: Control<HTMLElement>, data: Array<IProductData>) {
@@ -775,12 +711,9 @@ export class filterView {
     this.parentNode.textContent = "";
     this.filter = this.filterDefault;
 
-    console.log(this.filter, this.filterDefault);
-
     new productCardView(collectionNode.node, data);
     new filterView(collectionNode, this.parentNode, data, this.sortNode!, this.headerNode!);
     //const sortNode: HTMLElement = document.querySelector(".sort-wrapper")!;
-    console.log(this.parentNode);
     this.sortNode!.textContent = "";
     new sortView(collectionNode, this.sortNode!, data, "default");
     this.headerNode.node.textContent = "";

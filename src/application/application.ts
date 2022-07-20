@@ -100,7 +100,6 @@ export class Application extends Control {
 
   renderProductCard(data: Array<IProductData>) {
     new productCardView(this.collection.node, data);
-    console.log("render");
   }
 
   renderFilters(
@@ -115,11 +114,3 @@ export class Application extends Control {
     new sortView(collectionNode, this.sorting.node, data, state);
   }
 }
-
-/*
-
- const sortValue: string | null = localStorage.getItem("orderSort");
-    console.log(sortValue);
-    new sortView(collectionNode, this.sorting.node, data);
-
-*/

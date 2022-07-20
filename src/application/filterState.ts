@@ -45,8 +45,6 @@ export class filterState {
   ) {
     //if (filterType === "color") this.filterColor(data, collectionNode, filterKey);
     this.filteredData = JSON.parse(JSON.stringify(data));
-    //console.log(this.filteredData);
-    console.log(filterState);
 
     this.filterInit(
       this.filteredData,
@@ -68,12 +66,6 @@ export class filterState {
     diagonalRange?: IDiagonalRange,
     searchQuery?: string
   ) {
-    /*
-    if (filterState["price"].length > 0) {
-      console.log("price check");
-      this.filterPrice(this.filteredData, filterState, priceRange, collectionNode);
-    }
-    */
     const searchQueryLS = localStorage.getItem("searchQuery");
 
     if (searchQueryLS !== null) {
@@ -85,33 +77,11 @@ export class filterState {
     this.filterData(this.filteredData, filterState!, collectionNode);
 
     const sortType = localStorage.getItem("orderSort") || "{}";
-    console.log(sortType);
     if (sortType === "default") this.sortDefault(this.filteredData, collectionNode);
     if (sortType === "nameAZ") this.sortNameAZ(this.filteredData, collectionNode);
     if (sortType === "priceDown") this.sortPriceDown(this.filteredData, collectionNode);
     if (sortType === "nameZA") this.sortNameZA(this.filteredData, collectionNode);
     if (sortType === "priceUp") this.sortPriceUp(this.filteredData, collectionNode);
-
-    //new sortState(this.filteredData, sortType, collectionNode);
-    /*
-    console.log(sortType);
-    if (sortType === "default") this.sortDefault(data, collectionNode);
-    if (sortType === "nameAZ") this.sortNameAZ(data, collectionNode);
-    if (sortType === "priceDown") this.sortPriceDown(data, collectionNode);
-    if (sortType === "nameZA") this.sortNameZA(data, collectionNode);
-    if (sortType === "priceUp") this.sortPriceUp(data, collectionNode);
-    //if (sortType === "color") this.filterColor(data, collectionNode);
-    */
-    /*
-    const filteredData = data;
-    const checkboxesChecked = JSON.parse(localStorage.getItem("checkboxes") || "{}");
-    console.log(checkboxesChecked);
-    console.log(filter__valueLabel.getAttribute("prop-id"));
-    console.log(filter__valueLabel);
-    console.log(filterKey);
-    */
-    //filteredData = this.filterColor(filteredData, collectionNode, filterKey);
-    //filteredData = this.filterColor(filteredData, collectionNode, filterKey);
   }
 
   private filterTitle(
@@ -121,7 +91,6 @@ export class filterState {
     collectionNode: Control<HTMLElement>,
     searchQuery?: string
   ) {
-    console.log(searchQuery);
     return (this.filteredData = this.filteredData.filter(
       (el) => el.title.toLowerCase().indexOf(searchQuery!.toLowerCase()) !== -1
     ));
@@ -136,7 +105,6 @@ export class filterState {
     let minPrice = 0;
     let maxPrice = 999999;
     priceRange?.price?.forEach((item) => {
-      console.log(item[0]);
       minPrice = +item[0];
       maxPrice = +item[1];
     });
@@ -173,7 +141,6 @@ export class filterState {
 
   private filterData(data: Array<IProductData>, filterState: IFilter, collectionNode: Control<HTMLElement>) {
     const getValue = (value: string) => (typeof value === "string" ? value.toUpperCase() : value);
-    console.log(filterState);
     const filterKeys = Object.keys(filterState);
 
     this.filteredData = data.filter((item) => {
@@ -202,7 +169,6 @@ export class filterState {
     if (data.length === 0) {
       collectionNode.node.textContent = "Извините, совпадений не обнаружено";
     }
-    console.log("defatult");
   }
 
   private sortNameAZ(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
@@ -213,7 +179,6 @@ export class filterState {
     if (data.length === 0) {
       collectionNode.node.textContent = "Извините, совпадений не обнаружено";
     }
-    console.log("sortNameAZ");
   }
 
   private sortNameZA(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
@@ -224,7 +189,6 @@ export class filterState {
     if (data.length === 0) {
       collectionNode.node.textContent = "Извините, совпадений не обнаружено";
     }
-    console.log("sortNameZA");
   }
 
   private sortPriceUp(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
@@ -235,7 +199,6 @@ export class filterState {
     if (data.length === 0) {
       collectionNode.node.textContent = "Извините, совпадений не обнаружено";
     }
-    console.log("sortPriceUp");
   }
 
   private sortPriceDown(data: Array<IProductData>, collectionNode: Control<HTMLElement>) {
@@ -246,18 +209,5 @@ export class filterState {
     if (data.length === 0) {
       collectionNode.node.textContent = "Извините, совпадений не обнаружено";
     }
-    console.log("sortPriceDown", sortedData);
   }
-
-  /*
-  filterColor(data: Array<IProductData>, collectionNode: Control<HTMLElement>, filterKey: string) {
-    const res = data.filter((x) => x.properties.some((y) => y.color === filterKey));
-    //filteredData = sortedData.filter((item) => item.available === false);
-    //console.log(filteredData);
-
-    collectionNode.node.textContent = "";
-    new productCardView(collectionNode.node, res);
-    return res;
-  }
-  */
 }

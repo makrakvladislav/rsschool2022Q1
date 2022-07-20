@@ -40,10 +40,7 @@ export class Search {
     this.parentNode.node.appendChild(searchForm);
     searchForm.appendChild(searchInput);
     searchForm.appendChild(searchBtn);
-
     const searchQueryLS = localStorage.getItem("searchQuery");
-
-    console.log(searchQueryLS);
 
     if (searchQueryLS !== null) {
       const filterKeysLS = JSON.parse(localStorage.getItem("checkboxes") || "{}");
@@ -51,7 +48,6 @@ export class Search {
       const diagonalRangeLS = JSON.parse(localStorage.getItem("diagonalRange") || "{}");
       searchInput.value = searchQueryLS;
       searchForm.classList.add("clear");
-      console.log("SEARCHQUERY");
       new filterState(
         this.data,
         this.collectionNode,
@@ -69,7 +65,6 @@ export class Search {
       const priceRangeLS = JSON.parse(localStorage.getItem("priceRange") || "{}");
       const diagonalRangeLS = JSON.parse(localStorage.getItem("diagonalRange") || "{}");
       localStorage.setItem("searchQuery", searchQuery);
-      console.log(diagonalRangeLS);
       new filterState(
         this.data,
         this.collectionNode,
@@ -106,7 +101,5 @@ export class Search {
       diagonalRangeLS,
       searchQueryLS!
     );
-
-    console.log("clear click");
   }
 }

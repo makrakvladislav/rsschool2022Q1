@@ -2,9 +2,7 @@ import Control from "../common/control";
 import style from "./modal.css";
 
 export class Modal {
-  // parentNode: Node;
   constructor(parentNode?: HTMLElement) {
-    console.log(parentNode);
     this.show(parentNode!);
   }
 
@@ -19,8 +17,6 @@ export class Modal {
       style["modal-text"],
       "Извините, в корзину можно добавить не более 20 товаров."
     );
-
-    console.log("show modal");
     modalClose.node.onclick = () => {
       this.close(modalOverlay);
     };
@@ -28,6 +24,5 @@ export class Modal {
 
   close(modalOverlay: Control<HTMLElement>) {
     modalOverlay.destroy();
-    console.log("modal close");
   }
 }
