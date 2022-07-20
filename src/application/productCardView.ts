@@ -125,6 +125,9 @@ export class createCard extends Control {
       } else {
         bttnBuy.node.innerText = "В корзинy";
         this.node.classList.remove("in-cart");
+        if (productsData.available === "false") {
+          bttnBuy.node.innerText = "Распродано";
+        }
       }
     }
     //cart.showCart();
