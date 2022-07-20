@@ -319,7 +319,9 @@ export class filterView {
           filter__valueCheckbox.node.setAttribute("id", item);
           filter__valueLabel.node.setAttribute("for", item);
           filter__valueLabel.node.setAttribute("prop-id", filterCounter.toString());
-
+          if (item === "Nokia") {
+            filter__valueLabel.node.innerHTML += "🔥";
+          }
           const attr: string | null = filter__valueLabel.node.getAttribute("for");
           if (Object.keys(this.filterKeysLS).length > 0) {
             this.filterKeysLS.brand.forEach((item) => {

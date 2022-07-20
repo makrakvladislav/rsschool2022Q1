@@ -1,4 +1,5 @@
 import Control from "../common/control";
+import { Modal } from "./modal";
 import style from "./cart.css";
 
 export class Cart {
@@ -25,7 +26,14 @@ export class Cart {
 
   addItem(cartItem: string, btntNode: Control<HTMLElement>) {
     localStorage.setItem("cartItem", JSON.stringify(this.cartItems));
+
     if (this.cartItems.indexOf(cartItem) == -1) {
+      if (this.cartItems.length >= 20) {
+        this.showCart(this.parentNode);
+        const app: HTMLElement | null = document.querySelector(".app");
+        new Modal(app!);
+        return;
+      }
       const result = this.cartItems.push(cartItem);
       localStorage.setItem("cartItem", JSON.stringify(this.cartItems));
       btntNode.node.textContent = "В корзине";
@@ -47,8 +55,10 @@ export class Cart {
   }
 
   showCart(parentNode?: HTMLElement) {
+    const itemsCount = this.cartItems.length.toString();
     const counter: HTMLElement | null = document.querySelector(".cart__counter");
-    counter!.innerHTML = this.cartItems.length.toString();
+    counter!.innerHTML = itemsCount;
+
     return this.cartItems.length.toString();
   }
 }
