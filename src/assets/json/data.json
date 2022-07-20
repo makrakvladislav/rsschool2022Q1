@@ -201,5 +201,498 @@
         "cameras":"2"
       }
     ]
+  },
+  "7": {
+    "title":"HONOR X9",
+    "price":"999.0",
+    "short_description":"Мадэль Honor X9 атрымала некаторыя флагманскія функцыі, але пры гэтым прадаецца па цане ніжэй за 1000 рублёў. ",
+    "available":"true",
+    "img":"8",
+    "brand": "Honor",
+    "color": "Белый",
+    "memory":"128GB",
+    "diagonal":"6.81",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Honor"
+      }, 
+      {
+        "color":"Белый"
+      },
+      {
+        "memory":"128GB"
+      },
+      {
+        "diagonal":"6.81"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "8": {
+    "title":"Apple iPhone 12",
+    "price":"999.0",
+    "short_description":"Мадэль Honor X9 атрымала некаторыя флагманскія функцыі, але пры гэтым прадаецца па цане ніжэй за 1000 рублёў. ",
+    "available":"true",
+    "img":"9",
+    "brand": "Apple",
+    "color": "Белый",
+    "memory":"128GB",
+    "diagonal":"6.1",
+    "cameras":"2",
+    "properties": [
+      {
+        "brand":"Apple"
+      }, 
+      {
+        "color":"Белый"
+      },
+      {
+        "memory":"128GB"
+      },
+      {
+        "diagonal":"6.1"
+      },
+      {
+        "cameras":"2"
+      }
+    ]
+  },
+  "9": {
+    "title":"Apple iPhone 13 Pro",
+    "price":"3299.0",
+    "short_description":"Пожалуй, в этом году приставка Pro в названии нового iPhone как никогда соответствует действительности. Речь, разумеется, о фотографах, видеографах и прочих ребятах, которые делают красивый контент.",
+    "available":"true",
+    "img":"10",
+    "brand": "Apple",
+    "color": "Зеленый",
+    "memory":"128GB",
+    "diagonal":"6.1",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Apple"
+      }, 
+      {
+        "color":"Зеленый"
+      },
+      {
+        "memory":"128GB"
+      },
+      {
+        "diagonal":"6.1"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "10": {
+    "title":"Xiaomi Redmi Note 10 Pro",
+    "price":"1170.0",
+    "short_description":"Мадэль Honor X9 атрымала некаторыя флагманскія функцыі, але пры гэтым прадаецца па цане ніжэй за 1000 рублёў. ",
+    "available":"false",
+    "img":"11",
+    "brand": "Xiaomi",
+    "color": "Белый",
+    "memory":"128GB",
+    "diagonal":"6.6",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Xiaomi"
+      }, 
+      {
+        "color":"Белый"
+      },
+      {
+        "memory":"128GB"
+      },
+      {
+        "diagonal":"6.6"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "11": {
+    "title":"Xiaomi 11 Lite",
+    "price":"900.0",
+    "short_description":"Xiaomi — одна из компаний, выпускающих смартфоны едва ли не каждую неделю. Запутаться в таком многообразии легко даже подготовленному человеку. Новое устройство с не самым простым названием — 11 Lite 5G NE — официально продается за 1279 рублей.",
+    "available":"true",
+    "img":"12",
+    "brand": "Xiaomi",
+    "color": "Розовый",
+    "memory":"256GB",
+    "diagonal":"6.55",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Xiaomi"
+      }, 
+      {
+        "color":"Розовый"
+      },
+      {
+        "memory":"256GB"
+      },
+      {
+        "diagonal":"6.55"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "12": {
+    "title":"Samsung Galaxy S21",
+    "price":"2240.0",
+    "short_description":"Во всех поставляемых на наш рынок Galaxy S21, включая Ultra, устанавливается 8-ядерный процессор Exynos 2100 в компоновке 1+3+4 ядра. У A14 Bionic ядер шесть (2+4). Оба процессора изготавливаются по 5-нанометровому техпроцессу.",
+    "available":"true",
+    "img":"13",
+    "brand": "Samsung",
+    "color": "Черный",
+    "memory":"256GB",
+    "diagonal":"6.2",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Samsung"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"256GB"
+      },
+      {
+        "diagonal":"6.2"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "13": {
+    "title":"Samsung Galaxy A12",
+    "price":"630.0",
+    "short_description":"Samsung Galaxy A12Samsung Galaxy A12Samsung Galaxy A12Samsung Galaxy A12",
+    "available":"true",
+    "img":"14",
+    "brand": "Samsung",
+    "color": "Белый",
+    "memory":"64GB",
+    "diagonal":"6.5",
+    "cameras":"2",
+    "properties": [
+      {
+        "brand":"Samsung"
+      }, 
+      {
+        "color":"Белый"
+      },
+      {
+        "memory":"64GB"
+      },
+      {
+        "diagonal":"6.5"
+      },
+      {
+        "cameras":"2"
+      }
+    ]
+  },
+  "14": {
+    "title":"Samsung Galaxy M12",
+    "price":"865.0",
+    "short_description":"Samsung Galaxy M12Samsung Galaxy M12Samsung Galaxy M12Samsung Galaxy M12Samsung Galaxy M12Samsung Galaxy M12",
+    "available":"true",
+    "img":"15",
+    "brand": "Samsung",
+    "color": "Белый",
+    "memory":"64GB",
+    "diagonal":"6.5",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Samsung"
+      }, 
+      {
+        "color":"Белый"
+      },
+      {
+        "memory":"64GB"
+      },
+      {
+        "diagonal":"6.5"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "15": {
+    "title":"Samsung Galaxy S20",
+    "price":"2600.0",
+    "short_description":"Когда-то телефоны соперничали в толщине (тоньше — лучше), размере экрана (больше — круче), производительности и количестве ядер в процессоре. Сегодня мы находимся посередке эры мерения мегапикселями и числом камер",
+    "available":"true",
+    "img":"16",
+    "brand": "Samsung",
+    "color": "Черный",
+    "memory":"128GB",
+    "diagonal":"6.9",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Samsung"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"128GB"
+      },
+      {
+        "diagonal":"6.9"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "16": {
+    "title":"Samsung Galaxy A32",
+    "price":"899.0",
+    "short_description":"На этот раз к нам в руки попал бюджетный смартфон Samsung Galaxy A32. Мы целую неделю ходили с ним и теперь готовы поделиться впечатлениями",
+    "available":"true",
+    "img":"17",
+    "brand": "Samsung",
+    "color": "Розовый",
+    "memory":"64GB",
+    "diagonal":"6.4",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Samsung"
+      }, 
+      {
+        "color":"Розовый"
+      },
+      {
+        "memory":"64GB"
+      },
+      {
+        "diagonal":"6.4"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "17": {
+    "title":"Apple iPhone 13 Pro Max",
+    "price":"3850.0",
+    "short_description":"В сентябре прошлого года Apple представила линейку iPhone 13, венцом которой оказался iPhone 13 Pro Max. Это устройство, как любят говорить в компании, является «лучшим „айфоном“ из когда-либо созданных». ",
+    "available":"true",
+    "img":"18",
+    "brand": "Apple",
+    "color": "Черный",
+    "memory":"256GB",
+    "diagonal":"6.7",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Apple"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"256GB"
+      },
+      {
+        "diagonal":"6.7"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "18": {
+    "title":"HONOR 50",
+    "price":"1674.0",
+    "short_description":"Это произошло: 5 ноября в Беларуси начинаются продажи Honor 50, в котором есть все сервисы Google. Устройство оценили в 1399 рублей. Я больше недели использовал его в качестве основного смартфона. Коротко: аппарат не без «косяков», но положительного больше.",
+    "available":"true",
+    "img":"19",
+    "brand": "Honor",
+    "color": "Зеленый",
+    "memory":"512GB",
+    "diagonal":"6.57",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Honor"
+      }, 
+      {
+        "color":"Зеленый"
+      },
+      {
+        "memory":"512GB"
+      },
+      {
+        "diagonal":"6.57"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "19": {
+    "title":"Apple iPhone 11 Pro Max",
+    "price":"3228.0",
+    "short_description":"Наступил очередной сентябрь, Apple выпустила очередной iPhone — уже одиннадцатый. Теперь без римских цифр в названии и без возможности неправильного прочтения (прощайте, iPhone «икс», «икс-эр» и «икс-эс»). Новая линейка содержит три модели — iPhone 11, iPhone 11 Pro и iPhone 11 Pro Max",
+    "available":"true",
+    "img":"20",
+    "brand": "Apple",
+    "color": "Белый",
+    "memory":"64GB",
+    "diagonal":"6.5",
+    "cameras":"3",
+    "properties": [
+      {
+        "brand":"Apple"
+      }, 
+      {
+        "color":"Белый"
+      },
+      {
+        "memory":"64GB"
+      },
+      {
+        "diagonal":"6.5"
+      },
+      {
+        "cameras":"3"
+      }
+    ]
+  },
+  "20": {
+    "title":"Samsung Galaxy S21 Ultra",
+    "price":"3573.0",
+    "short_description":"Android, экран 6.8 AMOLED (1440x3200), Exynos 2100, ОЗУ 12 ГБ, флэш-память 256 ГБ, камера 108 Мп, аккумулятор 5000 мАч, 2 SIM, влагозащита IP68",
+    "available":"true",
+    "img":"21",
+    "brand": "Samsung",
+    "color": "Черный",
+    "memory":"256GB",
+    "diagonal":"6.8",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Samsung"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"256GB"
+      },
+      {
+        "diagonal":"6.8"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "21": {
+    "title":"Nokia 3310",
+    "price":"999.0",
+    "short_description":"ЛЕГЕНДА",
+    "available":"true",
+    "img":"22",
+    "brand": "Nokia",
+    "color": "Черный",
+    "memory":"256GB",
+    "diagonal":"6.1",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Nokia"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"256GB"
+      },
+      {
+        "diagonal":"6.1"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "22": {
+    "title":"Sony Xperia 1",
+    "price":"4299.0",
+    "short_description":"Android, экран 6.5 OLED (1644x3840), Qualcomm Snapdragon 8 Gen1 SM8450, ОЗУ 12 ГБ, флэш-память 512 ГБ, карты памяти, камера 12 Мп, аккумулятор 5000 мАч, 2 SIM, влагозащита IP68",
+    "available":"true",
+    "img":"23",
+    "brand": "Sony",
+    "color": "Черный",
+    "memory":"512GB",
+    "diagonal":"6.5",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Sony"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"512GB"
+      },
+      {
+        "diagonal":"6.5"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
+  },
+  "23": {
+    "title":"Sony Xperia Pro-I",
+    "price":"3751.0",
+    "short_description":"Android, без оболочки, экран 6.5 OLED (1644x3840), Qualcomm Snapdragon 888, ОЗУ 12 ГБ, флэш-память 512 ГБ, карты памяти, камера 12 Мп, аккумулятор 4500 мАч, 2 SIM, влагозащита IPX8",
+    "available":"true",
+    "img":"24",
+    "brand": "Sony",
+    "color": "Черный",
+    "memory":"256GB",
+    "diagonal":"6.5",
+    "cameras":"4",
+    "properties": [
+      {
+        "brand":"Sony"
+      }, 
+      {
+        "color":"Черный"
+      },
+      {
+        "memory":"256GB"
+      },
+      {
+        "diagonal":"6.5"
+      },
+      {
+        "cameras":"4"
+      }
+    ]
   }
 }
