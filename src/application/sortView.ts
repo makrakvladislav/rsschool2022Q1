@@ -30,7 +30,6 @@ export class sortView {
     state: string
   ) {
     this.parentNode = parentNode;
-    //this.parentNode.textContent = "";
     this.renderSort(productsData, collectionNode, state);
   }
 
@@ -55,8 +54,6 @@ export class sortView {
           diagonalRangeLS,
           searchQueryLS!
         );
-        //new productsDataModel(data, collectionNode, sortType);
-        //this.priceDown(data, collectionNode);
       }
     };
 

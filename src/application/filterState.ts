@@ -1,7 +1,6 @@
 import Control from "../common/control";
 import { productCardView } from "./productCardView";
 import { IProductData } from "./productsDataModel";
-
 interface IFilter {
   price: string[] | undefined;
   brand: string[] | undefined;
@@ -11,15 +10,12 @@ interface IFilter {
   cameras: string[] | undefined;
   available: string[] | undefined;
 }
-
 interface IPriceRange {
   price: string[] | undefined;
 }
-
 interface IDiagonalRange {
   diagonal: string[] | undefined;
 }
-
 export class filterState {
   public filter: IFilter = {
     price: [],
@@ -43,9 +39,7 @@ export class filterState {
     diagonalRange?: IDiagonalRange,
     searchQuery?: string
   ) {
-    //if (filterType === "color") this.filterColor(data, collectionNode, filterKey);
     this.filteredData = JSON.parse(JSON.stringify(data));
-
     this.filterInit(
       this.filteredData,
       collectionNode,
@@ -112,10 +106,6 @@ export class filterState {
     return (this.filteredData = this.filteredData.filter((item) => {
       return +item.price >= minPrice && +item.price <= maxPrice;
     }));
-
-    //collectionNode.node.textContent = "";
-    //new productCardView(collectionNode.node, this.filteredData);
-    //this.filterData(this.filteredData, filterState, collectionNode);
   }
 
   private filterDiagonal(
@@ -133,10 +123,6 @@ export class filterState {
     return (this.filteredData = this.filteredData.filter((item) => {
       return +item.diagonal >= minDiagonal && +item.diagonal <= maxDiagonal;
     }));
-
-    //collectionNode.node.textContent = "";
-    //new productCardView(collectionNode.node, this.filteredData);
-    //this.filterData(this.filteredData, filterState, collectionNode);
   }
 
   private filterData(data: Array<IProductData>, filterState: IFilter, collectionNode: Control<HTMLElement>) {
@@ -144,9 +130,7 @@ export class filterState {
     const filterKeys = Object.keys(filterState);
 
     this.filteredData = data.filter((item) => {
-      // validates all filter criteria
       return filterKeys.every((key: string) => {
-        // ignores an empty filter
         if (!filterState[key as keyof typeof filterState]!.length) return true;
         return filterState[key as keyof typeof filterState]!.find(
           (filter: string) => getValue(filter) === getValue(item[key as keyof typeof getValue])
@@ -155,11 +139,9 @@ export class filterState {
     });
     collectionNode.node.textContent = "";
     new productCardView(collectionNode.node, this.filteredData);
-
     if (this.filteredData.length === 0) {
       collectionNode.node.textContent = "Извините, совпадений не обнаружено";
     }
-
     return this.filteredData;
   }
 

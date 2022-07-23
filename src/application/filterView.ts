@@ -94,7 +94,6 @@ export class filterView {
     if (Object.keys(this.filterKeysLS).length > 0) {
       this.filter = this.filterKeysLS;
       new filterState(productsData, collectionNode, this.filterKeysLS, undefined);
-      //this.priceRange = this.priceRangeLS;
     }
 
     if (Object.keys(this.priceRangeLS).length > 0) {
@@ -125,20 +124,6 @@ export class filterView {
   }
 
   getFilterProps(data: Array<IProductData>) {
-    /*
-    const propBrand = new Set();
-    const propColor = new Set();
-    const propMemory = new Set();
-    const propDiagonal = new Set();
-    const propCameras = new Set();
-    const filterProp = properties.map((el) => {
-      if (el.brand) propBrand.add(el.brand);
-      if (el.color) propColor.add(el.color);
-      if (el.memory) propMemory.add(el.memory);
-      if (el.diagonal) propDiagonal.add(el.diagonal);
-      if (el.cameras) propCameras.add(el.cameras);
-    });
-    */
     data.forEach((item) => {
       item.properties.map((prop) => {
         if (item.price) {
@@ -176,15 +161,6 @@ export class filterView {
             this.filterProps.available.push(item.available.toString());
           }
         }
-        /*
-        const filterProp = item.properties.map((el) => {
-          if (el.brand) propBrand.push(el.brand);
-          if (el.color) propColor.add(el.color);
-          if (el.memory) propMemory.add(el.memory);
-          if (el.diagonal) propDiagonal.add(el.diagonal);
-          if (el.cameras) propCameras.add(el.cameras);
-        });
-        */
       });
     });
   }
@@ -332,7 +308,6 @@ export class filterView {
             if (checkbox.checked) {
               filterStateArr[filterId] = checkbox.checked;
               this.filter.brand.push(item);
-              //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -343,7 +318,6 @@ export class filterView {
                 this.diagonalRange
               );
             } else {
-              //this.state.brand[item] = false
               const index = this.filter.brand.indexOf(item);
               if (index > -1) {
                 this.filter.brand.splice(index, 1);
@@ -357,7 +331,6 @@ export class filterView {
                 this.priceRange,
                 this.diagonalRange
               );
-              //this.filterData(data, this.filter, collectionNode);
             }
           };
           filterCounter++;
@@ -409,13 +382,8 @@ export class filterView {
           }
           filter__valueCheckbox.node.onclick = (e) => {
             const checkbox = e.target as HTMLInputElement;
-            //const filterId = Number(filter__valueLabel.node.getAttribute("prop-id"));
             if (checkbox.checked) {
-              //filterStateArr[filterId] = checkbox.checked;
-              //localStorage.setItem("checkboxes", JSON.stringify(filterStateArr));
-              //new filterState(data, collectionNode, filterType, item, filter__valueLabel.node);
               this.filter.color.push(item);
-              //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -430,7 +398,6 @@ export class filterView {
               if (index > -1) {
                 this.filter.color.splice(index, 1);
               }
-              //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -495,12 +462,10 @@ export class filterView {
                 this.diagonalRange
               );
             } else {
-              //this.state.brand[item] = false
               const index = this.filter.memory.indexOf(item);
               if (index > -1) {
                 this.filter.memory.splice(index, 1);
               }
-              //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -564,14 +529,11 @@ export class filterView {
                 this.priceRange,
                 this.diagonalRange
               );
-              //this.filterData(data, this.filter, collectionNode);
             } else {
-              //this.state.brand[item] = false
               const index = this.filter.cameras.indexOf(item);
               if (index > -1) {
                 this.filter.cameras.splice(index, 1);
               }
-              //this.filterData(data, this.filter, collectionNode);
               localStorage.setItem("checkboxes", JSON.stringify(this.filter));
               new filterState(
                 data,
@@ -639,12 +601,10 @@ export class filterView {
                   this.diagonalRange
                 );
               } else {
-                //this.state.brand[item] = false
                 const index = this.filter.available.indexOf(item);
                 if (index > -1) {
                   this.filter.available.splice(index, 1);
                 }
-                //this.filterData(data, this.filter, collectionNode);
                 localStorage.setItem("checkboxes", JSON.stringify(this.filter));
                 new filterState(
                   data,
@@ -713,13 +673,11 @@ export class filterView {
 
     new productCardView(collectionNode.node, data);
     new filterView(collectionNode, this.parentNode, data, this.sortNode!, this.headerNode!);
-    //const sortNode: HTMLElement = document.querySelector(".sort-wrapper")!;
     this.sortNode!.textContent = "";
     new sortView(collectionNode, this.sortNode!, data, "default");
     this.headerNode.node.textContent = "";
     new Search(data, this.headerNode, collectionNode);
     const cart = new Cart();
     cart.showCart();
-    //this.resetFilters(collectionNode, data);
   }
 }

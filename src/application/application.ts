@@ -78,21 +78,11 @@ export class Application extends Control {
     const headerContainer = this.headerContainer.node.appendChild(headerCart.node);
     this.model.build().then((result) => {
       const productData: Array<IProductData> = result.data;
-      //this.renderProductCard(productData);
       this.renderSort(this.collection, productData, orderSort || "default");
       new Search(productData, this.headerSearch, this.collection);
-
       new Cart(headerContainer);
       const cart = new Cart();
       cart.showCart();
-      //headerCart.node.appendChild(cart);
-
-      /*
-      if (orderSort === "priceDown") {
-        this.model.sortPriceDown(productData, this.collection);
-      }
-      */
-
       this.renderFilters(this.collection, this.sidebar, productData);
       new productsDataModel(productData, this.collection, orderSort || "default");
     });

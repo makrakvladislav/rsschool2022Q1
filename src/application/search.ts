@@ -8,10 +8,7 @@ export class Search {
   data: Array<IProductData>;
   parentNode: Control<HTMLElement>;
   collectionNode: Control<HTMLElement>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static renderSearch: any;
-  //headerContainer: Control<HTMLElement>;
-
+  static renderSearch: string;
   constructor(
     data: Array<IProductData>,
     parentNode: Control<HTMLElement>,
@@ -24,7 +21,6 @@ export class Search {
   }
 
   renderSearch() {
-    //this.parentNode.node.appendChild(this.parentNode.node);
     const searchForm = document.createElement("div");
     const searchInput = document.createElement("input");
     const searchBtn = document.createElement("button");
