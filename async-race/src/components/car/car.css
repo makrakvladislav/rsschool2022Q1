@@ -1,0 +1,38 @@
+.car {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.cars__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.car__control {
+  flex: 0 0 10%;
+}
+
+.car__select {
+
+}
+
+.car__name {
+
+}
+
+.car__line {
+  width: 100%;
+  background: url(./public/img/finish.svg) no-repeat right 44%, url(./public/img/road.svg);
+  background-size: 5%, auto;
+}
+
+.car__img {
+  width: 150px;
+  position: relative;
+}
+
+.finish {
+
+}
