@@ -1,13 +1,14 @@
 .garage {
-  
-}
-
-.cars__list {
-
+  display: flex;
+  flex-direction: column;
 }
 
 .garage__controls {
+  order: 1;
+}
 
+.cars__list {
+  order: 2;
 }
 
 .cars__count {
