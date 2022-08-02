@@ -1,5 +1,7 @@
 import Control from '../../common/control';
 import { ICarsData } from '../carsDataModel';
+import { Race } from '../race';
+import { CarControl } from './carControl';
 import style from './car.css';
 
 export class CarView extends Control {
@@ -93,6 +95,13 @@ export class CarView extends Control {
       </g>
       </svg>
       `;
+      carStart.node.onclick = async () => {
+        console.log('click car start', item.id);
+        const race = new Race(item.id, carImg.node);
+      };
+      carReset.node.onclick = async () => {
+        const reset = CarControl.carReset(carImg.node);
+      };
       return car;
       // return this.renderCar(item);
     });

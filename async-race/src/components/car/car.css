@@ -23,16 +23,44 @@
 }
 
 .car__line {
+  display: flex;
   width: 100%;
-  background: url(./public/img/finish.svg) no-repeat right 44%, url(./public/img/road.svg);
-  background-size: 5%, auto;
+  background: url('./public/img/finish.svg') no-repeat right 44%, url('./public/img/road.svg');
+  background-size: 50px, auto;
+  overflow: hidden;
 }
 
 .car__img {
-  width: 150px;
+  width: calc(100% - 150px);
   position: relative;
 }
 
 .finish {
 
 }
+
+@keyframes race {
+  from {
+      transform: translateX(0);
+  }
+
+  to {
+      transform: translateX(100%);
+  }
+}
+
+.race {
+  animation-name: race;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.car-broken {
+  animation-play-state: paused;
+}
+
+.car-broken.check {
+  background: url(./public/img/check.svg) no-repeat 100px 35px;
+  background-size: 40px;
+}
+
