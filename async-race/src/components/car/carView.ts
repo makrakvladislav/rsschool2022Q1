@@ -1,6 +1,6 @@
 import Control from '../../common/control';
 import { ICarsData } from '../carsDataModel';
-import { Race } from '../race';
+import { Race } from '../raceControl';
 import { CarControl } from './carControl';
 import style from './car.css';
 
@@ -12,7 +12,6 @@ export class CarView extends Control {
 
   renderCar(data: Array<ICarsData>) {
     data.map((item) => {
-      console.log(item);
       const car = new Control(this.node, 'div', style.car);
       const carControl = new Control(car.node, 'div', style.car__control);
       const carName = new Control(carControl.node, 'h3', style.car__name, item.name);
@@ -20,6 +19,7 @@ export class CarView extends Control {
       const carRemove = new Control(carControl.node, 'button', `${style.bttn}${style.car__remove}`, 'Remove');
       const carStart = new Control(carControl.node, 'button', `${style.bttn}${style.car__start}`, 'Start');
       const carReset = new Control(carControl.node, 'button', `${style.bttn}${style.car__reset}`, 'Reset');
+      carReset.node.setAttribute('disabled', 'disabled');
       const carLine = new Control(car.node, 'div', style.car__line);
       const carImg = new Control(carLine.node, 'div', style.car__img);
       const finishLine = new Control(carLine.node, 'div', style.finish);
@@ -96,11 +96,16 @@ export class CarView extends Control {
       </svg>
       `;
       carStart.node.onclick = async () => {
-        console.log('click car start', item.id);
-        const race = new Race(item.id, carImg.node);
+        carImg.node.classList.remove('race', 'car-broken', 'check');
+        console.log(item);
+        const start = Race.carStart(item.id, carImg.node, carReset.node, 'carStart');
       };
       carReset.node.onclick = async () => {
-        const reset = CarControl.carReset(carImg.node);
+        carReset.node.setAttribute('disabled', 'disabled');
+        const reset = CarControl.carReset(item.id, carImg.node);
+      };
+      carRemove.node.onclick = async () => {
+        const remove = CarControl.carRemove(item.id, car);
       };
       return car;
       // return this.renderCar(item);
