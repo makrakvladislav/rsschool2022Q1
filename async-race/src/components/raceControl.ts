@@ -1,13 +1,14 @@
 import Control from '../common/control';
 import { CarControl } from './car/carControl';
 import { CarsDataModel } from './carsDataModel';
+import { Modal } from './modal/modalView';
 
 export class Race {
   static id: number;
 
   static node: HTMLElement;
 
-  static resetNode: Control<HTMLElement>;
+  static resetNode: Control<HTMLElement> | null;
 
   static velocity: number;
 
@@ -66,13 +67,15 @@ export class Race {
     const data = await CarsDataModel.getData('http://localhost:3000/garage', 'GET');
     const obj = data.find((o: { id: number }) => o.id === id);
     console.log(obj.name, winnerTime.toFixed(3));
+    this.saveWinner(id);
+    const modal = new Modal(obj.name, winnerTime.toFixed(3));
   }
 
   static async saveWinner(id: number) {
-    const url = `http://localhost:3000/winners/${id}`;
-    const method = 'GET';
-    const res = await CarsDataModel.getData(url, method);
-    console.log(res);
+    // const url = `http://localhost:3000/winners/${id}`;
+    // const method = 'GET';
+    // const res = await CarsDataModel.getData(url, method);
+    console.log('SAVE RESULT HERE');
   }
 }
 
