@@ -2,6 +2,8 @@ import Control from '../common/control';
 import { CarControl } from './car/carControl';
 import { CarsDataModel } from './carsDataModel';
 import { Modal } from './modal/modalView';
+import { WinnersController } from './winners/winnersController';
+import { WinnersView } from './winners/winnersView';
 
 export class Race {
   static id: number;
@@ -49,10 +51,8 @@ export class Race {
     }
 
     if (result.success && !this.winner && type === 'raceStart') {
-      console.log(id, this.results);
       this.winner = true;
       const winnerId = this.results.flat().indexOf(id);
-      console.log(winnerId, this.results.flat()[winnerId + 1]);
       const winnerTime = this.results.flat()[winnerId + 1];
       Race.raceFinish(id, winnerTime);
     }
@@ -66,16 +66,32 @@ export class Race {
   static async raceFinish(id: number, winnerTime: number) {
     const data = await CarsDataModel.getData('http://localhost:3000/garage', 'GET');
     const obj = data.find((o: { id: number }) => o.id === id);
-    console.log(obj.name, winnerTime.toFixed(3));
-    this.saveWinner(id);
+    // this.saveWinner(id, +winnerTime.toFixed(3));
     const modal = new Modal(obj.name, winnerTime.toFixed(3));
+    const saveWinner = new WinnersController(id, +winnerTime.toFixed(3));
   }
 
-  static async saveWinner(id: number) {
-    // const url = `http://localhost:3000/winners/${id}`;
-    // const method = 'GET';
-    // const res = await CarsDataModel.getData(url, method);
-    console.log('SAVE RESULT HERE');
+  static async saveWinner(id: number, time: number) {
+    const url = `http://localhost:3000/winners/`;
+    const method = 'GET';
+    const res = await fetch(url, { method });
+    const data = await res.json();
+    console.log(data);
+    if (res.status === 404) {
+      // console.log('404 error');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const createWinner = async (body: any) =>
+        (
+          await fetch('http://localhost:3000/winners/', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              'Content-type': 'application/json',
+            },
+          })
+        ).json();
+      createWinner({ id, wins: (data.wins += 100) });
+    }
   }
 }
 
