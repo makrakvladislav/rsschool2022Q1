@@ -1,3 +1,27 @@
 .winners {
   
 }
+
+.winners__table {
+  width: 100%;
+}
+
+.winners__table__header {
+
+}
+
+.table__header__item {
+
+}
+
+.table__body {
+
+}
+
+.sort__btn {
+
+} 
+
+.sort__btn.active {
+  background-color: #ccc;
+} 
