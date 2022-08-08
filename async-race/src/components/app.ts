@@ -20,7 +20,7 @@ export class App extends Control {
     const garageBtn = new Control(navigation.node, 'button', style.bttn, 'Garage');
     garageBtn.node.classList.add('is-active');
     const winnersBtn = new Control(navigation.node, 'button', style.bttn, 'Winners');
-    const winnersView = new WinnersView(main.node);
+    const winnersView = new WinnersView('time', 'ASC', main.node);
     winnersView.node.classList.add('hide');
     const footer = new Footer(this.node);
     this.model = new CarsDataModel([], 'winners');
