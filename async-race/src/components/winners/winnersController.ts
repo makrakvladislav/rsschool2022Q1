@@ -71,7 +71,7 @@ export class WinnersController {
 
     updateWinner({ wins: (wins += 1), time });
     // const mainNode = document.querySelector('.container') as HTMLElement;
-    const winnersView = new WinnersView('time', 'ASC');
+    const winnersView = WinnersView.sorting();
   }
 }
 

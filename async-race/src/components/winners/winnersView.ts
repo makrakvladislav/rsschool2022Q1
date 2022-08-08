@@ -37,8 +37,14 @@ export class WinnersView extends Control {
 
   resultTableBody: Control<HTMLElement>;
 
+  static sortTypeState: string;
+
+  static sortOrderState: string;
+
   constructor(sortType: string, sortOrder: string, parentNode?: HTMLElement) {
     super(parentNode!, 'div', style.winners);
+    WinnersView.sortTypeState = sortType;
+    WinnersView.sortOrderState = sortOrder;
     this.resultTable = new Control(this.node, 'table', style.winners__table);
     this.resultTableHeader = new Control(this.resultTable.node, 'thead', style.winners__table__header);
     this.resultTableHeaderNumber = new Control(
@@ -99,8 +105,10 @@ export class WinnersView extends Control {
     this.winnerTable(sortType, sortOrder);
 
     this.resultTableHeaderWinsUp.node.onclick = () => {
-      console.log('sortUp');
-      this.sorting('wins', 'ASC');
+      WinnersView.sortTypeState = 'wins';
+      WinnersView.sortOrderState = 'ASC';
+      const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
+      // this.sorting('wins', 'ASC');
       this.resultTableHeaderWinsUp.node.classList.add('active');
       this.resultTableHeaderWinsDown.node.classList.remove('active');
       this.resultTableHeaderTimeUp.node.classList.remove('active');
@@ -108,8 +116,10 @@ export class WinnersView extends Control {
     };
 
     this.resultTableHeaderWinsDown.node.onclick = () => {
-      console.log('sortDown');
-      this.sorting('wins', 'DESC');
+      WinnersView.sortTypeState = 'wins';
+      WinnersView.sortOrderState = 'DESC';
+      const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
+      // this.sorting('wins', 'DESC');
       this.resultTableHeaderWinsDown.node.classList.add('active');
       this.resultTableHeaderWinsUp.node.classList.remove('active');
       this.resultTableHeaderTimeUp.node.classList.remove('active');
@@ -117,8 +127,10 @@ export class WinnersView extends Control {
     };
 
     this.resultTableHeaderTimeUp.node.onclick = () => {
-      console.log('sortUp');
-      this.sorting('time', 'ASC');
+      WinnersView.sortTypeState = 'time';
+      WinnersView.sortOrderState = 'ASC';
+      const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
+      // this.sorting('time', 'ASC');
       this.resultTableHeaderTimeUp.node.classList.add('active');
       this.resultTableHeaderWinsUp.node.classList.remove('active');
       this.resultTableHeaderWinsDown.node.classList.remove('active');
@@ -126,8 +138,10 @@ export class WinnersView extends Control {
     };
 
     this.resultTableHeaderTimeDown.node.onclick = () => {
-      console.log('sortDown');
-      this.sorting('time', 'DESC');
+      WinnersView.sortTypeState = 'time';
+      WinnersView.sortOrderState = 'DESC';
+      const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
+      // this.sorting('time', 'DESC');
       this.resultTableHeaderTimeDown.node.classList.add('active');
       this.resultTableHeaderWinsUp.node.classList.remove('active');
       this.resultTableHeaderWinsDown.node.classList.remove('active');
@@ -136,8 +150,8 @@ export class WinnersView extends Control {
     // console.log(test);
   }
 
-  sorting(sortType: string, sortOrder: string) {
-    const sort = new WinnersView(sortType, sortOrder);
+  static sorting() {
+    const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
   }
 
   async getWinnersData(sortType: string, sortOrder: string) {
@@ -157,8 +171,7 @@ export class WinnersView extends Control {
   }
 
   async winnerTable(sortType: string, sortOrder: string) {
-    console.log('update');
-
+    // console.log('update');
     const winnerData = await this.getWinnersData(sortType, sortOrder);
     const table: HTMLElement | null = document.querySelector('tbody');
     table!.innerHTML = '';
@@ -247,7 +260,6 @@ export class WinnersView extends Control {
         <th>${item.time}</th>
       </tr>
       `;
-      console.log(item.id, item.wins, item.time);
     });
   }
 }
