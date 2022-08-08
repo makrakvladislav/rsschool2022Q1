@@ -11,8 +11,6 @@ export class Modal {
     this.winnerTime = winnerTime;
     const parentNode: HTMLElement | null = document.querySelector('.app');
     this.show(parentNode!, this.winner, this.winnerTime);
-
-    console.log(parentNode);
   }
 
   show(parentNode: HTMLElement, winner: string, winnertTime: string) {
@@ -29,7 +27,6 @@ export class Modal {
     modalClose.node.onclick = () => {
       this.close(modalOverlay);
     };
-    console.log('popUp', winner, winnertTime);
   }
 
   close(modalOverlay: Control<HTMLElement>) {
