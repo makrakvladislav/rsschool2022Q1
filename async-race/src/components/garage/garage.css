@@ -8,6 +8,8 @@
 }
 
 .cars__list {
+  display: flex;
+  flex-direction: column;
   order: 2;
 }
 
@@ -29,6 +31,14 @@
 
 .bttn {
 
+}
+
+.bttn__start {
+
+}
+
+.bttn__reset {
+  
 }
 
 .bttn__generate {
