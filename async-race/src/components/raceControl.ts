@@ -3,7 +3,6 @@ import { CarControl } from './car/carControl';
 import { CarsDataModel } from './carsDataModel';
 import { Modal } from './modal/modalView';
 import { WinnersController } from './winners/winnersController';
-import { WinnersView } from './winners/winnersView';
 
 export class Race {
   static id: number;
@@ -22,19 +21,30 @@ export class Race {
 
   winner = false;
 
-  static async carStart(id: number, node: HTMLElement, resetNode: HTMLElement, type: string) {
-    await this.engineStart(id, resetNode);
+  static async carStart(id: number, node: HTMLElement, bttnsArray: Array<HTMLElement>, type: string) {
+    await this.engineStart(id, bttnsArray);
     await this.animate(node);
-    await this.drive(id, node, type);
+    await this.drive(id, node, type, bttnsArray);
   }
 
-  static async engineStart(id: number, resetNode: HTMLElement) {
+  static async engineStart(id: number, bttnsArray: Array<HTMLElement>) {
     const distance = 500000;
     const res = await CarControl.start(id);
     this.velocity = res.velocity;
     this.duration = distance / this.velocity;
     this.results.push([id, this.duration / 1000]);
-    resetNode.removeAttribute('disabled');
+    /*
+    bttnsArray.forEach((item) => {
+      return item.removeAttribute('disabled');
+    });
+    */
+    bttnsArray.forEach((item) => {
+      if (item.classList[1] === 'car__reset') {
+        return item.removeAttribute('disabled');
+      }
+      return item.setAttribute('disabled', 'disabled');
+    });
+    // resetNode.removeAttribute('disabled');
     console.log('engine Start', id, (this.duration / 1000).toFixed(3));
   }
 
@@ -43,7 +53,7 @@ export class Race {
     parentNode.setAttribute('style', `animation-duration: ${this.duration / 1000}s;`);
   }
 
-  static async drive(id: number, parentNode: HTMLElement, type: string) {
+  static async drive(id: number, parentNode: HTMLElement, type: string, bttnsArray: Array<HTMLElement>) {
     const result = await CarControl.run(id);
 
     if (result === '500') {
@@ -54,7 +64,11 @@ export class Race {
       this.winner = true;
       const winnerId = this.results.flat().indexOf(id);
       const winnerTime = this.results.flat()[winnerId + 1];
-      Race.raceFinish(id, winnerTime);
+      Race.raceFinish(id, winnerTime, bttnsArray);
+    } else if (result !== '500') {
+      bttnsArray.forEach((item) => {
+        item.removeAttribute('disabled');
+      });
     }
   }
 
@@ -63,35 +77,15 @@ export class Race {
     this.results = [];
   }
 
-  static async raceFinish(id: number, winnerTime: number) {
+  static async raceFinish(id: number, winnerTime: number, bttnsArray: Array<HTMLElement>) {
     const data = await CarsDataModel.getData('http://localhost:3000/garage', 'GET');
     const obj = data.find((o: { id: number }) => o.id === id);
     // this.saveWinner(id, +winnerTime.toFixed(3));
     const modal = new Modal(obj.name, winnerTime.toFixed(3));
     const saveWinner = new WinnersController(id, +winnerTime.toFixed(3));
-  }
-
-  static async saveWinner(id: number, time: number) {
-    const url = `http://localhost:3000/winners/`;
-    const method = 'GET';
-    const res = await fetch(url, { method });
-    const data = await res.json();
-    console.log(data);
-    if (res.status === 404) {
-      // console.log('404 error');
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const createWinner = async (body: any) =>
-        (
-          await fetch('http://localhost:3000/winners/', {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-              'Content-type': 'application/json',
-            },
-          })
-        ).json();
-      createWinner({ id, wins: (data.wins += 100) });
-    }
+    bttnsArray.forEach((item) => {
+      return item.removeAttribute('disabled');
+    });
   }
 }
 

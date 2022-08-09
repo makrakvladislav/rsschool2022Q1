@@ -15,10 +15,20 @@ export class CarView extends Control {
       const car = new Control(this.node, 'div', style.car);
       const carControl = new Control(car.node, 'div', style.car__control);
       const carName = new Control(carControl.node, 'h3', style.car__name, item.name);
-      const carSelect = new Control(carControl.node, 'button', `${style.bttn}${style.car__select}`, 'Select');
-      const carRemove = new Control(carControl.node, 'button', `${style.bttn}${style.car__remove}`, 'Remove');
-      const carStart = new Control(carControl.node, 'button', `${style.bttn}${style.car__start}`, 'Start');
-      const carReset = new Control(carControl.node, 'button', `${style.bttn}${style.car__reset}`, 'Reset');
+      const carSelect = new Control(
+        carControl.node,
+        'button',
+        `${style.bttn} ${style.car__select}`,
+        'Select'
+      );
+      const carRemove = new Control(
+        carControl.node,
+        'button',
+        `${style.bttn} ${style.car__remove}`,
+        'Remove'
+      );
+      const carStart = new Control(carControl.node, 'button', `${style.bttn} ${style.car__start}`, 'Start');
+      const carReset = new Control(carControl.node, 'button', `${style.bttn} ${style.car__reset}`, 'Reset');
       carReset.node.setAttribute('disabled', 'disabled');
       const carLine = new Control(car.node, 'div', style.car__line);
       const carImg = new Control(carLine.node, 'div', style.car__img);
@@ -96,16 +106,29 @@ export class CarView extends Control {
       </svg>
       `;
       carStart.node.onclick = async () => {
+        carSelect.node.setAttribute('disabled', 'disabled');
+        carRemove.node.setAttribute('disabled', 'disabled');
+        carStart.node.setAttribute('disabled', 'disabled');
         carImg.node.classList.remove('race', 'car-broken', 'check');
         console.log(item);
-        const start = Race.carStart(item.id, carImg.node, carReset.node, 'carStart');
+        const start = Race.carStart(
+          item.id,
+          carImg.node,
+          [carSelect.node, carRemove.node, carStart.node, carReset.node],
+          'carStart'
+        );
       };
+
       carReset.node.onclick = async () => {
-        carReset.node.setAttribute('disabled', 'disabled');
-        const reset = CarControl.carReset(item.id, carImg.node);
+        // const reset = CarControl.carReset(item.id, carImg.node);
+        const raceReset = Race.raceReset();
+        carSelect.node.removeAttribute('disabled');
+        carRemove.node.removeAttribute('disabled');
+        carStart.node.removeAttribute('disabled');
       };
+
       carRemove.node.onclick = async () => {
-        const remove = CarControl.carRemove(item.id, car);
+        // const remove = CarControl.carRemove(item.id, car);
       };
       return car;
       // return this.renderCar(item);
