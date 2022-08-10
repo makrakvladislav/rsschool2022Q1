@@ -4,7 +4,8 @@ import { Main } from './layout/main';
 import { GarageView } from './garage/garageView';
 import { WinnersView } from './winners/winnersView';
 import { Footer } from './layout/footer';
-import { CarsDataModel, ICarsData } from './carsDataModel';
+import { CarsDataModel, ICarsData, ICars } from './carsDataModel';
+import { PaginationView } from './pagination/paginationView';
 
 import style from '../assets/styles/style.css';
 
@@ -24,11 +25,15 @@ export class App extends Control {
     winnersView.node.classList.add('hide');
     const footer = new Footer(this.node);
     this.model = new CarsDataModel([], 'winners');
-    this.model.build().then((result) => {
-      console.log(result.data);
-      const productData: Array<ICarsData> = result.data;
-      const garageView = new GarageView(main.node, productData);
-      garageView.getCars(result.data);
+    this.model.build(1).then(async (result) => {
+      // const carsData: Array<ICarsData> = result.data;
+      const data: Array<ICarsData> = await result.items!.items;
+      const itemsCount: string | null = await result.items!.itemsCount;
+      console.log(data);
+      const currentPage = localStorage.setItem('currentPage', '1');
+      const garageView = new GarageView(main.node, data, itemsCount!);
+      const paginationView = new PaginationView(itemsCount!, main.node);
+      garageView.getCars(data);
       garageBtn.node.onclick = () => {
         garageBtn.node.classList.add('is-active');
         winnersBtn.node.classList.remove('is-active');
