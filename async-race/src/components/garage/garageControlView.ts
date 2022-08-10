@@ -2,13 +2,22 @@ import Control from '../../common/control';
 import { CarControl } from '../car/carControl';
 import { CarsDataModel, ICarsData } from '../carsDataModel';
 import { Race } from '../raceControl';
+import { GeneratorValues } from '../carGenerator/generatorControl';
+import { GarageView } from './garageView';
+import { PaginationView } from '../pagination/paginationView';
 import style from './garage.css';
 
+type PromiseType = {
+  id?: number;
+  name: string;
+  color: string;
+};
 export class GarageControlView extends Control {
   static node: HTMLElement | null;
 
   constructor(parentNode: HTMLElement) {
     super(parentNode, 'div', style.garage__controls);
+    this.destroy();
   }
 
   static render(parentNode: HTMLElement, data: Array<ICarsData>, carView: Control<HTMLElement>) {
@@ -20,8 +29,38 @@ export class GarageControlView extends Control {
       `${style.bttn} ${style.bttn__generate}`,
       'Generate cars'
     );
-    generateBttn.node.onclick = () => {
+    generateBttn.node.onclick = async () => {
       console.log('click generate cars');
+      const generateValue = new GeneratorValues();
+      for (let i = 0; i < 100; i += 1) {
+        const carName = generateValue.generateCarName();
+        const carColor = generateValue.generateColor();
+        const createWinner = async (body: PromiseType) =>
+          (
+            await fetch('http://localhost:3000/garage/', {
+              method: 'POST',
+              body: JSON.stringify(body),
+              headers: {
+                'Content-type': 'application/json',
+              },
+            })
+          ).json();
+
+        createWinner({ name: carName, color: carColor });
+        console.log(carName, carColor);
+      }
+      const carsData = new CarsDataModel([], 'winners');
+      carsData.build().then(async (result) => {
+        const garageWrap: HTMLElement | null = document.querySelector('.garage');
+        garageWrap!.innerHTML = '';
+        const response = await result.items!.items;
+        const itemsCount = await result.items!.itemsCount;
+        const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
+
+        updateGarage.getCars(response);
+        PaginationView.update(itemsCount!, garageWrap!);
+        console.log(result.data);
+      });
     };
     const createCarWrapper = new Control(controls.node, 'div', style.create__car);
     const createCarName = new Control(createCarWrapper.node, 'input', style.create__input);
@@ -43,8 +82,10 @@ export class GarageControlView extends Control {
     const resetRace = new Control(controls.node, 'button', `${style.bttn} ${style.bttn__reset}`, 'Reset');
     startRace.node.onclick = async () => {
       const carsData = new CarsDataModel([], 'winners');
-      carsData.build().then((result) => {
-        result.data.forEach((item, i) => {
+      const currentPage = localStorage.getItem('currentPage');
+      carsData.build(+currentPage!).then(async (result) => {
+        const response = await result.items!.items;
+        response.forEach((item, i) => {
           const node = carView.node.childNodes[i].childNodes[1].childNodes[0] as HTMLElement;
           const carSelect = carView.node.childNodes[i].childNodes[0].childNodes[1] as HTMLElement;
           const carRemove = carView.node.childNodes[i].childNodes[0].childNodes[2] as HTMLElement;
@@ -68,9 +109,11 @@ export class GarageControlView extends Control {
     };
 
     resetRace.node.onclick = () => {
+      const currentPage = localStorage.getItem('currentPage');
       const carsData = new CarsDataModel([], 'winners');
-      carsData.build().then((result) => {
-        result.data.forEach((item, i) => {
+      carsData.build(+currentPage!).then(async (result) => {
+        const response = await result.items!.items;
+        response.forEach((item, i) => {
           const node = carView.node.childNodes[i].childNodes[1].childNodes[0] as HTMLElement;
           const carSelect = carView.node.childNodes[i].childNodes[0].childNodes[1] as HTMLElement;
           const carRemove = carView.node.childNodes[i].childNodes[0].childNodes[2] as HTMLElement;
