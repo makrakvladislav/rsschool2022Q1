@@ -43,6 +43,8 @@ export class WinnersView extends Control {
 
   static sortOrderState: string;
 
+  static resultTable: Control<HTMLElement>;
+
   constructor(sortType: string, sortOrder: string, parentNode?: HTMLElement) {
     super(parentNode!, 'div', style.winners);
     WinnersView.sortTypeState = sortType;
@@ -154,6 +156,12 @@ export class WinnersView extends Control {
 
   static sorting() {
     const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
+  }
+
+  static update() {
+    console.log(this.resultTable);
+    this.resultTable.destroy();
+    return new WinnersView('time', 'ASC');
   }
 
   public async getWinnersData(padeId: number, sortType: string, sortOrder: string) {

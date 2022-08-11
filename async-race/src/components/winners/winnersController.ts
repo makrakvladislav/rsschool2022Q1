@@ -44,7 +44,10 @@ export class WinnersController {
 
     createWinner({ id, wins: 1, time });
     // WinnersView.update();
+    // const winnersView = new WinnersView('time', 'ASC');
+    const winnersTable = document.querySelector('.winners');
     const winnersView = new WinnersView('time', 'ASC');
+    console.log('create winner');
   }
 
   async updateWinnerStat(id: number, winnerTime: number, winnerData: IWinnerData) {
@@ -70,7 +73,10 @@ export class WinnersController {
     updateWinner({ wins: (wins += 1), time });
     // const mainNode = document.querySelector('.container') as HTMLElement;
     // const winnersView = WinnersView.sorting();
-    const winnerTable = new WinnersView('time', 'asc');
+    // const winnerTable = new WinnersView('time', 'asc');
+    const winnersTable = document.querySelector('.winners');
+    const winnersView = new WinnersView('time', 'ASC');
+    console.log('update winners table');
   }
 }
 

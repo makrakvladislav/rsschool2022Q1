@@ -4,6 +4,7 @@ import { CarControl } from './car/carControl';
 import { CarsDataModel } from './carsDataModel';
 import { Modal } from './modal/modalView';
 import { WinnersController } from './winners/winnersController';
+import { WinnersView } from './winners/winnersView';
 
 export class Race {
   static id: number;
