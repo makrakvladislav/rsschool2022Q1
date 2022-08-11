@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Control from '../../common/control';
 import { ICarsData } from '../carsDataModel';
 import { Race } from '../raceControl';
@@ -120,7 +121,7 @@ export class CarView extends Control {
       };
 
       carReset.node.onclick = async () => {
-        // const reset = CarControl.carReset(item.id, carImg.node);
+        const reset = CarControl.carReset(item.id, carImg.node);
         const raceReset = Race.raceReset();
         carSelect.node.removeAttribute('disabled');
         carRemove.node.removeAttribute('disabled');
@@ -128,8 +129,13 @@ export class CarView extends Control {
       };
 
       carRemove.node.onclick = async () => {
-        // const remove = CarControl.carRemove(item.id, car);
+        const remove = CarControl.carRemove(item.id, car);
       };
+
+      carSelect.node.onclick = async () => {
+        const select = CarControl.carSelect(item.id, item.name, item.color, car);
+      };
+
       return car;
       // return this.renderCar(item);
     });
