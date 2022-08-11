@@ -52,10 +52,11 @@ export class CarControl {
       const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
       updateGarage.getCars(response);
       const mainContainer: HTMLElement | null = document.querySelector('.main');
-      // const updatePagination = new PaginationView(itemsCount!, mainContainer!);
+      // const updatePagination = new PaginationView(itemsCount!, 'garage', mainContainer!);
+      const paginationWrapper = document.querySelector('.pagination__wrapper');
+      paginationWrapper?.remove();
       PaginationView.update(itemsCount!, 'garage', mainContainer!);
       const raceReset = Race.raceReset();
-      console.log(result.data);
     });
     // parentNode.destroy();
   }
@@ -68,20 +69,17 @@ export class CarControl {
   }
 
   static carSelect(id: number, name: string, color: string, parentNode: Control<HTMLElement>) {
-    console.log('select car', id, name, color);
     const inputCarName: HTMLInputElement | null = document.querySelector('.create__input');
     const colorValue: HTMLInputElement | null = document.querySelector('.create__color');
     inputCarName!.value = name;
     colorValue!.value = color;
     const createCarUpdate: HTMLElement | null = document.querySelector('.bttn__update');
     createCarUpdate!.onclick = () => {
-      console.log('click', name);
       CarControl.carUpdate(id, inputCarName!.value, colorValue!.value);
     };
   }
 
   static async carUpdate(id: number, carName?: string, carColor?: string) {
-    console.log('select car', id);
     const updateCar = async (body: PromiseType) =>
       (
         await fetch(`http://localhost:3000/garage/${id}`, {
@@ -106,13 +104,13 @@ export class CarControl {
       updateGarage.getCars(response);
       const mainContainer: HTMLElement | null = document.querySelector('.main');
       // const updatePagination = new PaginationView(itemsCount!, mainContainer!);
+      const paginationWrapper = document.querySelector('.pagination__wrapper');
+      paginationWrapper?.remove();
       PaginationView.update(itemsCount!, 'garage', mainContainer!);
-      console.log(result.data);
     });
   }
 
   static broken(parentNode: HTMLElement) {
-    console.log('car broken');
     parentNode.classList.add('car-broken');
   }
 }

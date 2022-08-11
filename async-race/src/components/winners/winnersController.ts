@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { WinnersView } from './winnersView';
 
 type IWinnerData = {
@@ -30,7 +31,6 @@ export class WinnersController {
   }
 
   async createWinnerStat(id: number, time: number) {
-    console.log('create winner stat here');
     const createWinner = async (body: PromiseType) =>
       (
         await fetch('http://localhost:3000/winners/', {
@@ -48,7 +48,6 @@ export class WinnersController {
   }
 
   async updateWinnerStat(id: number, winnerTime: number, winnerData: IWinnerData) {
-    console.log('save winner stat here', winnerData);
     let { wins } = winnerData;
     const resultTime = 0;
     let time = 0;
@@ -57,7 +56,6 @@ export class WinnersController {
     } else {
       time = winnerData.time;
     }
-    console.log(winnerData.time, time);
     const updateWinner = async (body: PromiseType) =>
       (
         await fetch(`http://localhost:3000/winners/${id}`, {
@@ -71,7 +69,8 @@ export class WinnersController {
 
     updateWinner({ wins: (wins += 1), time });
     // const mainNode = document.querySelector('.container') as HTMLElement;
-    const winnersView = WinnersView.sorting();
+    // const winnersView = WinnersView.sorting();
+    const winnerTable = new WinnersView('time', 'asc');
   }
 }
 

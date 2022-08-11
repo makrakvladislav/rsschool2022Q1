@@ -24,6 +24,8 @@ export class GarageControlView extends Control {
   static render(parentNode: HTMLElement, data: Array<ICarsData>, carView: Control<HTMLElement>) {
     const controls = new Control(parentNode, 'div', style.garage__controls);
     const genegateWrapper = new Control(controls.node, 'div', style.garage__generate);
+    const mainContainer: HTMLElement | null = document.querySelector('.main');
+    const paginationWrapper = document.querySelector('.pagination__wrapper');
     const generateBttn = new Control(
       genegateWrapper.node,
       'button',
@@ -56,10 +58,13 @@ export class GarageControlView extends Control {
         garageWrap!.innerHTML = '';
         const response = await result.items!.items;
         const itemsCount = await result.items!.itemsCount;
+
         const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
 
         updateGarage.getCars(response);
-        PaginationView.update(itemsCount!, 'garage', garageWrap!);
+        // PaginationView.update(itemsCount!, 'garage', garageWrap!);
+        paginationWrapper?.remove();
+        PaginationView.update(itemsCount!, 'garage', mainContainer!);
         console.log(result.data);
       });
     };
@@ -107,10 +112,13 @@ export class GarageControlView extends Control {
         garageWrap!.innerHTML = '';
         const response = await result.items!.items;
         const itemsCount = await result.items!.itemsCount;
+        paginationWrapper?.remove();
         const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
         updateGarage.getCars(response);
-        const mainContainer: HTMLElement | null = document.querySelector('.main');
+
         // const updatePagination = new PaginationView(itemsCount!, mainContainer!);
+        // PaginationView.update(itemsCount!, 'garage', mainContainer!);
+
         PaginationView.update(itemsCount!, 'garage', mainContainer!);
         console.log(result.data);
       });
@@ -141,7 +149,6 @@ export class GarageControlView extends Control {
             'raceStart'
           );
         });
-        console.log(result.data);
       });
     };
 
@@ -171,8 +178,6 @@ export class GarageControlView extends Control {
     const generateValue = new GeneratorValues();
     let carName: HTMLInputElement | string = generateValue.generateCarName();
     let carColor: HTMLInputElement | string = generateValue.generateColor();
-
-    console.log(name.toString().length);
     if (name.toString().length > 0) {
       carName = name;
       carColor = color;
@@ -180,8 +185,6 @@ export class GarageControlView extends Control {
       carName = generateValue.generateCarName();
       carColor = generateValue.generateColor();
     }
-    console.log(carName, carColor);
-
     const createCar = async (body: PromiseType) =>
       (
         await fetch('http://localhost:3000/garage/', {
@@ -204,8 +207,8 @@ export class GarageControlView extends Control {
       const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
 
       updateGarage.getCars(response);
-      PaginationView.update(itemsCount!, 'garage', garageWrap!);
-      console.log(result.data);
+
+      // PaginationView.update(itemsCount!, 'winners', garageWrap!);
     });
   }
 }

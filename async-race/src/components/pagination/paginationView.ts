@@ -9,31 +9,40 @@ import style from './pagination.css';
 export class PaginationView {
   static paginationWrapper: Control<HTMLElement>;
 
-  pagination: Control<HTMLElement>;
+  // paginationWrapper: Control<HTMLElement>;
+
+  // pagination: Control<HTMLElement>;
 
   constructor(count: string, paginationType: string, parentNode: HTMLElement) {
     PaginationView.paginationWrapper = new Control(parentNode, 'div', style.pagination__wrapper);
-    this.pagination = PaginationView.paginationWrapper;
     this.render(count, paginationType, parentNode);
   }
 
   static update(count: string, paginationType: string, parentNode: HTMLElement) {
-    PaginationView.paginationWrapper.destroy();
-    console.log(this.paginationWrapper);
+    const paginationWrapper = document.querySelector('.pagination__wrapper');
+    paginationWrapper?.remove();
     return new PaginationView(count, paginationType, parentNode);
   }
 
+  static winnersPaginationUpdate(count: string, paginationType: string, parentNode: HTMLElement) {
+    const paginationWinnersWrapper: HTMLElement | null = document.querySelector('.winners');
+    return new PaginationView(count, paginationType, paginationWinnersWrapper!);
+  }
+
   render(carsCount: string, paginationType: string, parentNode: HTMLElement) {
-    console.log('pagination create', parentNode);
     let pagesCount = 0;
     if (paginationType === 'garage') {
       pagesCount = Math.ceil(+carsCount / 7);
     } else {
       pagesCount = Math.ceil(+carsCount / 10);
     }
-    console.log(pagesCount);
     for (let i = 0; i < pagesCount; i += 1) {
-      const pageControl = new Control(this.pagination.node, 'button', style.page__item, `${i + 1}`);
+      const pageControl = new Control(
+        PaginationView.paginationWrapper.node,
+        'button',
+        style.page__item,
+        `${i + 1}`
+      );
       const pageId = i + 1;
 
       pageControl.node.onclick = () => {
@@ -41,16 +50,14 @@ export class PaginationView {
           localStorage.setItem('currentPage', pageId.toString());
           this.changePage(pageId);
         } else {
-          console.log(pageId, 'click');
-          this.changePageWinner(pageId);
           localStorage.setItem('currentPageWinners', pageId.toString());
+          this.changePageWinner(pageId);
         }
       };
     }
   }
 
   changePage(pageId: number) {
-    console.log('click', pageId);
     const carsData = new CarsDataModel([], 'winners');
     carsData.build(pageId).then(async (result) => {
       const garageWrap: HTMLElement | null = document.querySelector('.garage');
@@ -58,10 +65,8 @@ export class PaginationView {
       const response = await result.items!.items;
       const itemsCount = await result.items!.itemsCount;
       const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
-
       updateGarage.getCars(response);
       const raceReset = Race.raceReset();
-      console.log(result.data);
     });
   }
 
