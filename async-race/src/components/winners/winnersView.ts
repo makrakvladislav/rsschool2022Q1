@@ -162,7 +162,6 @@ export class WinnersView extends Control {
     const res = await fetch(url, { method });
     const itemsCount = res.headers.get('X-Total-Count');
     const data = await res.json();
-    console.log(url, data);
     return {
       data,
       itemsCount,
@@ -180,18 +179,11 @@ export class WinnersView extends Control {
   public async winnerTable(sortType: string, sortOrder: string) {
     // console.log('update');
     const currentPage: string | null = localStorage.getItem('currentPageWinners');
-    console.log(typeof currentPage);
+
     const winnerData = await this.getWinnersData(+currentPage!, sortType, sortOrder);
     const table: HTMLElement | null = document.querySelector('tbody');
     table!.innerHTML = '';
-    console.log(winnerData.data);
     const pagesCount = Math.ceil(+winnerData.itemsCount! / 10);
-    const winnersHeader = new Control(
-      this.node,
-      'h3',
-      style.winners__header_title,
-      `Total winners: ${+winnerData.itemsCount!} CurrentPage: ${pagesCount}`
-    );
     winnerData.data.forEach(async (item: IWinnerData, i: number) => {
       const carData = CarsData.getData1(item.id);
       const carInfo = this.getWinnersInfo(carData);
@@ -278,7 +270,13 @@ export class WinnersView extends Control {
       </tr>
       `;
     });
-    const paginationView = new PaginationView(winnerData.itemsCount!, 'winners', this.node);
+    const winnersContainer: HTMLElement | null = document.querySelector('.winners');
+    const paginationWrapper: HTMLElement | null = winnersContainer!.querySelector('.pagination__wrapper');
+    paginationWrapper?.remove();
+    PaginationView.winnersPaginationUpdate(winnerData.itemsCount!, 'winners', paginationWrapper!);
+    // paginationWrapper?.remove();
+    // PaginationView.update(winnerData.itemsCount!, 'winners', this.node!);
+    // const paginationView = new PaginationView(winnerData.itemsCount!, 'winners', this.node);
   }
 }
 

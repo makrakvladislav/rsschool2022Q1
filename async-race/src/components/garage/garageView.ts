@@ -24,7 +24,6 @@ export class GarageView extends Control {
   }
 
   private render(data: Array<ICarsData>) {
-    console.log(data);
     const carList = new Control(this.node, 'div', style.cars__list);
     carList.node.innerHTML = '';
     const carView = new CarView(carList.node, data);

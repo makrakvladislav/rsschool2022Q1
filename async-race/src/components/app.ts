@@ -28,7 +28,6 @@ export class App extends Control {
       // const carsData: Array<ICarsData> = result.data;
       const data: Array<ICarsData> = await result.items!.items;
       const itemsCount: string | null = await result.items!.itemsCount;
-      console.log(data);
       const winnersView = new WinnersView('time', 'ASC', main.node);
       winnersView.node.classList.add('hide');
       const currentPage = localStorage.setItem('currentPage', '1');

@@ -36,7 +36,6 @@ export class CarsDataModel {
     } else {
       pageNumber = page;
     }
-    console.log(pageNumber);
     this.items = await this.loadCars(`${baseUrl}/garage?_page=${pageNumber}&_limit=7`);
     return this;
   }
@@ -47,7 +46,6 @@ export class CarsDataModel {
     const response = fetch(url).then((res) => {
       const items = res.json();
       const itemsCount = res.headers.get('X-Total-Count');
-      console.log(itemsCount);
       return {
         items,
         itemsCount,

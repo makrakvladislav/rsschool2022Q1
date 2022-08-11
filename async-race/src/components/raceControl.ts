@@ -34,19 +34,12 @@ export class Race {
     this.velocity = res.velocity;
     this.duration = distance / this.velocity;
     this.results.push([id, this.duration / 1000]);
-    /*
-    bttnsArray.forEach((item) => {
-      return item.removeAttribute('disabled');
-    });
-    */
     bttnsArray.forEach((item) => {
       if (item.classList[1] === 'car__reset') {
         return item.removeAttribute('disabled');
       }
       return item.setAttribute('disabled', 'disabled');
     });
-    // resetNode.removeAttribute('disabled');
-    console.log('engine Start', id, (this.duration / 1000).toFixed(3));
   }
 
   static animate(parentNode: HTMLElement) {
@@ -65,8 +58,7 @@ export class Race {
       this.winner = true;
       const winnerId = this.results.flat().indexOf(id);
       const winnerTime = this.results.flat()[winnerId + 1];
-      console.log(this.results);
-      console.log(id, winnerTime, bttnsArray);
+      console.log(winnerTime);
       Race.raceFinish(id, winnerTime, bttnsArray);
     } else if (result !== '500') {
       bttnsArray.forEach((item) => {
@@ -85,6 +77,7 @@ export class Race {
     const obj = data.find((o: { id: number }) => o.id === id);
     // this.saveWinner(id, +winnerTime.toFixed(3));
     const time = winnerTime.toFixed(3);
+    console.log(time);
     const modal = new Modal(obj.name, time);
     const saveWinner = new WinnersController(id, +time);
     bttnsArray.forEach((item) => {
