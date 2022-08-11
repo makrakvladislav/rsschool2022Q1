@@ -4,6 +4,7 @@
 }
 
 .garage__controls {
+  margin-bottom: 5rem;
   order: 1;
 }
 
@@ -14,7 +15,10 @@
 }
 
 .cars__count {
-
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3rem;
+  font-size: 32px;
 }
 
 .garage .counter {
@@ -30,7 +34,7 @@
 }
 
 .bttn {
-
+  width: auto;
 }
 
 .bttn__start {
@@ -45,6 +49,23 @@
 
 }
 
-.garage .create__car {
+.bttn__update {
   
+}
+
+.garage .create__car {
+  margin: 2rem 0;
+}
+
+.garage .create__car .bttn {
+  width: auto;
+}
+
+.create__input {
+  padding: 0.5rem 1rem;
+}
+
+.pagination__wrapper {
+  display: flex;
+  gap: 0.5rem;
 }

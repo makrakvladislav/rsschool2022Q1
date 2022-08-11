@@ -8,10 +8,42 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  order: 2;
 }
 
 .car__control {
-  flex: 0 0 10%;
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bttn {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 19px;
+}
+
+.bttn:hover {
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  color: #fff;
+  font-weight: 600;
+}
+
+.car__select {
+
+}
+
+.car__remove {
+
+}
+
+.car__start {
+
+}
+
+.car__reset {
+
 }
 
 .car__select {
@@ -19,7 +51,7 @@
 }
 
 .car__name {
-
+  margin-bottom: 2rem;
 }
 
 .car__line {
