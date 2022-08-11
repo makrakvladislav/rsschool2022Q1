@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Control from '../../common/control';
 import { CarControl } from '../car/carControl';
 import { CarsDataModel, ICarsData } from '../carsDataModel';
@@ -9,8 +10,8 @@ import style from './garage.css';
 
 type PromiseType = {
   id?: number;
-  name: string;
-  color: string;
+  name: string | HTMLInputElement;
+  color: string | HTMLInputElement;
 };
 export class GarageControlView extends Control {
   static node: HTMLElement | null;
@@ -27,7 +28,7 @@ export class GarageControlView extends Control {
       genegateWrapper.node,
       'button',
       `${style.bttn} ${style.bttn__generate}`,
-      'Generate cars'
+      'Generate 100 cars'
     );
     generateBttn.node.onclick = async () => {
       console.log('click generate cars');
@@ -58,27 +59,63 @@ export class GarageControlView extends Control {
         const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
 
         updateGarage.getCars(response);
-        PaginationView.update(itemsCount!, garageWrap!);
+        PaginationView.update(itemsCount!, 'garage', garageWrap!);
         console.log(result.data);
       });
     };
     const createCarWrapper = new Control(controls.node, 'div', style.create__car);
-    const createCarName = new Control(createCarWrapper.node, 'input', style.create__input);
-    createCarName.node.setAttribute('placeholder', 'Input car name');
+    const inputCarName = document.createElement('input');
+    inputCarName.classList.add('create__input');
+    inputCarName.setAttribute('placeholder', 'Input car name');
+    createCarWrapper.node.append(inputCarName);
+    const createCarColor = document.createElement('input');
+    createCarColor.classList.add('create__color');
+    createCarColor.setAttribute('type', 'color');
+    createCarWrapper.node.append(createCarColor);
     const createCarSave = new Control(
       createCarWrapper.node,
       'button',
       `${style.bttn} ${style.bttn__save}`,
-      'Save'
+      'Generate car'
     );
-    const createCarColor = new Control(createCarWrapper.node, 'input', style.create__input_color);
-    createCarColor.node.setAttribute('type', 'color');
+    const createCarUpdate = new Control(
+      createCarWrapper.node,
+      'button',
+      `${style.bttn} ${style.bttn__update}`,
+      'Update'
+    );
     const startRace = new Control(
       controls.node,
       'button',
       `${style.bttn} ${style.bttn__start}`,
       'Start race'
     );
+    createCarSave.node.onclick = async () => {
+      let inputValue: HTMLInputElement | null = null;
+      let colorValue: HTMLInputElement | null = null;
+
+      inputValue = inputCarName.value as unknown as HTMLInputElement;
+      colorValue = createCarColor.value as unknown as HTMLInputElement;
+
+      console.log(inputValue, colorValue);
+      GarageControlView.createCar(inputValue, colorValue);
+
+      const carsData = new CarsDataModel([], 'winners');
+      const currentPage = localStorage.getItem('currentPage');
+      carsData.build(+currentPage!).then(async (result) => {
+        const garageWrap: HTMLElement | null = document.querySelector('.garage');
+        garageWrap!.innerHTML = '';
+        const response = await result.items!.items;
+        const itemsCount = await result.items!.itemsCount;
+        const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
+        updateGarage.getCars(response);
+        const mainContainer: HTMLElement | null = document.querySelector('.main');
+        // const updatePagination = new PaginationView(itemsCount!, mainContainer!);
+        PaginationView.update(itemsCount!, 'garage', mainContainer!);
+        console.log(result.data);
+      });
+    };
+
     const resetRace = new Control(controls.node, 'button', `${style.bttn} ${style.bttn__reset}`, 'Reset');
     startRace.node.onclick = async () => {
       const carsData = new CarsDataModel([], 'winners');
@@ -128,6 +165,48 @@ export class GarageControlView extends Control {
         });
       });
     };
+  }
+
+  static createCar(name: HTMLInputElement, color: HTMLInputElement) {
+    const generateValue = new GeneratorValues();
+    let carName: HTMLInputElement | string = generateValue.generateCarName();
+    let carColor: HTMLInputElement | string = generateValue.generateColor();
+
+    console.log(name.toString().length);
+    if (name.toString().length > 0) {
+      carName = name;
+      carColor = color;
+    } else {
+      carName = generateValue.generateCarName();
+      carColor = generateValue.generateColor();
+    }
+    console.log(carName, carColor);
+
+    const createCar = async (body: PromiseType) =>
+      (
+        await fetch('http://localhost:3000/garage/', {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+            'Content-type': 'application/json',
+          },
+        })
+      ).json();
+
+    createCar({ name: carName, color: carColor });
+
+    const carsData = new CarsDataModel([], 'winners');
+    carsData.build().then(async (result) => {
+      const garageWrap: HTMLElement | null = document.querySelector('.garage');
+      garageWrap!.innerHTML = '';
+      const response = await result.items!.items;
+      const itemsCount = await result.items!.itemsCount;
+      const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
+
+      updateGarage.getCars(response);
+      PaginationView.update(itemsCount!, 'garage', garageWrap!);
+      console.log(result.data);
+    });
   }
 }
 

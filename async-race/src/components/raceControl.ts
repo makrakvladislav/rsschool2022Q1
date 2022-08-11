@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Control from '../common/control';
 import { CarControl } from './car/carControl';
 import { CarsDataModel } from './carsDataModel';
@@ -64,6 +65,8 @@ export class Race {
       this.winner = true;
       const winnerId = this.results.flat().indexOf(id);
       const winnerTime = this.results.flat()[winnerId + 1];
+      console.log(this.results);
+      console.log(id, winnerTime, bttnsArray);
       Race.raceFinish(id, winnerTime, bttnsArray);
     } else if (result !== '500') {
       bttnsArray.forEach((item) => {
@@ -81,11 +84,13 @@ export class Race {
     const data = await CarsDataModel.getData('http://localhost:3000/garage', 'GET');
     const obj = data.find((o: { id: number }) => o.id === id);
     // this.saveWinner(id, +winnerTime.toFixed(3));
-    const modal = new Modal(obj.name, winnerTime.toFixed(3));
-    const saveWinner = new WinnersController(id, +winnerTime.toFixed(3));
+    const time = winnerTime.toFixed(3);
+    const modal = new Modal(obj.name, time);
+    const saveWinner = new WinnersController(id, +time);
     bttnsArray.forEach((item) => {
       return item.removeAttribute('disabled');
     });
+    this.raceReset();
   }
 }
 

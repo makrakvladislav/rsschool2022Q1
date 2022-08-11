@@ -1,6 +1,9 @@
+/* eslint-disable import/no-cycle */
 import Control from '../../common/control';
 import { ICarsData, CarsDataModel } from '../carsDataModel';
 import { GarageView } from '../garage/garageView';
+import { Race } from '../raceControl';
+import { WinnersView } from '../winners/winnersView';
 import style from './pagination.css';
 
 export class PaginationView {
@@ -8,29 +11,40 @@ export class PaginationView {
 
   pagination: Control<HTMLElement>;
 
-  constructor(count: string, parentNode: HTMLElement) {
+  constructor(count: string, paginationType: string, parentNode: HTMLElement) {
     PaginationView.paginationWrapper = new Control(parentNode, 'div', style.pagination__wrapper);
     this.pagination = PaginationView.paginationWrapper;
-    this.render(count, parentNode);
+    this.render(count, paginationType, parentNode);
   }
 
-  static update(count: string, parentNode: HTMLElement) {
+  static update(count: string, paginationType: string, parentNode: HTMLElement) {
     PaginationView.paginationWrapper.destroy();
     console.log(this.paginationWrapper);
-    return new PaginationView(count, parentNode);
+    return new PaginationView(count, paginationType, parentNode);
   }
 
-  render(carsCount: string, parentNode: HTMLElement) {
+  render(carsCount: string, paginationType: string, parentNode: HTMLElement) {
     console.log('pagination create', parentNode);
-    const pagesCount = Math.ceil(+carsCount / 7);
+    let pagesCount = 0;
+    if (paginationType === 'garage') {
+      pagesCount = Math.ceil(+carsCount / 7);
+    } else {
+      pagesCount = Math.ceil(+carsCount / 10);
+    }
     console.log(pagesCount);
     for (let i = 0; i < pagesCount; i += 1) {
       const pageControl = new Control(this.pagination.node, 'button', style.page__item, `${i + 1}`);
       const pageId = i + 1;
 
       pageControl.node.onclick = () => {
-        localStorage.setItem('currentPage', pageId.toString());
-        this.changePage(pageId);
+        if (paginationType !== 'winners') {
+          localStorage.setItem('currentPage', pageId.toString());
+          this.changePage(pageId);
+        } else {
+          console.log(pageId, 'click');
+          this.changePageWinner(pageId);
+          localStorage.setItem('currentPageWinners', pageId.toString());
+        }
       };
     }
   }
@@ -46,9 +60,14 @@ export class PaginationView {
       const updateGarage = new GarageView(garageWrap!, response, itemsCount!);
 
       updateGarage.getCars(response);
-
+      const raceReset = Race.raceReset();
       console.log(result.data);
     });
+  }
+
+  changePageWinner(pageId: number) {
+    const winnerTable = new WinnersView('time', 'asc');
+    // winnerTable.getWinnersData(pageId, 'time', 'asc');
   }
 }
 

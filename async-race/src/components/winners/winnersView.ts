@@ -1,5 +1,7 @@
+/* eslint-disable import/no-cycle */
 import Control from '../../common/control';
 import CarsData from '../carsDataModel';
+import { PaginationView } from '../pagination/paginationView';
 import style from './winners.css';
 
 type IWinnerData = {
@@ -154,12 +156,17 @@ export class WinnersView extends Control {
     const sort = new WinnersView(WinnersView.sortTypeState, WinnersView.sortOrderState);
   }
 
-  async getWinnersData(sortType: string, sortOrder: string) {
-    const url = `http://localhost:3000/winners?_sort=${sortType}&_order=${sortOrder}`;
+  public async getWinnersData(padeId: number, sortType: string, sortOrder: string) {
+    const url = `http://localhost:3000/winners?_page=${padeId}&_limit=10&_sort=${sortType}&_order=${sortOrder}`;
     const method = 'GET';
     const res = await fetch(url, { method });
+    const itemsCount = res.headers.get('X-Total-Count');
     const data = await res.json();
-    return data;
+    console.log(url, data);
+    return {
+      data,
+      itemsCount,
+    };
   }
 
   async getWinnersInfo(callback: Promise<PromiseType>) {
@@ -170,12 +177,22 @@ export class WinnersView extends Control {
     };
   }
 
-  async winnerTable(sortType: string, sortOrder: string) {
+  public async winnerTable(sortType: string, sortOrder: string) {
     // console.log('update');
-    const winnerData = await this.getWinnersData(sortType, sortOrder);
+    const currentPage: string | null = localStorage.getItem('currentPageWinners');
+    console.log(typeof currentPage);
+    const winnerData = await this.getWinnersData(+currentPage!, sortType, sortOrder);
     const table: HTMLElement | null = document.querySelector('tbody');
     table!.innerHTML = '';
-    winnerData.forEach(async (item: IWinnerData, i: number) => {
+    console.log(winnerData.data);
+    const pagesCount = Math.ceil(+winnerData.itemsCount! / 10);
+    const winnersHeader = new Control(
+      this.node,
+      'h3',
+      style.winners__header_title,
+      `Total winners: ${+winnerData.itemsCount!} CurrentPage: ${pagesCount}`
+    );
+    winnerData.data.forEach(async (item: IWinnerData, i: number) => {
       const carData = CarsData.getData1(item.id);
       const carInfo = this.getWinnersInfo(carData);
       const carName = await (await carInfo).name;
@@ -261,6 +278,7 @@ export class WinnersView extends Control {
       </tr>
       `;
     });
+    const paginationView = new PaginationView(winnerData.itemsCount!, 'winners', this.node);
   }
 }
 

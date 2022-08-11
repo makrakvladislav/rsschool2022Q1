@@ -21,8 +21,7 @@ export class App extends Control {
     const garageBtn = new Control(navigation.node, 'button', style.bttn, 'Garage');
     garageBtn.node.classList.add('is-active');
     const winnersBtn = new Control(navigation.node, 'button', style.bttn, 'Winners');
-    const winnersView = new WinnersView('time', 'ASC', main.node);
-    winnersView.node.classList.add('hide');
+
     const footer = new Footer(this.node);
     this.model = new CarsDataModel([], 'winners');
     this.model.build(1).then(async (result) => {
@@ -30,9 +29,12 @@ export class App extends Control {
       const data: Array<ICarsData> = await result.items!.items;
       const itemsCount: string | null = await result.items!.itemsCount;
       console.log(data);
+      const winnersView = new WinnersView('time', 'ASC', main.node);
+      winnersView.node.classList.add('hide');
       const currentPage = localStorage.setItem('currentPage', '1');
+      const currentPageWinners = localStorage.setItem('currentPageWinners', '1');
       const garageView = new GarageView(main.node, data, itemsCount!);
-      const paginationView = new PaginationView(itemsCount!, main.node);
+      const paginationView = new PaginationView(itemsCount!, 'garage', main.node);
       garageView.getCars(data);
       garageBtn.node.onclick = () => {
         garageBtn.node.classList.add('is-active');
